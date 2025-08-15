@@ -26,3 +26,13 @@ table tr:not(.field-tr):nth-child(2n+1) td:not(.field-td):nth-child(2n+1) {
 img {
     width: 60px;
 }
+svg {
+    width: 60px;
+    height: 60px;
+}
+.white {
+    fill:white;
+}
+.black{
+    fill: black;
+}
