@@ -23,20 +23,11 @@ table tr:not(.field-tr):nth-child(2n+1) td:not(.field-td):nth-child(2n+1) {
     background: #ffcc99;
 }
 
-img {
-    width: 60px;
-<<<<<<< Updated upstream
-}
-=======
-}
 svg {
     width: 60px;
     height: 60px;
 }
-.white {
-    fill: white;
+img {
+    width: 60px;
+    height: 60px;
 }
-.black{
-    fill: black;
-}
->>>>>>> Stashed changes
