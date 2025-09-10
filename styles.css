@@ -1,3 +1,10 @@
+.container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .table {
     background: #993300;
     border-collapse: collapse;
@@ -13,6 +20,11 @@
     color: #ffcc99;
 }
 
+.table td img {
+    width: 80%;
+    height: auto;
+}
+
 td.field-td,
 tr.field-tr {
     background: #663300;
@@ -21,13 +33,4 @@ tr.field-tr {
 table tr:not(.field-tr):nth-child(2n) td:not(.field-td):nth-child(2n),
 table tr:not(.field-tr):nth-child(2n+1) td:not(.field-td):nth-child(2n+1) {
     background: #ffcc99;
-}
-
-svg {
-    width: 60px;
-    height: 60px;
-}
-img {
-    width: 60px;
-    height: 60px;
 }
