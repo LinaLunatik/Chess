@@ -31,3 +31,7 @@ img {
     width: 60px;
     height: 60px;
 }
+
+.selectedItem {
+    background: #b5daa4ff !important;
+}
