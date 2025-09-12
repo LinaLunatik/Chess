@@ -35,3 +35,7 @@ img {
 .selectedItem {
     background: #b5daa4ff !important;
 }
+
+.possibleStep {
+    background: rgb(216, 224, 186) !important;
+}
