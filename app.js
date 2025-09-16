@@ -156,6 +156,43 @@ function possibleStepKnight(event) {
 }
 
 function possibleStepBishop(event) {
+    const cell = event.target.parentElement; 
+    const row = cell.parentElement;         
+    const td_row = row.querySelectorAll('td'); 
+    const cellIndex = Array.from(td_row).indexOf(cell)
+    const rows = document.querySelectorAll('tr') 
+    const rowIndex = Array.from(rows).indexOf(row) 
+
+    const wasSelected = cell.classList.contains('selectedItem')
+    cell.classList.toggle('selectedItem'); 
+
+    if (wasSelected) {
+        document.querySelectorAll('.possibleStep').forEach(el => {el.classList.remove('possibleStep')})
+    } else {
+        if (cell.classList.contains('selectedItem')) {
+                BishopSteps(rows, rowIndex, cellIndex)
+    }}
+
+    function BishopSteps(rows, rowIndex, cellIndex) {
+        const directions = [
+            [-1, -1],
+            [-1, 1],
+            [1, -1],
+            [1, 1]
+        ]
+
+        directions.forEach(([rowDir, cellDir]) => {
+            for (i = 1; i < 8; i++) {
+                const targetRow = rowIndex + rowDir * i;
+                const targetCell = cellIndex + cellDir * i;
+
+                if (targetRow >= 1 && targetRow <=8 && targetCell >= 1 && targetCell <= 8) {
+                    const targetCellElement = rows[targetRow].children[targetCell]
+                    targetCellElement.classList.add('possibleStep')
+                }
+            }
+        })
+    }
 }
 
 function possibleStepQueen(event) {
