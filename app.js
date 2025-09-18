@@ -22,8 +22,9 @@ function possibleStepRook(event) {
 
     if (cell.classList.contains('selectedItem')) {
         td_row.forEach(td => {
-            if (td !== cell && !td.classList.contains('field-td')) { 
-                td.classList.add('possibleStep')}
+            if (td !== cell && !td.classList.contains('field-td')) {
+                td.classList.add('possibleStep')
+            }
         });
 
         const td = document.querySelectorAll('tr')
@@ -157,22 +158,23 @@ function possibleStepKnight(event) {
 }
 
 function possibleStepBishop(event) {
-    const cell = event.target.parentElement; 
-    const row = cell.parentElement;         
-    const td_row = row.querySelectorAll('td'); 
+    const cell = event.target.parentElement;
+    const row = cell.parentElement;
+    const td_row = row.querySelectorAll('td');
     const cellIndex = Array.from(td_row).indexOf(cell)
-    const rows = document.querySelectorAll('tr') 
-    const rowIndex = Array.from(rows).indexOf(row) 
+    const rows = document.querySelectorAll('tr')
+    const rowIndex = Array.from(rows).indexOf(row)
 
     const wasSelected = cell.classList.contains('selectedItem')
-    cell.classList.toggle('selectedItem'); 
+    cell.classList.toggle('selectedItem');
 
     if (wasSelected) {
-        document.querySelectorAll('.possibleStep').forEach(el => {el.classList.remove('possibleStep')})
+        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
-                BishopSteps(rows, rowIndex, cellIndex)
-    }}
+            BishopSteps(rows, rowIndex, cellIndex)
+        }
+    }
 
     function BishopSteps(rows, rowIndex, cellIndex) {
         const directions = [
@@ -187,7 +189,7 @@ function possibleStepBishop(event) {
                 const targetRow = rowIndex + rowDir * i;
                 const targetCell = cellIndex + cellDir * i;
 
-                if (targetRow >= 1 && targetRow <=8 && targetCell >= 1 && targetCell <= 8) {
+                if (targetRow >= 1 && targetRow <= 8 && targetCell >= 1 && targetCell <= 8) {
                     const targetCellElement = rows[targetRow].children[targetCell]
                     targetCellElement.classList.add('possibleStep')
                 }
@@ -197,22 +199,23 @@ function possibleStepBishop(event) {
 }
 
 function possibleStepQueen(event) {
-    const cell = event.target.parentElement; 
-    const row = cell.parentElement;         
-    const td_row = row.querySelectorAll('td'); 
+    const cell = event.target.parentElement;
+    const row = cell.parentElement;
+    const td_row = row.querySelectorAll('td');
     const cellIndex = Array.from(td_row).indexOf(cell)
-    const rows = document.querySelectorAll('tr') 
-    const rowIndex = Array.from(rows).indexOf(row) 
+    const rows = document.querySelectorAll('tr')
+    const rowIndex = Array.from(rows).indexOf(row)
 
     const wasSelected = cell.classList.contains('selectedItem')
-    cell.classList.toggle('selectedItem'); 
+    cell.classList.toggle('selectedItem');
 
     if (wasSelected) {
-        document.querySelectorAll('.possibleStep').forEach(el => {el.classList.remove('possibleStep')})
+        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
-                QueenSteps(rows, rowIndex, cellIndex)
-    }}
+            QueenSteps(rows, rowIndex, cellIndex)
+        }
+    }
 
     function QueenSteps(rows, rowIndex, cellIndex) {
         const directions = [
@@ -231,7 +234,7 @@ function possibleStepQueen(event) {
                 const targetRow = rowIndex + rowDir * i;
                 const targetCell = cellIndex + cellDir * i;
 
-                if (targetRow >= 1 && targetRow <=8 && targetCell >= 1 && targetCell <= 8) {
+                if (targetRow >= 1 && targetRow <= 8 && targetCell >= 1 && targetCell <= 8) {
                     const targetCellElement = rows[targetRow].children[targetCell]
                     targetCellElement.classList.add('possibleStep')
                 }
@@ -242,6 +245,46 @@ function possibleStepQueen(event) {
 }
 
 function possibleStepRookKing(event) {
+    const cell = event.target.parentElement;
+    const row = cell.parentElement;
+    const td_row = row.querySelectorAll('td');
+    const cellIndex = Array.from(td_row).indexOf(cell)
+    const rows = document.querySelectorAll('tr')
+    const rowIndex = Array.from(rows).indexOf(row)
+
+    const wasSelected = cell.classList.contains('selectedItem')
+    cell.classList.toggle('selectedItem');
+
+    if (wasSelected) {
+        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
+    } else {
+        if (cell.classList.contains('selectedItem')) {
+            KingSteps(rows, rowIndex, cellIndex)
+        }
+    }
+
+    function KingSteps(rows, rowIndex, cellIndex) {
+        const directions = [
+            [-1, -1],
+            [-1, 1],
+            [1, -1],
+            [1, 1],
+            [-1, 0],
+            [0, -1],
+            [0, 1],
+            [1, 0]
+        ]
+
+        directions.forEach(([rowDir, cellDir]) => {
+            const targetRow = rowIndex + rowDir;
+            const targetCell = cellIndex + cellDir;
+
+            if (targetRow >= 1 && targetRow <= 8 && targetCell >= 1 && targetCell <= 8) {
+                const targetCellElement = rows[targetRow].children[targetCell]
+                targetCellElement.classList.add('possibleStep')
+            }
+        })
+    }
 }
 
 function possibleStepPawn(event) {
