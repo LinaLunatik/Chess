@@ -16,29 +16,42 @@ function possibleStepRook(event) {
     const cell = event.target.parentElement;
     const row = cell.parentElement;
     const td_row = row.querySelectorAll('td');
-    const rowIndex = Array.from(td_row).indexOf(cell)
+    const cellIndex = Array.from(td_row).indexOf(cell)
+    const rows = document.querySelectorAll('tr')
+    const rowIndex = Array.from(rows).indexOf(row)
 
+    const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
-    if (cell.classList.contains('selectedItem')) {
-        td_row.forEach(td => {
-            if (td !== cell && !td.classList.contains('field-td')) {
-                td.classList.add('possibleStep')
-            }
-        });
-
-        const td = document.querySelectorAll('tr')
-        td.forEach(row => {
-            if (!row.classList.contains('field-tr')) {
-                row.children[rowIndex].classList.add('possibleStep')
-            }
-        })
+    if (wasSelected) {
+        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
-        td_row.forEach(td => { if (td !== cell) { td.classList.remove('possibleStep') } });
-        document.querySelectorAll('tr').forEach(row => {
-            row.children[rowIndex].classList.remove('possibleStep')
+        if (cell.classList.contains('selectedItem')) {
+            RookSteps(rows, rowIndex, cellIndex)
+        }
+    }
+
+    function RookSteps(rows, rowIndex, cellIndex) {
+        const directions = [
+            [-1, 0],
+            [0, -1],
+            [0, 1],
+            [1, 0]
+        ]
+
+        directions.forEach(([rowDir, cellDir]) => {
+            for (i = 1; i < 8; i++) {
+                const targetRow = rowIndex + rowDir * i;
+                const targetCell = cellIndex + cellDir * i;
+
+                if (targetRow >= 1 && targetRow <= 8 && targetCell >= 1 && targetCell <= 8) {
+                    const targetCellElement = rows[targetRow].children[targetCell]
+                    targetCellElement.classList.add('possibleStep')
+                }
+            }
         })
     }
+
 }
 
 function possibleStepKnight(event) {
