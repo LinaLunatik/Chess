@@ -12,13 +12,24 @@ queens.forEach(queen => { queen.addEventListener('click', possibleStepQueen) })
 kings.forEach(king => { king.addEventListener('click', possibleStepRookKing) })
 pawns.forEach(pawn => { pawn.addEventListener('click', possibleStepPawn) })
 
-function possibleStepRook(event) {
+function getCellOnBoard(event) {
     const cell = event.target.parentElement;
     const row = cell.parentElement;
     const td_row = row.querySelectorAll('td');
     const cellIndex = Array.from(td_row).indexOf(cell)
     const rows = document.querySelectorAll('tr')
     const rowIndex = Array.from(rows).indexOf(row)
+
+    return {
+        cell: cell,
+        rows: rows,
+        cellIndex: cellIndex,
+        rowIndex: rowIndex
+    }
+}
+
+function possibleStepRook(event) {
+    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
@@ -55,15 +66,10 @@ function possibleStepRook(event) {
 }
 
 function possibleStepKnight(event) {
-    const cell = event.target.parentElement; //ячейка с конем
-    const row = cell.parentElement;         //строка с конем
-    const td_row = row.querySelectorAll('td'); //все ячейки строки с конем
-    const cellIndex = Array.from(td_row).indexOf(cell) //индекс ячейки
-    const rows = document.querySelectorAll('tr') //получаем все строки таблицы
-    const rowIndex = Array.from(rows).indexOf(row) //получаем индекс строки с конем
+    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
-    cell.classList.toggle('selectedItem'); //выделение коня
+    cell.classList.toggle('selectedItem');
 
     if (wasSelected) {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
@@ -171,12 +177,7 @@ function possibleStepKnight(event) {
 }
 
 function possibleStepBishop(event) {
-    const cell = event.target.parentElement;
-    const row = cell.parentElement;
-    const td_row = row.querySelectorAll('td');
-    const cellIndex = Array.from(td_row).indexOf(cell)
-    const rows = document.querySelectorAll('tr')
-    const rowIndex = Array.from(rows).indexOf(row)
+    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
@@ -212,12 +213,7 @@ function possibleStepBishop(event) {
 }
 
 function possibleStepQueen(event) {
-    const cell = event.target.parentElement;
-    const row = cell.parentElement;
-    const td_row = row.querySelectorAll('td');
-    const cellIndex = Array.from(td_row).indexOf(cell)
-    const rows = document.querySelectorAll('tr')
-    const rowIndex = Array.from(rows).indexOf(row)
+    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
@@ -258,12 +254,7 @@ function possibleStepQueen(event) {
 }
 
 function possibleStepRookKing(event) {
-    const cell = event.target.parentElement;
-    const row = cell.parentElement;
-    const td_row = row.querySelectorAll('td');
-    const cellIndex = Array.from(td_row).indexOf(cell)
-    const rows = document.querySelectorAll('tr')
-    const rowIndex = Array.from(rows).indexOf(row)
+    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
@@ -301,15 +292,10 @@ function possibleStepRookKing(event) {
 }
 
 function possibleStepPawn(event) {
-    const cell = event.target.parentElement; //ячейка с пешкой
-    const row = cell.parentElement;         //строка с пешкой
-    const td_row = row.querySelectorAll('td'); //все ячейки строки с пешкой
-    const cellIndex = Array.from(td_row).indexOf(cell)
-    const rows = document.querySelectorAll('tr') //получаем все строки таблицы
-    const rowIndex = Array.from(rows).indexOf(row) //получаем индекс строки с пешкой
+    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
-    cell.classList.toggle('selectedItem'); //выделение пешки
+    cell.classList.toggle('selectedItem');
 
     if (wasSelected) {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
