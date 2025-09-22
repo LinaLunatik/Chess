@@ -4,13 +4,21 @@ const bishops = document.querySelectorAll('.bishop')
 const queens = document.querySelectorAll('.queen')
 const kings = document.querySelectorAll('.king')
 const pawns = document.querySelectorAll('.pawn')
+const cells = document.querySelectorAll('td')
 
-rooks.forEach(rook => { rook.addEventListener('click', possibleStepRook) })
-knights.forEach(knight => { knight.addEventListener('click', possibleStepKnight) })
-bishops.forEach(bishop => { bishop.addEventListener('click', possibleStepBishop) })
-queens.forEach(queen => { queen.addEventListener('click', possibleStepQueen) })
-kings.forEach(king => { king.addEventListener('click', possibleStepRookKing) })
-pawns.forEach(pawn => { pawn.addEventListener('click', possibleStepPawn) })
+cells.forEach(cell => {cell.addEventListener('click', handleCellClick)})
+
+function handleCellClick(event) {
+    const cell = event.currentTarget
+    console.log(event.currentTarget)
+    if (cell.querySelector('.rook')) {possibleStepRook(event)}
+    else if(cell.querySelector('.knight')) {possibleStepKnight(event)}
+    else if (cell.querySelector('.bishop')) {possibleStepBishop(event)}
+    else if (cell.querySelector('.queen')) {possibleStepQueen(event)}
+    else if (cell.querySelector('.king')) {possibleStepKing(event)}
+    else if (cell.querySelector('.pawn')) {possibleStepPawn(event)}
+    else {event.currentTarget.classList.toggle('selectedItem') }
+}
 
 function getCellOnBoard(event) {
     const cell = event.target.parentElement;
@@ -253,7 +261,7 @@ function possibleStepQueen(event) {
 
 }
 
-function possibleStepRookKing(event) {
+function possibleStepKing(event) {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
@@ -301,9 +309,9 @@ function possibleStepPawn(event) {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
-            if (cell.classList.contains('black')) {
+            if (cell.querySelector('.black')) {
                 BlackPawnSteps(rows, rowIndex, cellIndex)
-            } else if (cell.classList.contains('white')) {
+            } else if (cell.querySelector('.white')) {
                 WhitePawnSteps(rows, rowIndex, cellIndex)
             }
         }
