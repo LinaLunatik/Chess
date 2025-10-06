@@ -3,6 +3,6 @@ import { getDataFromHTML } from './getDataFromHTML.js'
 
 const {rooks, knights, bishops, queens, kings, pawns, cells} = getDataFromHTML()
 
-export function clickOnCell() {
+export const clickOnCell = () => {
     cells.forEach(cell => { cell.addEventListener('click', handleCellClick) })
 }

@@ -1,20 +1,12 @@
 import {getCellOnBoard} from './getCellOnBoard.js'
 
-export function possibleStepBishop(event) {
+export const possibleStepBishop = (event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
-    if (wasSelected) {
-        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
-    } else {
-        if (cell.classList.contains('selectedItem')) {
-            BishopSteps(rows, rowIndex, cellIndex)
-        }
-    }
-
-    function BishopSteps(rows, rowIndex, cellIndex) {
+    const bishopSteps = (rows, rowIndex, cellIndex) => {
         const directions = [
             [-1, -1],
             [-1, 1],
@@ -33,5 +25,13 @@ export function possibleStepBishop(event) {
                 }
             }
         })
+    }
+    
+    if (wasSelected) {
+        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
+    } else {
+        if (cell.classList.contains('selectedItem')) {
+            bishopSteps(rows, rowIndex, cellIndex)
+        }
     }
 }

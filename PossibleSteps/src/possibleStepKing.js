@@ -1,20 +1,12 @@
 import {getCellOnBoard} from './getCellOnBoard.js'
 
-export function possibleStepKing(event) {
+export const possibleStepKing = (event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
-    if (wasSelected) {
-        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
-    } else {
-        if (cell.classList.contains('selectedItem')) {
-            KingSteps(rows, rowIndex, cellIndex)
-        }
-    }
-
-    function KingSteps(rows, rowIndex, cellIndex) {
+    const kingSteps = (rows, rowIndex, cellIndex) => {
         const directions = [
             [-1, -1],
             [-1, 1],
@@ -35,5 +27,13 @@ export function possibleStepKing(event) {
                 targetCellElement.classList.add('possibleStep')
             }
         })
+    }
+    
+    if (wasSelected) {
+        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
+    } else {
+        if (cell.classList.contains('selectedItem')) {
+            kingSteps(rows, rowIndex, cellIndex)
+        }
     }
 }
