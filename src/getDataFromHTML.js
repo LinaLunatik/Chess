@@ -1,4 +1,4 @@
-export function getDataFromHTML() {
+export const getDataFromHTML = () => {
     const rooks = document.querySelectorAll('.rook')
     const knights = document.querySelectorAll('.knight')
     const bishops = document.querySelectorAll('.bishop')
@@ -7,13 +7,5 @@ export function getDataFromHTML() {
     const pawns = document.querySelectorAll('.pawn')
     const cells = document.querySelectorAll('td')
 
-    return {
-        rooks: rooks,
-        knights: knights,
-        bishops: bishops,
-        queens: queens,
-        kings: kings,
-        pawns: pawns,
-        cells: cells
-    }
+    return {rooks, knights, bishops, queens, kings, pawns, cells}
 }

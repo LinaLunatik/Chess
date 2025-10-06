@@ -1,12 +1,12 @@
 import {getCellOnBoard} from './getCellOnBoard.js'
 
-export function possibleStepKnight(event) {
+export const possibleStepKnight = (event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const wasSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
-    const KnightStep = (rows, rowIndex, cellIndex) => {
+    const knightStep = (rows, rowIndex, cellIndex) => {
         const directions = [
             [2, 1],
             [2, -1],
@@ -36,7 +36,7 @@ export function possibleStepKnight(event) {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
-            KnightStep(rows, rowIndex, cellIndex)
+            knightStep(rows, rowIndex, cellIndex)
         }
     }
 }

@@ -5,7 +5,7 @@ import {possibleStepQueen} from './possibleStepQueen.js'
 import {possibleStepKing} from './possibleStepKing.js'
 import {possibleStepPawn} from './possibleStepPawn.js'
 
-export function handleCellClick(event) {
+export const handleCellClick = (event) => {
     const cell = event.currentTarget
     if (cell.querySelector('.rook')) {possibleStepRook(event)}
     else if(cell.querySelector('.knight')) {possibleStepKnight(event)}
