@@ -1,11 +1,12 @@
 export const getDataFromHTML = () => {
-    const rooks = document.querySelectorAll('.rook')
-    const knights = document.querySelectorAll('.knight')
-    const bishops = document.querySelectorAll('.bishop')
-    const queens = document.querySelectorAll('.queen')
-    const kings = document.querySelectorAll('.king')
-    const pawns = document.querySelectorAll('.pawn')
+    
+    const itemTypes = ['rook', 'knight', 'bishop', 'queen', 'king', 'blackPawn', 'whitePawn']
+    const items = {}
     const cells = document.querySelectorAll('td')
 
-    return {rooks, knights, bishops, queens, kings, pawns, cells}
+    for (let type of itemTypes) {
+        items[`${type}s`] = document.querySelectorAll(`.${type}`)
+    }
+
+    return{items, cells}
 }
