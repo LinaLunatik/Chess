@@ -1,13 +1,4 @@
-import {getCellOnBoard} from './getCellOnBoard.js'
-
-export const possibleStepRook = (event) => {
-    
-    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
-
-    const wasSelected = cell.classList.contains('selectedItem')
-    cell.classList.toggle('selectedItem');
-
-    const rookSteps = (rows, rowIndex, cellIndex) => {
+export const rookSteps = (rows, rowIndex, cellIndex) => {
         const directions = [
             [-1, 0],
             [0, -1],
@@ -27,12 +18,3 @@ export const possibleStepRook = (event) => {
             }
         })
     }
-
-    if (wasSelected) {
-        document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
-    } else {
-        if (cell.classList.contains('selectedItem')) {
-            rookSteps(rows, rowIndex, cellIndex)
-        }
-    }
-}
