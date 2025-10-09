@@ -1,11 +1,11 @@
 import {getCellOnBoard} from './getCellOnBoard.js'
-import { rookSteps } from './rookSteps.js'
-import { bishopSteps } from './bishopSteps.js'
-import { knightSteps } from './knightSteps.js'
-import { kingSteps } from './kingSteps.js'
-import { queenSteps } from './queenSteps.js'
-import { blackPawnSteps } from './blackPawnSteps.js'
-import { whitePawnSteps } from './whitePawnSteps.js'
+import { rookSteps } from './possibleStepsForFigures/rookSteps.js'
+import { bishopSteps } from './possibleStepsForFigures/bishopSteps.js'
+import { knightSteps } from './possibleStepsForFigures/knightSteps.js'
+import { kingSteps } from './possibleStepsForFigures/kingSteps.js'
+import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
+import { blackPawnSteps } from './possibleStepsForFigures/blackPawnSteps.js'
+import { whitePawnSteps } from './possibleStepsForFigures/whitePawnSteps.js'
 
 export const possibleStep = (figure, event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
