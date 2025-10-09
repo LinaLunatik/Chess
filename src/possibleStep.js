@@ -10,7 +10,7 @@ import { whitePawnSteps } from './possibleStepsForFigures/whitePawnSteps.js'
 export const possibleStep = (figure, event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
-    const wasSelected = cell.classList.contains('selectedItem')
+    const isSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
     const possibleStepMap = {
@@ -23,7 +23,7 @@ export const possibleStep = (figure, event) => {
         whitePawn: whitePawnSteps
     }
 
-    if (wasSelected) {
+    if (isSelected) {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
