@@ -1,9 +1,18 @@
 export const whitePawnSteps = (rows, rowIndex, cellIndex) => {
-        const next1RowWhite = rows[rowIndex - 1]
-        const next2RowWhite = rows[rowIndex - 2]
-        const next1CellWhite = next1RowWhite.children[cellIndex]
-        const next2CellWhite = next2RowWhite.children[cellIndex]
+    
+    const directions = [
+        [-1, 0],
+        [-2, 0],
+    ]
 
-        next1CellWhite.classList.add('possibleStep')
-        next2CellWhite.classList.add('possibleStep')
-    }
+    directions.forEach(([rowDir, cellDir]) => {
+        const targetRow = rowIndex + rowDir;
+        const targetCell = cellIndex + cellDir;
+
+        if (targetRow >= 1 && targetRow <= 8 && targetCell >= 1 && targetCell <= 8) {
+            const targetCellElement = rows[targetRow].children[targetCell]
+            targetCellElement.classList.add('possibleStep')
+        }
+    })
+
+}
