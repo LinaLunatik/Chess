@@ -4,8 +4,7 @@ import { bishopSteps } from './possibleStepsForFigures/bishopSteps.js'
 import { knightSteps } from './possibleStepsForFigures/knightSteps.js'
 import { kingSteps } from './possibleStepsForFigures/kingSteps.js'
 import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
-import { blackPawnSteps } from './possibleStepsForFigures/blackPawnSteps.js'
-import { whitePawnSteps } from './possibleStepsForFigures/whitePawnSteps.js'
+import { pawnSteps } from './possibleStepsForFigures/pawnSteps.js'
 
 export const possibleStep = (figure, event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
@@ -19,8 +18,7 @@ export const possibleStep = (figure, event) => {
         bishop: bishopSteps,
         king: kingSteps,
         queen: queenSteps,
-        blackPawn: blackPawnSteps,
-        whitePawn: whitePawnSteps
+        pawn: pawnSteps,
     }
 
     if (isSelected) {
