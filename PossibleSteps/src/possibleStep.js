@@ -1,16 +1,15 @@
 import {getCellOnBoard} from './getCellOnBoard.js'
-import { rookSteps } from './rookSteps.js'
-import { bishopSteps } from './bishopSteps.js'
-import { knightSteps } from './knightSteps.js'
-import { kingSteps } from './kingSteps.js'
-import { queenSteps } from './queenSteps.js'
-import { blackPawnSteps } from './blackPawnSteps.js'
-import { whitePawnSteps } from './whitePawnSteps.js'
+import { rookSteps } from './possibleStepsForFigures/rookSteps.js'
+import { bishopSteps } from './possibleStepsForFigures/bishopSteps.js'
+import { knightSteps } from './possibleStepsForFigures/knightSteps.js'
+import { kingSteps } from './possibleStepsForFigures/kingSteps.js'
+import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
+import { pawnSteps } from './possibleStepsForFigures/pawnSteps.js'
 
 export const possibleStep = (figure, event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
-    const wasSelected = cell.classList.contains('selectedItem')
+    const isSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
     const possibleStepMap = {
@@ -19,11 +18,10 @@ export const possibleStep = (figure, event) => {
         bishop: bishopSteps,
         king: kingSteps,
         queen: queenSteps,
-        blackPawn: blackPawnSteps,
-        whitePawn: whitePawnSteps
+        pawn: pawnSteps,
     }
 
-    if (wasSelected) {
+    if (isSelected) {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
