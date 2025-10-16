@@ -1,4 +1,4 @@
-import { cellOnChessBoard } from "./cellOnChessBoard.js";
+import { isOnChessBoard } from "/src/isOnChessBoard.js"
 
 export const queenSteps = (rows, rowIndex, cellIndex) => {
         const directions = [
@@ -17,7 +17,7 @@ export const queenSteps = (rows, rowIndex, cellIndex) => {
                 const targetRow = rowIndex + rowDir * i;
                 const targetCell = cellIndex + cellDir * i;
 
-                if (cellOnChessBoard(targetRow, targetCell)) {
+                if (isOnChessBoard(targetRow, targetCell)) {
                     const targetCellElement = rows[targetRow].children[targetCell]
                     targetCellElement.classList.add('possibleStep')
                 }
