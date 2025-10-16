@@ -1,3 +1,5 @@
+import { cellOnChessBoard } from "./cellOnChessBoard.js";
+
 export const bishopSteps = (rows, rowIndex, cellIndex) => {
         const directions = [
             [-1, -1],
@@ -11,7 +13,7 @@ export const bishopSteps = (rows, rowIndex, cellIndex) => {
                 const targetRow = rowIndex + rowDir * i;
                 const targetCell = cellIndex + cellDir * i;
 
-                if (targetRow >= 1 && targetRow <= 8 && targetCell >= 1 && targetCell <= 8) {
+                if (cellOnChessBoard(targetRow, targetCell)) {
                     const targetCellElement = rows[targetRow].children[targetCell]
                     targetCellElement.classList.add('possibleStep')
                 }

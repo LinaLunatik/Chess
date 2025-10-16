@@ -1,19 +1,18 @@
-import { cellOnChessBoard } from "./cellOnChessBoard.js";
+import { cellOnChessBoard } from "./cellOnChessBoard.js"
 
-export const kingSteps = (rows, rowIndex, cellIndex) => {
+export const getPawnSteps = ({ isBlack }) => {
+
+    const pawnSteps = (rows, rowIndex, cellIndex) => {
+
         const directions = [
-            [-1, -1],
-            [-1, 1],
-            [1, -1],
-            [1, 1],
-            [-1, 0],
-            [0, -1],
-            [0, 1],
-            [1, 0]
+            [1, 0],
+            [2, 0],
         ]
 
+        const step = isBlack ? 1 : -1
+
         directions.forEach(([rowDir, cellDir]) => {
-            const targetRow = rowIndex + rowDir;
+            const targetRow = rowIndex + rowDir * step;
             const targetCell = cellIndex + cellDir;
 
             if (cellOnChessBoard(targetRow, targetCell)) {
@@ -21,4 +20,7 @@ export const kingSteps = (rows, rowIndex, cellIndex) => {
                 targetCellElement.classList.add('possibleStep')
             }
         })
+
     }
+    return pawnSteps
+}
