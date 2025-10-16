@@ -1,4 +1,4 @@
-import { possibleStep } from './possibleStep.js'
+import { lightPossibleSteps } from './lightPossibleSteps.js'
 
 export const handleCellClick = (event) => {
     const cell = event.currentTarget
@@ -7,7 +7,7 @@ export const handleCellClick = (event) => {
 
     for (let figure of figures) {
         if (cell.querySelector('.' + figure)) {
-            possibleStep(figure, event)
+            lightPossibleSteps(figure, event)
         }
     }
 

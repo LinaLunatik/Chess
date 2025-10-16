@@ -1,4 +1,4 @@
-export const cellOnChessBoard = (targetRow, targetCell) => {
+export const isOnChessBoard = (targetRow, targetCell) => {
     return ( targetRow >= 1 &&
             targetRow <= 8 &&
             targetCell >= 1 &&

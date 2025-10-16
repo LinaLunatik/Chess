@@ -6,13 +6,13 @@ import { kingSteps } from './possibleStepsForFigures/kingSteps.js'
 import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
 import { getPawnSteps } from './possibleStepsForFigures/getPawnSteps.js'
 
-export const possibleStep = (figure, event) => {
+export const lightPossibleSteps = (figure, event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
 
     const isSelected = cell.classList.contains('selectedItem')
     cell.classList.toggle('selectedItem');
 
-    const possibleStepMap = {
+    const possibleStepsMap = {
         rook: rookSteps,
         knight: knightSteps,
         bishop: bishopSteps,
@@ -26,7 +26,7 @@ export const possibleStep = (figure, event) => {
         document.querySelectorAll('.possibleStep').forEach(el => { el.classList.remove('possibleStep') })
     } else {
         if (cell.classList.contains('selectedItem')) {
-            possibleStepMap[figure](rows, rowIndex, cellIndex)
+            possibleStepsMap[figure](rows, rowIndex, cellIndex)
         }
     }
 }
