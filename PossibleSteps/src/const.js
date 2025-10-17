@@ -9,3 +9,8 @@ export const NAMES = {
     whitePawn: 'whitePawn',
     pawn: 'pawn'
 }
+export const STYLES = {
+    possibleStep: 'possibleStep',
+    selectedItem: 'selectedItem'
+}
+

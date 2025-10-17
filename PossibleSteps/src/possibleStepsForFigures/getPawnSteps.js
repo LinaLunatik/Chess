@@ -1,4 +1,5 @@
 import { isOnChessBoard } from "/src/isOnChessBoard.js"
+import { STYLES } from "../const.js"
 
 export const getPawnSteps = ({ isBlack }) => {
 
@@ -17,7 +18,7 @@ export const getPawnSteps = ({ isBlack }) => {
 
             if (isOnChessBoard(targetRow, targetCell)) {
                 const targetCellElement = rows[targetRow].children[targetCell]
-                targetCellElement.classList.add('possibleStep')
+                targetCellElement.classList.add(STYLES.possibleStep)
             }
         })
 

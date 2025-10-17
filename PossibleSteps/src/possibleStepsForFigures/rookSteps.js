@@ -1,4 +1,5 @@
 import { isOnChessBoard } from "/src/isOnChessBoard.js"
+import { STYLES } from "../const.js"
 
 export const rookSteps = (rows, rowIndex, cellIndex) => {
         const directions = [
@@ -15,7 +16,7 @@ export const rookSteps = (rows, rowIndex, cellIndex) => {
 
                 if (isOnChessBoard(targetRow, targetCell)) {
                     const targetCellElement = rows[targetRow].children[targetCell]
-                    targetCellElement.classList.add('possibleStep')
+                    targetCellElement.classList.add(STYLES.possibleStep)
                 }
             }
         })
