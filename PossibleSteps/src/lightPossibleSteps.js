@@ -5,6 +5,7 @@ import { knightSteps } from './possibleStepsForFigures/knightSteps.js'
 import { kingSteps } from './possibleStepsForFigures/kingSteps.js'
 import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
 import { getPawnSteps } from './possibleStepsForFigures/getPawnSteps.js'
+import { NAMES } from './const.js'
 
 export const lightPossibleSteps = (figure, event) => {
     const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
@@ -13,13 +14,13 @@ export const lightPossibleSteps = (figure, event) => {
     cell.classList.toggle('selectedItem');
 
     const possibleStepsMap = {
-        rook: rookSteps,
-        knight: knightSteps,
-        bishop: bishopSteps,
-        king: kingSteps,
-        queen: queenSteps,
-        blackPawn: getPawnSteps({isBlack:true}),
-        whitePawn: getPawnSteps({isBlack:false})
+        [NAMES.rook]: rookSteps,
+        [NAMES.knight]: knightSteps,
+        [NAMES.bishop]: bishopSteps,
+        [NAMES.king]: kingSteps,
+        [NAMES.queen]: queenSteps,
+        [NAMES.blackPawn]: getPawnSteps({isBlack:true}),
+        [NAMES.whitePawn]: getPawnSteps({isBlack:false})
     }
 
     if (isSelected) {
