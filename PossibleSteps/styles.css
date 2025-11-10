@@ -1,3 +1,10 @@
+.container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .table {
     background: #993300;
     border-collapse: collapse;
@@ -11,6 +18,11 @@
     text-align: center;
     font-size: 30px;
     color: #ffcc99;
+}
+
+.table td img {
+    width: 80%;
+    height: auto;
 }
 
 td.field-td,
