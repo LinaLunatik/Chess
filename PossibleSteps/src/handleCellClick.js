@@ -4,15 +4,7 @@ import { NAMES } from './const.js'
 export const handleCellClick = (event) => {
     const cell = event.currentTarget
 
-    const figures = [
-        NAMES.rook, 
-        NAMES.knight, 
-        NAMES.bishop, 
-        NAMES.queen, 
-        NAMES.king, 
-        NAMES.blackPawn,
-        NAMES.whitePawn
-    ]
+    const figures = Object.values(NAMES)
 
     for (let figure of figures) {
         if (cell.querySelector('.' + figure)) {
