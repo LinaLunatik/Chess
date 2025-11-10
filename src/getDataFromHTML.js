@@ -2,14 +2,7 @@ import { NAMES } from "./const.js"
 
 export const getDataFromHTML = () => {
 
-    const itemTypes = [
-        NAMES.rook, 
-        NAMES.knight, 
-        NAMES.bishop, 
-        NAMES.queen, 
-        NAMES.king, 
-        NAMES.blackPawn,
-        NAMES.whitePawn]
+    const itemTypes = Object.values(NAMES)
     const items = {}
     const cells = document.querySelectorAll('td')
 
