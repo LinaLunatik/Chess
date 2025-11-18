@@ -15,6 +15,24 @@ export const NAMES = {
     blackPawn: 'blackPawn',
     whitePawn: 'whitePawn',
 }
+export const FIGURE_IMAGE_PATH = {
+    b: {
+        R: 'assets/figures/black/rook.svg',
+        N: 'assets/figures/black/knight.svg',
+        B: 'assets/figures/black/bishop.svg',
+        K: 'assets/figures/black/king.svg',
+        Q: 'assets/figures/black/queen.svg',
+        P: 'assets/figures/black/pawn.svg'        
+    },
+    w: {
+        R: 'assets/figures/white/rook.svg',
+        N: 'assets/figures/white/knight.svg',
+        B: 'assets/figures/white/bishop.svg',
+        K: 'assets/figures/white/king.svg',
+        Q: 'assets/figures/white/queen.svg',
+        P: 'assets/figures/white/pawn.svg' 
+    }
+}
 export const STYLES = {
     possibleStep: 'possibleStep',
     selectedItem: 'selectedItem'
