@@ -1,21 +1,30 @@
 import { CHESS_BOARD_SIZE } from "./src/const.js"
+import { initialState } from "./state.js"
+import { renderCell } from "./renderCell.js"
 
 export const createChessBoard = () => {
 
-    // let rows = ''
-    // for (let i=0; i < 8; i++) {
-    //     rows += '<tr>'
-    //     for (let j=0; j < 8; j++) {
-    //         rows += '<td></td>'
-    //     } 
-    //     rows += '</tr>'
-    // }
+    const board = initialState.board
 
-    const row = '<tr>' + '<td></td>'.repeat(CHESS_BOARD_SIZE) + '</tr>'
-    const rows = row.repeat(CHESS_BOARD_SIZE)
+    let rowHTML = ''
+    for (let i = 0; i < CHESS_BOARD_SIZE; i++) {
+        rowHTML += '<tr>'
+        for (let j = 0; j < CHESS_BOARD_SIZE; j++) {
+            const piece = board[i][j]
 
-    const chessBoard = `<table>${rows}</table>`
+            rowHTML += renderCell(piece, i, j)
+        }
+        rowHTML += '</tr>'
+    }
+
+    const chessBoard = `<table class="table">${rowHTML}</table>`
     const root = document.getElementById('root')
 
     if(root) {root.innerHTML = chessBoard}
 }
+
+// const row = '<tr>' + '<td></td>'.repeat(CHESS_BOARD_SIZE) + '</tr>'
+// const rows = row.repeat(CHESS_BOARD_SIZE)
+
+
+
