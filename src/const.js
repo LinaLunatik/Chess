@@ -33,6 +33,15 @@ export const FIGURE_IMAGE_PATH = {
         P: 'assets/figures/white/pawn.svg' 
     }
 }
+
+export const TYPE_TO_CLASS = {
+    R: 'rook',
+    N: 'knight',
+    B: 'bishop',
+    K: 'king',
+    Q: 'queen',
+    P: 'pawn'
+}
 export const STYLES = {
     possibleStep: 'possibleStep',
     selectedItem: 'selectedItem'
