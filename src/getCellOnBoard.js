@@ -1,7 +1,5 @@
-export const getCellOnBoard = (event) => {
-    const cell = event.target.closest('td');
-    if (!cell) return null; //клик не по ячейке
-
+export const getCellOnBoard = (cell) => {
+    
     const row = cell.closest('tr');
     if (!row) return null;
 
@@ -14,5 +12,5 @@ export const getCellOnBoard = (event) => {
     const cellIndex = Array.from(cellsInRow).indexOf(cell);
     const rowIndex = Array.from(rows).indexOf(row);
 
-    return {cell, rows, cellIndex, rowIndex}
+    return {rows, cellIndex, rowIndex}
 }

@@ -9,6 +9,7 @@ export const attachEventListeners = () => {
         table.addEventListener('click', (event) => {
             const cell = event.target.closest('td')
             if (cell) { handleCellClick(cell) }
+            else return null
         })
     }
 }
