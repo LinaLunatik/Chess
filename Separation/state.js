@@ -9,5 +9,5 @@ export const initialState = {
        ['wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP'],
        ['wR', 'wN', 'wB', 'wQ', 'wK', 'wB', 'wN', 'wR']
     ],
-    currentPlayer: 'w' // 'w' or 'b'
+    isCurrentPlayerWhite: true // true or false
 }
