@@ -1,8 +1,6 @@
-import {getCellOnBoard} from './getCellOnBoard.js'
 import { STYLES, possibleStepsMap } from './const.js'
 
-export const lightPossibleSteps = (figure, event) => {
-    const {cell, rows, cellIndex, rowIndex} = getCellOnBoard(event)
+export const lightPossibleSteps = (figure, cell, rows, cellIndex, rowIndex) => {
 
     const isSelected = cell.classList.contains(STYLES.selectedItem)
     cell.classList.toggle(STYLES.selectedItem);
@@ -12,7 +10,7 @@ export const lightPossibleSteps = (figure, event) => {
             el.classList.remove(STYLES.possibleStep) })
     } else {
         if (cell.classList.contains(STYLES.selectedItem)) {
-            possibleStepsMap[figure](rows, rowIndex, cellIndex)
+            possibleStepsMap[figure](rows, cellIndex, rowIndex)
         }
     }
 }
