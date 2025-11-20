@@ -9,5 +9,12 @@ export const initialState = {
        ['wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP'],
        ['wR', 'wN', 'wB', 'wQ', 'wK', 'wB', 'wN', 'wR']
     ],
-    isCurrentPlayerWhite: true // true or false
+    isCurrentPlayerWhite: true, // true or false
+    selectedFigure: null, //{row, col} | null,
+    possibleSteps: [] // [{row, col, type: 'step' | 'capture'}]
 }
+
+let state = {...initialState}
+
+export const getState = () => state
+export const setState = (newState) => {state = newState} 
