@@ -1,6 +1,6 @@
-import { FIGURE_IMAGE_PATH, TYPE_TO_CLASS } from "./src/const.js";
+import { FIGURE_IMAGE_PATH, TYPE_TO_CLASS, STYLES } from "./src/const.js";
 
-export const renderCell = (piece, row, col) => {
+export const renderCell = (piece, row, col, { isSelected, isPossibleStep }) => {
 
     let imgTag = ''
 
@@ -9,11 +9,16 @@ export const renderCell = (piece, row, col) => {
         const type = piece[1];
 
         let className = TYPE_TO_CLASS[type];
-        if (type === 'P') {className = color === 'b' ? 'blackPawn' : 'whitePawn'}
+        if (type === 'P') { className = color === 'b' ? 'blackPawn' : 'whitePawn' }
 
         const src = FIGURE_IMAGE_PATH[color][type];
 
-        imgTag = `<img src="${src}" alt="${piece}" class="${className}">`
+        imgTag = `<img src="${src}" alt="${piece}" class="${className}">`;
     }
-    return `<td data-row="${row}" data-col="${col}">${imgTag}</td>`
+
+    let cellClass = 'cell'
+    if (isSelected) { cellClass += ' ' + STYLES.selectedItem };
+    if (isPossibleStep) { cellClass += ' ' + STYLES.possibleStep };
+
+    return `<td data-row="${row}" data-col="${col}" class="${cellClass}">${imgTag}</td>`
 }
