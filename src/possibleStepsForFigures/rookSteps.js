@@ -1,23 +1,35 @@
 import { isOnChessBoard } from "/src/isOnChessBoard.js"
-import { STYLES } from "../const.js"
 
-export const rookSteps = (rows, rowIndex, cellIndex) => {
-        const directions = [
-            [-1, 0],
-            [0, -1],
-            [0, 1],
-            [1, 0]
-        ]
+export const rookSteps = (state, row, col) => {
+    const directions = [
+        [-1, 0],
+        [0, -1],
+        [0, 1],
+        [1, 0]
+    ]
+    
+    let moves = []
+    const currentColor = state.board[row][col][0]
 
-        directions.forEach(([rowDir, cellDir]) => {
-            for (let i = 1; i < 8; i++) {
-                const targetRow = rowIndex + rowDir * i;
-                const targetCell = cellIndex + cellDir * i;
+    directions.forEach(([rowDir, colDir]) => {
+        for (let i = 1; i < 8; i++) {
+            const targetRow = row + rowDir * i;
+            const targetCol = col + colDir * i;
 
-                if (isOnChessBoard(targetRow, targetCell)) {
-                    const targetCellElement = rows[targetRow].children[targetCell]
-                    targetCellElement.classList.add(STYLES.possibleStep)
+            if (isOnChessBoard(targetRow, targetCol)) {
+                const targetCellFigure = state.board[targetRow][targetCol]
+                if (targetCellFigure === '') { //если клетка пуста, можно идти
+                    moves.push({ targetRow, targetCol, type: 'step' })
+                }
+                else if (targetCellFigure[0] === currentColor ) {
+                    break //если клетка занята фигурой своего цвета, стоп
+                    }
+                else {
+                    moves.push({ targetRow, targetCol, type: 'capture' })
+                    break //если клетка занята фигурой чужого цвета, съесть, потом стоп
                 }
             }
-        })
-    }
+        }
+    })
+    return moves
+}
