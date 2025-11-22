@@ -19,13 +19,13 @@ export const rookSteps = (state, row, col) => {
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCellFigure = state.board[targetRow][targetCol]
                 if (targetCellFigure === '') { //если клетка пуста, можно идти
-                    moves.push({ targetRow, targetCol, type: 'step' })
+                    moves.push({  row: targetRow, col: targetCol, type: 'step' })
                 }
                 else if (targetCellFigure[0] === currentColor ) {
                     break //если клетка занята фигурой своего цвета, стоп
                     }
                 else {
-                    moves.push({ targetRow, targetCol, type: 'capture' })
+                    moves.push({  row: targetRow, col: targetCol, type: 'capture' })
                     break //если клетка занята фигурой чужого цвета, съесть, потом стоп
                 }
             }
