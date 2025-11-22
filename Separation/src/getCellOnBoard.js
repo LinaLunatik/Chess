@@ -9,8 +9,8 @@ export const getCellOnBoard = (cell) => {
     const cellsInRow = row.querySelectorAll('td');
     const rows = table.querySelectorAll('tr');
 
-    const cellIndex = Array.from(cellsInRow).indexOf(cell);
+    const colIndex = Array.from(cellsInRow).indexOf(cell);
     const rowIndex = Array.from(rows).indexOf(row);
 
-    return {rows, cellIndex, rowIndex}
+    return {colIndex, rowIndex}
 }
