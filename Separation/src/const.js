@@ -6,7 +6,7 @@ import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
 import { getPawnSteps } from './possibleStepsForFigures/getPawnSteps.js'
 
 export const CHESS_BOARD_SIZE = 8
-export const NAMES = {
+export const FIGURES = {
     rook: 'rook',
     bishop: 'bishop',
     knight: 'knight',
@@ -22,7 +22,7 @@ export const FIGURE_IMAGE_PATH = {
         B: 'assets/figures/black/bishop.svg',
         K: 'assets/figures/black/king.svg',
         Q: 'assets/figures/black/queen.svg',
-        P: 'assets/figures/black/pawn.svg'        
+        P: 'assets/figures/black/pawn.svg'
     },
     w: {
         R: 'assets/figures/white/rook.svg',
@@ -30,7 +30,7 @@ export const FIGURE_IMAGE_PATH = {
         B: 'assets/figures/white/bishop.svg',
         K: 'assets/figures/white/king.svg',
         Q: 'assets/figures/white/queen.svg',
-        P: 'assets/figures/white/pawn.svg' 
+        P: 'assets/figures/white/pawn.svg'
     }
 }
 
