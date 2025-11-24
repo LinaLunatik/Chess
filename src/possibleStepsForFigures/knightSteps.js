@@ -1,25 +1,34 @@
 import { isOnChessBoard } from "/src/isOnChessBoard.js"
-import { STYLES } from "../const.js"
 
-export const knightSteps = (rows, rowIndex, cellIndex) => {
-        const directions = [
-            [2, 1],
-            [2, -1],
-            [1, -2],
-            [-1, -2],
-            [-2, -1],
-            [-2, 1],
-            [-1, 2],
-            [1, 2]
-        ]
+export const knightSteps = (state, row, col) => {
+    const directions = [
+        [2, 1],
+        [2, -1],
+        [1, -2],
+        [-1, -2],
+        [-2, -1],
+        [-2, 1],
+        [-1, 2],
+        [1, 2]
+    ]
 
-        directions.forEach(([rowDir, cellDir]) => {
-            const targetRow = rowIndex + rowDir;
-            const targetCell = cellIndex + cellDir;
+    let moves = []
+    const currentColor = state.board[row][col][0]
 
-            if (isOnChessBoard(targetRow, targetCell)) {
-                    const targetCellElement = rows[targetRow].children[targetCell]
-                    targetCellElement.classList.add(STYLES.possibleStep)
-                }
-        })
-    }
+    directions.forEach(([rowDir, colDir]) => {
+        const targetRow = row + rowDir;
+        const targetCol = col + colDir;
+
+        if (isOnChessBoard(targetRow, targetCol)) {
+            const targetCellFigure = state.board[targetRow][targetCol]
+            if (targetCellFigure === '') { //если клетка пуста, можно идти
+                moves.push({ row: targetRow, col: targetCol, type: 'step' })
+            }
+            else if (targetCellFigure[0] !== currentColor) {
+                moves.push({ row: targetRow, col: targetCol, type: 'capture' })
+                //если клетка занята фигурой чужого цвета, съесть, потом стоп
+            }
+        }
+    })
+    return moves
+}
