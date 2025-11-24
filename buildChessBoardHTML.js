@@ -12,11 +12,11 @@ export const buildChessBoardHTML = (state) => {
     for (let i = 0; i < CHESS_BOARD_SIZE; i++) {
         rowHTML += '<tr>'
         for (let j = 0; j < CHESS_BOARD_SIZE; j++) {
-            const piece = board[i][j];
+            const figure = board[i][j];
             const isSelected = state.selectedFigure?.row === i && state.selectedFigure?.col === j;
             const isPossibleStep = possibleStepSet.has(`${i},${j}`);
 
-            rowHTML += renderCell(piece, i, j, { isSelected, isPossibleStep })
+            rowHTML += renderCell(figure, i, j, { isSelected, isPossibleStep })
         }
         rowHTML += '</tr>'
     }
