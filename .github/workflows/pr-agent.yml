@@ -2,14 +2,30 @@ name: PR-Agent
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened, synchronize]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   pr_agent:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up PR-Agent
-        uses: CodiumAI/pr-agent@latest
+      - name: Run PR-Agent
+        uses: qodo-ai/pr-agent@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_AGENT_MODEL: "huggingface/HuggingFaceH4/zephyr-7b-beta"
+
+          # Включаем авто-фичи
+          github_action_config.auto_review: "true"
+          github_action_config.auto_describe: "true"
+
+          # Типы триггеров
+          github_action_config.pr_actions: '["opened","reopened","synchronize"]'
+
+          # Используем бесплатную модель без ключей
+          pr_agent_model: "huggingface/HuggingFaceH4/zephyr-7b-beta"
