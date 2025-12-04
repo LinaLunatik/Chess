@@ -4,7 +4,9 @@ const createEmptyCell = () => ({
     row: undefined,
     col: undefined,
     figure: null,
-    isBlack: null
+    isBlack: null,
+    // selected | possibleStep | possibleCapture | null
+    highlight: null
 })
 
 const orderFirstLine = [
