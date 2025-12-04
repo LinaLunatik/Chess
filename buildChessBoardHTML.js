@@ -1,5 +1,4 @@
 import { renderCell } from "./renderCell.js"
-import { CHESS_BOARD_SIZE } from "./src/const.js"
 
 export const buildChessBoardHTML = (state) => {
 

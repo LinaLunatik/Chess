@@ -3,7 +3,8 @@ import { CHESS_BOARD_SIZE, FIGURES } from "./src/const"
 const createEmptyCell = () => ({
     row: undefined,
     col: undefined,
-    figure: null
+    figure: null,
+    isBlack: null
 })
 
 const orderFirstLine = [
