@@ -1,4 +1,4 @@
-export const getCellOnBoard = (cell) => {
+export const getCoordsOfCell = (cell) => {
     
     const row = cell.closest('tr');
     if (!row) return null;
