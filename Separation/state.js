@@ -1,10 +1,10 @@
 import { CHESS_BOARD_SIZE, FIGURES } from "./src/const"
 
-const emptyCell = {
+const createEmptyCell = () => ({
     row: undefined,
     col: undefined,
     figure: null
-}
+})
 
 const orderFirstLine = [
     FIGURES.rook,
@@ -18,39 +18,46 @@ const orderFirstLine = [
 ]
 
 const firstBlackLine = orderFirstLine.map((figureType) => (
-    {...emptyCell, figure: figureType, isBlack: true }))
+    { ...createEmptyCell(), figure: figureType, isBlack: true }))
 
-const secondBlackLine = Array.from({length: CHESS_BOARD_SIZE}, () => (
-    {...emptyCell, figure: FIGURES.blackPawn, isBlack: true}))
+const secondBlackLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
+    { ...createEmptyCell(), figure: FIGURES.blackPawn, isBlack: true }))
 
-const emptyRow = Array.from({length: CHESS_BOARD_SIZE}, () => (emptyCell))
+const emptyRow = Array.from({ length: CHESS_BOARD_SIZE }, () => ({...createEmptyCell()}))
 
 const firstWhiteLine = orderFirstLine.map((figureType) => (
-    {...emptyCell, figure: figureType, isBlack: false}))
+    { ...createEmptyCell(), figure: figureType, isBlack: false }))
 
-const secondWhiteLine = Array.from({length: CHESS_BOARD_SIZE}, () => (
-    {...emptyCell, figure: FIGURES.whitePawn, isBlack: false}))
+const secondWhiteLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
+    { ...createEmptyCell(), figure: FIGURES.whitePawn, isBlack: false }))
+
+const initialBoardStructure = [
+        firstBlackLine,
+        secondBlackLine,
+        emptyRow,
+        emptyRow,
+        emptyRow,
+        emptyRow,
+        secondWhiteLine,
+        firstWhiteLine
+    ]
+
+const board = initialBoardStructure.map((row, rowIndex) =>
+    row.map((cell, colIndex) => (
+        { ...cell, row: rowIndex, col: colIndex }
+    )))
 
 export const initialState = {
-    board: [
-       firstBlackLine,
-       secondBlackLine,
-       emptyRow,
-       emptyRow,
-       emptyRow,
-       emptyRow,
-       secondWhiteLine,
-       firstWhiteLine
-    ],
+    board,
     // true or false
-    isCurrentPlayerWhite: true, 
+    isCurrentPlayerWhite: true,
     // {row, col} | null,
-    selectedCell: null, 
+    selectedCell: null,
     // [{row, col, type: 'step' | 'capture'}]
-    possibleSteps: [] 
+    possibleSteps: []
 }
 
-let state = {...initialState}
+let state = { ...initialState }
 
 export const getState = () => state
-export const setState = (newState) => {state = newState} 
+export const setState = (newState) => { state = newState } 
