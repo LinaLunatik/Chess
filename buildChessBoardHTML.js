@@ -1,4 +1,5 @@
 import { renderCell } from "./renderCell.js"
+import { STYLES } from "./src/const.js";
 
 export const buildChessBoardHTML = (state) => {
 
@@ -17,5 +18,5 @@ export const buildChessBoardHTML = (state) => {
         });
         return `<tr>${tdElements.join('')}</tr>`;
     })
-    return `<table class="table">${trElements.join('')}</table>`
+    return `<table class="${STYLES.table}">${trElements.join('')}</table>`
 }

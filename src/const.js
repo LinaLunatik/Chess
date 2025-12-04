@@ -44,7 +44,8 @@ export const FIGURE_IMAGE_PATH = {
 
 export const STYLES = {
     possibleStep: 'possibleStep',
-    selectedItem: 'selectedItem'
+    selectedItem: 'selectedItem',
+    table: 'table'
 }
 
 export const possibleStepsMap = {
