@@ -8,8 +8,9 @@ export const getPawnSteps = ({ isBlack }) => {
             [1, 0]
         ]
 
+        //только для начальной позиции
         const firstStepDirections = [
-            [2, 0] //только для начальной позиции
+            [2, 0] 
         ]
 
         const diagonalDirections = [
@@ -32,8 +33,9 @@ export const getPawnSteps = ({ isBlack }) => {
                 if (isOnChessBoard(targetRow, targetCol)) {
                     const targetCellFigure = state.board[targetRow][targetCol]
                     const middleRow = row + step
+                    //если клетка пуста, можно идти
                     if (targetCellFigure === '' &&
-                        state.board[middleRow][targetCol] === '') { //если клетка пуста, можно идти
+                        state.board[middleRow][targetCol] === '') { 
                         moves.push({ row: targetRow, col: targetCol, type: 'step' })
                     }
                 }
@@ -45,7 +47,8 @@ export const getPawnSteps = ({ isBlack }) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCellFigure = state.board[targetRow][targetCol]
-                if (targetCellFigure === '') { //если клетка пуста, можно идти
+                //если клетка пуста, можно идти
+                if (targetCellFigure === '') { 
                     moves.push({ row: targetRow, col: targetCol, type: 'step' })
                 }
             }

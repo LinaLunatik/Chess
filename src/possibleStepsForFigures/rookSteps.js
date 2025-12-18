@@ -7,7 +7,7 @@ export const rookSteps = (state, row, col) => {
         [0, 1],
         [1, 0]
     ]
-    
+
     let moves = []
     const currentColor = state.board[row][col][0]
 
@@ -18,15 +18,18 @@ export const rookSteps = (state, row, col) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCellFigure = state.board[targetRow][targetCol]
-                if (targetCellFigure === '') { //если клетка пуста, можно идти
-                    moves.push({  row: targetRow, col: targetCol, type: 'step' })
+                //если клетка пуста, можно идти
+                if (targetCellFigure === '') {
+                    moves.push({ row: targetRow, col: targetCol, type: 'step' })
                 }
-                else if (targetCellFigure[0] === currentColor ) {
-                    break //если клетка занята фигурой своего цвета, стоп
-                    }
+                //если клетка занята фигурой своего цвета, стоп
+                else if (targetCellFigure[0] === currentColor) {
+                    break
+                }
+                //если клетка занята фигурой чужого цвета, съесть, потом стоп
                 else {
-                    moves.push({  row: targetRow, col: targetCol, type: 'capture' })
-                    break //если клетка занята фигурой чужого цвета, съесть, потом стоп
+                    moves.push({ row: targetRow, col: targetCol, type: 'capture' })
+                    break
                 }
             }
         }

@@ -5,7 +5,7 @@ const createEmptyCell = () => ({
     col: undefined,
     figure: null,
     isBlack: null,
-    // selected | possibleStep | possibleCapture | null
+    // TODO добавить подсветку selected | possibleStep | possibleCapture | null
     highlight: null
 })
 

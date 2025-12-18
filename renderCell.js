@@ -8,7 +8,11 @@ export const renderCell = (cell, { isSelected, isPossibleStep }) => {
     if (cell.figure && color) {
         const src = FIGURE_IMAGE_PATH[cell.figure][color];
         if (src) {
-            imgTag = `<img src="${src}" alt="${cell.figure}" class="${cell.figure}">`;
+            imgTag = `<img 
+                        src="${src}" 
+                        alt="${cell.figure}" 
+                        class="${cell.figure}"
+                    >`;
         }
     }
 
@@ -16,9 +20,10 @@ export const renderCell = (cell, { isSelected, isPossibleStep }) => {
     if (isSelected) { cellClass += ' ' + STYLES.selectedItem };
     if (isPossibleStep) { cellClass += ' ' + STYLES.possibleStep };
 
-    return `<td data-row="${cell.row}" 
+    return `<td 
+                data-row="${cell.row}" 
                 data-col="${cell.col}" 
                 class="${cellClass}">
-                ${imgTag}
+                    ${imgTag}
             </td>`
 }
