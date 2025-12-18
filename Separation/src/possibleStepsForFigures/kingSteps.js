@@ -21,12 +21,13 @@ export const kingSteps = (state, row, col) => {
 
         if (isOnChessBoard(targetRow, targetCol)) {
             const targetCellFigure = state.board[targetRow][targetCol]
-            if (targetCellFigure === '') { //если клетка пуста, можно идти
+            //если клетка пуста, можно идти
+            if (targetCellFigure === '') {
                 moves.push({ row: targetRow, col: targetCol, type: 'step' })
             }
+            //если клетка занята фигурой чужого цвета, съесть, потом стоп
             else if (targetCellFigure[0] !== currentColor) {
                 moves.push({ row: targetRow, col: targetCol, type: 'capture' })
-                //если клетка занята фигурой чужого цвета, съесть, потом стоп
             }
         }
     })
