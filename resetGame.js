@@ -21,19 +21,24 @@ export const resetGame = () => {
         FIGURES.knight,
         FIGURES.rook
     ]
+
+    const createCell = ({ figure, isBlack }) => (
+        { ...createEmptyCell(), figure, isBlack })
+
     const firstBlackLine = orderFirstLine.map((figureType) => (
-        { ...createEmptyCell(), figure: figureType, isBlack: true }))
+        createCell({ figure: figureType, isBlack: true })))
 
     const secondBlackLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
-        { ...createEmptyCell(), figure: FIGURES.blackPawn, isBlack: true }))
+        createCell({ figure: FIGURES.blackPawn, isBlack: true })))
 
-    const emptyRow = Array.from({ length: CHESS_BOARD_SIZE }, () => ({ ...createEmptyCell() }))
+    const emptyRow = Array.from({ length: CHESS_BOARD_SIZE }, () => (
+        createEmptyCell()))
 
     const firstWhiteLine = orderFirstLine.map((figureType) => (
-        { ...createEmptyCell(), figure: figureType, isBlack: false }))
+        createCell({ figure: figureType, isBlack: false })))
 
     const secondWhiteLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
-        { ...createEmptyCell(), figure: FIGURES.whitePawn, isBlack: false }))
+        createCell({ figure: FIGURES.whitePawn, isBlack: false })))
 
     const initialBoardStructure = [
         firstBlackLine,
