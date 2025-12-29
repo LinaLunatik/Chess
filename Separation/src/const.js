@@ -49,13 +49,13 @@ export const STYLES = {
 }
 
 export const possibleStepsMap = {
-    [NAMES.rook]: rookSteps,
-    [NAMES.knight]: knightSteps,
-    [NAMES.bishop]: bishopSteps,
-    [NAMES.king]: kingSteps,
-    [NAMES.queen]: queenSteps,
-    [NAMES.blackPawn]: getPawnSteps({ isBlack: true }),
-    [NAMES.whitePawn]: getPawnSteps({ isBlack: false })
+    [FIGURES.rook]: rookSteps,
+    [FIGURES.knight]: knightSteps,
+    [FIGURES.bishop]: bishopSteps,
+    [FIGURES.king]: kingSteps,
+    [FIGURES.queen]: queenSteps,
+    [FIGURES.blackPawn]: getPawnSteps({ isBlack: true }),
+    [FIGURES.whitePawn]: getPawnSteps({ isBlack: false })
 }
 
 export const MOVE_TYPES = {
