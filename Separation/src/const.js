@@ -58,3 +58,7 @@ export const possibleStepsMap = {
     [NAMES.whitePawn]: getPawnSteps({ isBlack: false })
 }
 
+export const MOVE_TYPES = {
+    step: 'step',
+    capture: 'capture'
+}

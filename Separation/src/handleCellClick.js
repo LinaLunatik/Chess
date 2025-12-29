@@ -43,17 +43,7 @@ export const handleCellClick = (cell) => {
 
                 if (!Array.isArray(steps)) { return }
 
-                const clickedStep = currentState.possibleSteps.find(step =>
-                    step.row === row && step.col === col)
-
-                if (clickedStep) { moveFigure(currentState.selectedCell, row, col) }
-                else {
-                    const newState = {
-                        ...currentState,
-                        selectedCell: null,
-                        possibleSteps: []
-                    }
-                }
+              
                 setState(newState)
                 const html = buildChessBoardHTML(newState)
                 displayChessBoard(html)

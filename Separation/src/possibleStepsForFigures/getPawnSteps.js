@@ -1,3 +1,4 @@
+import { MOVE_TYPES } from "../const.js"
 import { isOnChessBoard } from "/src/isOnChessBoard.js"
 
 export const getPawnSteps = ({ isBlack }) => {
@@ -36,7 +37,8 @@ export const getPawnSteps = ({ isBlack }) => {
                     //если клетка пуста, можно идти
                     if (targetCellFigure === '' &&
                         state.board[middleRow][targetCol] === '') { 
-                        moves.push({ row: targetRow, col: targetCol, type: 'step' })
+                        moves.push(
+                            { row: targetRow, col: targetCol, type: MOVE_TYPES.step })
                     }
                 }
             })
@@ -49,7 +51,8 @@ export const getPawnSteps = ({ isBlack }) => {
                 const targetCellFigure = state.board[targetRow][targetCol]
                 //если клетка пуста, можно идти
                 if (targetCellFigure === '') { 
-                    moves.push({ row: targetRow, col: targetCol, type: 'step' })
+                    moves.push({ 
+                        row: targetRow, col: targetCol, type: MOVE_TYPES.step })
                 }
             }
         })
@@ -62,7 +65,8 @@ export const getPawnSteps = ({ isBlack }) => {
                 if (targetCellFigure !== '' &&
                     targetCellFigure[0] !== currentColor
                 ) {
-                    moves.push({ row: targetRow, col: targetCol, type: 'capture' })
+                    moves.push({ 
+                        row: targetRow, col: targetCol, type: MOVE_TYPES.capture })
                 }
             }
         })

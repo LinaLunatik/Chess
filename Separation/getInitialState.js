@@ -1,6 +1,6 @@
 import { CHESS_BOARD_SIZE, FIGURES } from "./src/const.js"
 
-export const resetGame = () => {
+export const getInitialState = () => {
 
     const createEmptyCell = () => ({
         row: undefined,
