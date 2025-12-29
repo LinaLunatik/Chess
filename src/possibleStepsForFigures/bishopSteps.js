@@ -1,3 +1,4 @@
+import { MOVE_TYPES } from "../const.js"
 import { isOnChessBoard } from "/src/isOnChessBoard.js"
 
 export const bishopSteps = (state, row, col) => {
@@ -19,7 +20,7 @@ export const bishopSteps = (state, row, col) => {
                 const targetCellFigure = state.board[targetRow][targetCol]
                 //если клетка пуста, можно идти
                 if (targetCellFigure === '') { 
-                    moves.push({ row: targetRow, col: targetCol, type: 'step' })
+                    moves.push({ row: targetRow, col: targetCol, type: MOVE_TYPES.step })
                 }
                 //если клетка занята фигурой своего цвета, стоп
                 else if (targetCellFigure[0] === currentColor) {
@@ -27,7 +28,7 @@ export const bishopSteps = (state, row, col) => {
                 }
                 //если клетка занята фигурой чужого цвета, съесть, потом стоп
                 else {
-                    moves.push({ row: targetRow, col: targetCol, type: 'capture' })
+                    moves.push({ row: targetRow, col: targetCol, type: MOVE_TYPES.capture })
                     break 
                 }
             }
