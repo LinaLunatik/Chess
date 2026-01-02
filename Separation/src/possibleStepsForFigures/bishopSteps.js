@@ -9,7 +9,11 @@ export const bishopSteps = (state, row, col) => {
         [1, 1]
     ]
     let moves = []
-    const currentColor = state.board[row][col][0]
+
+    const currentCell = state.board[row][col]
+    const currentIsBlack = currentCell.isBlack
+
+    if (!currentCell.figure) return []
 
     directions.forEach(([rowDir, colDir]) => {
         for (let i = 1; i < 8; i++) {
@@ -17,18 +21,26 @@ export const bishopSteps = (state, row, col) => {
             const targetCol = col + colDir * i;
 
             if (isOnChessBoard(targetRow, targetCol)) {
-                const targetCellFigure = state.board[targetRow][targetCol]
+                const targetCell = state.board[targetRow][targetCol]
+                
                 //если клетка пуста, можно идти
-                if (targetCellFigure === '') { 
-                    moves.push({ row: targetRow, col: targetCol, type: MOVE_TYPES.step })
+                if (targetCell.figure === null) { 
+                    moves.push({ 
+                        row: targetRow, 
+                        col: targetCol, 
+                        type: MOVE_TYPES.step })
                 }
                 //если клетка занята фигурой своего цвета, стоп
-                else if (targetCellFigure[0] === currentColor) {
+                else if (targetCell.figure !== null &&
+                        targetCell.isBlack === currentIsBlack) {
                     break 
                 }
                 //если клетка занята фигурой чужого цвета, съесть, потом стоп
                 else {
-                    moves.push({ row: targetRow, col: targetCol, type: MOVE_TYPES.capture })
+                    moves.push({ 
+                        row: targetRow, 
+                        col: targetCol, 
+                        type: MOVE_TYPES.capture })
                     break 
                 }
             }
