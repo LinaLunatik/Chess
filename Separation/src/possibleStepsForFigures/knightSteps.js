@@ -14,25 +14,32 @@ export const knightSteps = (state, row, col) => {
     ]
 
     let moves = []
-    const currentColor = state.board[row][col][0]
+    const currentCell = state.board[row][col]
+    const currentIsBlack = currentCell.isBlack
+
+    if (!currentCell.figure) return []
 
     directions.forEach(([rowDir, colDir]) => {
         const targetRow = row + rowDir;
         const targetCol = col + colDir;
 
         if (isOnChessBoard(targetRow, targetCol)) {
-            const targetCellFigure = state.board[targetRow][targetCol]
+            const targetCell = state.board[targetRow][targetCol]
             
             //если клетка пуста, можно идти
-            if (targetCellFigure === '') {
+            if (targetCell.figure === null) {
                 moves.push({ 
-                    row: targetRow, col: targetCol, type: MOVE_TYPES.step })
+                    row: targetRow, 
+                    col: targetCol, 
+                    type: MOVE_TYPES.step })
             }
             
-            //если клетка занята фигурой чужого цвета, съесть, потом стоп
-            else if (targetCellFigure[0] !== currentColor) {
+            //если клетка занята фигурой чужого цвета, съесть
+            else if (targetCell.isBlack !== currentIsBlack) {
                 moves.push({ 
-                    row: targetRow, col: targetCol, type: MOVE_TYPES.capture })
+                    row: targetRow, 
+                    col: targetCol, 
+                    type: MOVE_TYPES.capture })
             }
         }
     })
