@@ -36,8 +36,10 @@ export const FIGURE_IMAGE_PATH = {
         black: 'assets/figures/black/queen.svg',
         white: 'assets/figures/white/queen.svg'
     },
-    pawn: {
-        black: 'assets/figures/black/pawn.svg',
+    blackPawn: {
+        black: 'assets/figures/black/pawn.svg'
+    },
+    whitePawn: {
         white: 'assets/figures/white/pawn.svg'
     }
 }

@@ -5,40 +5,37 @@ export const getPawnSteps = ({ isBlack }) => {
 
     const pawnSteps = (state, row, col) => {
 
-        const forwardDirections = [
-            [1, 0]
-        ]
-
+        const forwardDirections = [[1, 0]]
+        const diagonalDirections = [[1, -1], [1, 1]]
         //только для начальной позиции
-        const firstStepDirections = [
-            [2, 0] 
-        ]
-
-        const diagonalDirections = [
-            [1, -1],
-            [1, 1]
-        ]
+        const firstStepDirections = [[2, 0]]
 
         let moves = []
-        const currentColor = state.board[row][col][0]
-
+        // Определяем направление движения и начальную строку на основе цвета
         const step = isBlack ? 1 : -1
         const startRow = isBlack ? 1 : 6
 
-        if (startRow === row) {
+        // Проверяем, находится ли пешка на начальной позиции для двойного хода
+        if (row === startRow) {
 
             firstStepDirections.forEach(([rowDir, colDir]) => {
                 const targetRow = row + rowDir * step;
                 const targetCol = col + colDir;
 
                 if (isOnChessBoard(targetRow, targetCol)) {
-                    const targetCellFigure = state.board[targetRow][targetCol]
+
                     const middleRow = row + step
+                    const middleCell = state.board[middleRow][col]
+                    const targetCell = state.board[targetRow][targetCol]
+
                     //если клетка пуста, можно идти
-                    if (targetCellFigure === '' &&
-                        state.board[middleRow][targetCol] === '') { 
-                        moves.push(
-                            { row: targetRow, col: targetCol, type: MOVE_TYPES.step })
+                    if (targetCell.figure === null &&
+                        middleCell.figure === null) {
+                        moves.push({
+                            row: targetRow,
+                            col: targetCol, 
+                            type: MOVE_TYPES.step
+                        })
                     }
                 }
             })
@@ -48,11 +45,14 @@ export const getPawnSteps = ({ isBlack }) => {
             const targetCol = col + colDir;
 
             if (isOnChessBoard(targetRow, targetCol)) {
-                const targetCellFigure = state.board[targetRow][targetCol]
+                const targetCell = state.board[targetRow][targetCol]
                 //если клетка пуста, можно идти
-                if (targetCellFigure === '') { 
-                    moves.push({ 
-                        row: targetRow, col: targetCol, type: MOVE_TYPES.step })
+                if (targetCell.figure === null) {
+                    moves.push({
+                        row: targetRow, 
+                        col: targetCol, 
+                        type: MOVE_TYPES.step
+                    })
                 }
             }
         })
@@ -61,12 +61,16 @@ export const getPawnSteps = ({ isBlack }) => {
             const targetCol = col + colDir;
 
             if (isOnChessBoard(targetRow, targetCol)) {
-                const targetCellFigure = state.board[targetRow][targetCol]
-                if (targetCellFigure !== '' &&
-                    targetCellFigure[0] !== currentColor
+                const targetCell = state.board[targetRow][targetCol]
+
+                if (targetCell.figure !== null &&
+                    targetCell.isBlack !== isBlack
                 ) {
-                    moves.push({ 
-                        row: targetRow, col: targetCol, type: MOVE_TYPES.capture })
+                    moves.push({
+                        row: targetRow, 
+                        col: targetCol, 
+                        type: MOVE_TYPES.capture
+                    })
                 }
             }
         })
