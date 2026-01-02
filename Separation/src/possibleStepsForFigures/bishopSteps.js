@@ -31,8 +31,7 @@ export const bishopSteps = (state, row, col) => {
                         type: MOVE_TYPES.step })
                 }
                 //если клетка занята фигурой своего цвета, стоп
-                else if (targetCell.figure !== null &&
-                        targetCell.isBlack === currentIsBlack) {
+                else if (targetCell.isBlack === currentIsBlack) {
                     break 
                 }
                 //если клетка занята фигурой чужого цвета, съесть, потом стоп
