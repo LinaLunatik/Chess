@@ -1,3 +1,3 @@
-import { addCellClickListener } from './src/addCellClickListener.js'
+import { createChessBoard } from './createChessBoard.js'
 
-addCellClickListener()
+createChessBoard()
