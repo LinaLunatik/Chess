@@ -62,7 +62,7 @@ export const getPawnSteps = ({ isBlack }) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCell = state.board[targetRow][targetCol]
-
+                //если клетка занята фигурой другого цвета
                 if (targetCell.figure !== null &&
                     targetCell.isBlack !== isBlack
                 ) {
