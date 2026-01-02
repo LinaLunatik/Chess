@@ -25,6 +25,7 @@ export const handleCellClick = (cell) => {
             }
 
             setState(newState)
+
             const html = buildChessBoardHTML(newState)
             displayChessBoard(html)
             attachEventListeners()
@@ -34,7 +35,7 @@ export const handleCellClick = (cell) => {
         else { 
             //получаем фунцию расчет хода фигуры
             const getSteps = possibleStepsMap[figure] 
-
+            
             if (getSteps) {
                 //вызываем функцию расчета хода
                 const steps = getSteps(currentState, row, col) 
@@ -46,6 +47,7 @@ export const handleCellClick = (cell) => {
                 }
               
                 setState(newState)
+
                 const html = buildChessBoardHTML(newState)
                 displayChessBoard(html)
                 attachEventListeners()

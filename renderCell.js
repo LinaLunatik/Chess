@@ -1,4 +1,4 @@
-import { FIGURE_IMAGE_PATH, STYLES } from "./src/const.js";
+import { FIGURE_IMAGE_PATH, STYLES } from "./src/const.js"
 
 export const renderCell = (cell, { isSelected, isPossibleStep }) => {
 
