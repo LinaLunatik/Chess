@@ -31,7 +31,7 @@ export const getInitialState = () => {
     const secondBlackLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
         createCell({ figure: FIGURES.blackPawn, isBlack: true })))
 
-    const emptyRow = Array.from({ length: CHESS_BOARD_SIZE }, () => (
+    const createEmptyRow = () => Array.from({ length: CHESS_BOARD_SIZE }, () => (
         createEmptyCell()))
 
     const firstWhiteLine = orderFirstLine.map((figureType) => (
@@ -43,10 +43,10 @@ export const getInitialState = () => {
     const initialBoardStructure = [
         firstBlackLine,
         secondBlackLine,
-        emptyRow,
-        emptyRow,
-        emptyRow,
-        emptyRow,
+        createEmptyRow(),
+        createEmptyRow(),
+        createEmptyRow(),
+        createEmptyRow(),
         secondWhiteLine,
         firstWhiteLine
     ]
