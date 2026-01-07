@@ -64,3 +64,7 @@ export const MOVE_TYPES = {
     step: 'step',
     capture: 'capture'
 }
+
+export const ID_IN_HTML = {
+    root: 'root'
+}
