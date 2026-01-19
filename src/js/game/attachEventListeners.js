@@ -1,4 +1,4 @@
-import { handleCellClick } from "./src/handleCellClick.js"
+import { handleCellClick } from "./handleCellClick.js"
 import { getState } from "./state.js"
 
 export const attachEventListeners = () => {

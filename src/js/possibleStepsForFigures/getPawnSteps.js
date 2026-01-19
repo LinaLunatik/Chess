@@ -1,5 +1,5 @@
 import { MOVE_TYPES } from "../const.js"
-import { isOnChessBoard } from "/src/isOnChessBoard.js"
+import { isOnChessBoard } from "../game/isOnChessBoard.js"
 
 export const getPawnSteps = ({ isBlack }) => {
 

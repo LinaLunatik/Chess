@@ -1,4 +1,4 @@
-import { ID_IN_HTML } from "./src/const.js"
+import { ID_IN_HTML } from "../const.js"
 
 export const displayChessBoard = (html) => {
     

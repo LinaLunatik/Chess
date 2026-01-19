@@ -1,12 +1,8 @@
 import { MOVE_TYPES } from "../const.js"
-import { isOnChessBoard } from "/src/isOnChessBoard.js"
+import { isOnChessBoard } from "../game/isOnChessBoard.js"
 
-export const queenSteps = (state, row, col) => {
+export const rookSteps = (state, row, col) => {
     const directions = [
-        [-1, -1],
-        [-1, 1],
-        [1, -1],
-        [1, 1],
         [-1, 0],
         [0, -1],
         [0, 1],
@@ -28,7 +24,7 @@ export const queenSteps = (state, row, col) => {
                 const targetCell = state.board[targetRow][targetCol]
                 
                 //если клетка пуста, можно идти
-                if (targetCell.figure === null) { 
+                if (targetCell.figure === null) {
                     moves.push({ 
                         row: targetRow, 
                         col: targetCol, 
@@ -37,16 +33,16 @@ export const queenSteps = (state, row, col) => {
                 
                 //если клетка занята фигурой своего цвета, стоп
                 else if (targetCell.isBlack === currentIsBlack) {
-                    break 
+                    break
                 }
                 
                 //если клетка занята фигурой чужого цвета, съесть, потом стоп
                 else {
                     moves.push({ 
                         row: targetRow, 
-                        col: targetCol, type: 
-                        MOVE_TYPES.capture })
-                    break 
+                        col: targetCol, 
+                        type: MOVE_TYPES.capture })
+                    break
                 }
             }
         }

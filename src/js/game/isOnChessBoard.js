@@ -1,4 +1,4 @@
-import { CHESS_BOARD_SIZE } from "./const.js"
+import { CHESS_BOARD_SIZE } from "../const.js"
 
 export const isOnChessBoard = (targetRow, targetCol) => {
     return (targetRow >= 0 &&

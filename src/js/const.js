@@ -17,30 +17,30 @@ export const FIGURES = {
 }
 export const FIGURE_IMAGE_PATH = {
     rook: {
-        black: 'assets/figures/black/rook.svg', 
-        white: 'assets/figures/white/rook.svg'
+        black: 'src/assets/figures/black/rook.svg', 
+        white: 'src/assets/figures/white/rook.svg'
     },
     knight: {
-        black: 'assets/figures/black/knight.svg',
-        white: 'assets/figures/white/knight.svg'
+        black: 'src/assets/figures/black/knight.svg',
+        white: 'src/assets/figures/white/knight.svg'
     },
     bishop: {
-        black: 'assets/figures/black/bishop.svg',
-        white: 'assets/figures/white/bishop.svg'
+        black: 'src/assets/figures/black/bishop.svg',
+        white: 'src/assets/figures/white/bishop.svg'
     },
     king: {
-        black: 'assets/figures/black/king.svg',
-        white: 'assets/figures/white/king.svg'
+        black: 'src/assets/figures/black/king.svg',
+        white: 'src/assets/figures/white/king.svg'
     },
     queen: {
-        black: 'assets/figures/black/queen.svg',
-        white: 'assets/figures/white/queen.svg'
+        black: 'src/assets/figures/black/queen.svg',
+        white: 'src/assets/figures/white/queen.svg'
     },
     blackPawn: {
-        black: 'assets/figures/black/pawn.svg'
+        black: 'src/assets/figures/black/pawn.svg'
     },
     whitePawn: {
-        white: 'assets/figures/white/pawn.svg'
+        white: 'src/assets/figures/white/pawn.svg'
     }
 }
 

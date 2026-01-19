@@ -1,9 +1,9 @@
-import { FIGURES, possibleStepsMap } from './const.js'
-import { getState, setState } from '../state.js'
-import { buildChessBoardHTML } from '../buildChessBoardHTML.js'
-import { displayChessBoard } from '../displayChessBoard.js'
-import { attachEventListeners } from '../attachEventListeners.js'
-import { moveFigure } from '../moveFigure.js'
+import { possibleStepsMap } from '../const.js'
+import { getState, setState } from './state.js'
+import { buildChessBoardHTML } from './buildChessBoardHTML.js'
+import { displayChessBoard } from './displayChessBoard.js'
+import { attachEventListeners } from './attachEventListeners.js'
+import { moveFigure } from '../game/moveFigure.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
