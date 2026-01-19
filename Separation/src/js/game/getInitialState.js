@@ -1,4 +1,4 @@
-import { CHESS_BOARD_SIZE, FIGURES } from "./src/const.js"
+import { CHESS_BOARD_SIZE, FIGURES } from "../const.js"
 
 export const getInitialState = () => {
 

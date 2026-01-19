@@ -1,5 +1,5 @@
 import { renderCell } from "./renderCell.js"
-import { STYLES } from "./src/const.js";
+import { STYLES } from "../const.js"
 
 export const buildChessBoardHTML = (state) => {
 
