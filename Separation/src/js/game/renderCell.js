@@ -1,3 +1,4 @@
+import classNames from 'https://cdn.skypack.dev/classnames'
 import { FIGURE_IMAGE_PATH, STYLES } from "../const.js"
 
 export const renderCell = (cell, { isSelected, isPossibleStep }) => {
@@ -16,9 +17,11 @@ export const renderCell = (cell, { isSelected, isPossibleStep }) => {
         }
     }
 
-    let cellClass = 'cell'
-    if (isSelected) { cellClass += ' ' + STYLES.selectedItem };
-    if (isPossibleStep) { cellClass += ' ' + STYLES.possibleStep };
+    const cellClass = classNames (
+       'cell',
+       {[STYLES.selectedItem]: isSelected},
+       {[STYLES.possibleStep]: isPossibleStep} 
+    )
 
     return `<td 
                 data-row="${cell.row}" 
