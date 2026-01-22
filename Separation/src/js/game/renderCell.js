@@ -1,4 +1,4 @@
-import classNames from 'https://cdn.skypack.dev/classnames'
+import { classNames } from "../../utils/classNames/classNames.js"
 import { FIGURE_IMAGE_PATH, STYLES } from "../const.js"
 
 export const renderCell = (cell, { isSelected, isPossibleStep }) => {
