@@ -28,7 +28,8 @@ export const bishopSteps = (state, row, col) => {
                     moves.push({ 
                         row: targetRow, 
                         col: targetCol, 
-                        type: MOVE_TYPES.step })
+                        type: MOVE_TYPES.step 
+                    })
                 }
                 //если клетка занята фигурой своего цвета, стоп
                 else if (targetCell.isBlack === currentIsBlack) {
@@ -39,7 +40,8 @@ export const bishopSteps = (state, row, col) => {
                     moves.push({ 
                         row: targetRow, 
                         col: targetCol, 
-                        type: MOVE_TYPES.capture })
+                        type: MOVE_TYPES.capture 
+                    })
                     break 
                 }
             }
