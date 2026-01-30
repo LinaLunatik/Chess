@@ -32,10 +32,27 @@ const testCases = [
         params: [null, false, 'bar', undefined, 0, 1, { baz: null }, ''],
         expect: 'bar 1',
     },
+        {
+        params: [null, false, 'bar', undefined, 0, 1, { baz: null }, ''],
+        expect: 'bar 1',
+    },
+        {
+        params: [null, false, 'bar', undefined, 0, 1, { baz: null }, ''],
+        expect: 'bar 1',
+    },
+        {
+        params: [null, false, 'bar', undefined, 0, 1, { baz: null }, ''],
+        expect: 'bar 1',
+    },
+        {
+        params: [null, false, 'bar', undefined, 0, 1, { baz: null }, ''],
+        expect: 'bar 1',
+    },
 ]
 
 testCases.forEach(({params, expect}, index) => {
     const result = classNames(...params)
-    console.log(`${index} ${result === expect ? 
+    const paddedIndex = index.toString().padStart(2, ' ')
+    console.log(`${paddedIndex} ${result === expect ? 
         '\\/' : `    Х result: '${result}' but expected '${expect}'`}`)
 });

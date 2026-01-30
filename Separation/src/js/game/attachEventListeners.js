@@ -13,7 +13,10 @@ export const attachEventListeners = () => {
             const rowString = targetCell.dataset.row
             const colString = targetCell.dataset.col
 
-            if (rowString === undefined || colString === undefined) {
+            if (
+                rowString === undefined || 
+                colString === undefined
+            ) {
                 console.warn(
                     'Не найдены data-атрибуты row или col на элементе:', targetCell)
                 return

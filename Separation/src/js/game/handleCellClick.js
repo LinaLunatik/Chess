@@ -13,7 +13,8 @@ export const handleCellClick = (cell) => {
     const {row, col} = cell
 
     if (figure) {
-        const isSameFigure = currentState.selectedCell?.row === row &&
+        const isSameFigure = 
+            currentState.selectedCell?.row === row &&
             currentState.selectedCell?.col === col;
 
         //если клик по той же фигуре, то сброс

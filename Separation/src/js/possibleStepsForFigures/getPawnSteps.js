@@ -29,11 +29,13 @@ export const getPawnSteps = ({ isBlack }) => {
                     const targetCell = state.board[targetRow][targetCol]
 
                     //если клетка пуста, можно идти
-                    if (targetCell.figure === null &&
-                        middleCell.figure === null) {
+                    if (
+                        targetCell.figure === null &&
+                        middleCell.figure === null
+                    ) {
                         moves.push({
                             row: targetRow,
-                            col: targetCol, 
+                            col: targetCol,
                             type: MOVE_TYPES.step
                         })
                     }
@@ -49,8 +51,8 @@ export const getPawnSteps = ({ isBlack }) => {
                 //если клетка пуста, можно идти
                 if (targetCell.figure === null) {
                     moves.push({
-                        row: targetRow, 
-                        col: targetCol, 
+                        row: targetRow,
+                        col: targetCol,
                         type: MOVE_TYPES.step
                     })
                 }
@@ -62,13 +64,15 @@ export const getPawnSteps = ({ isBlack }) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCell = state.board[targetRow][targetCol]
+                
                 //если клетка занята фигурой другого цвета
-                if (targetCell.figure !== null &&
+                if (
+                    targetCell.figure !== null &&
                     targetCell.isBlack !== isBlack
                 ) {
                     moves.push({
-                        row: targetRow, 
-                        col: targetCol, 
+                        row: targetRow,
+                        col: targetCol,
                         type: MOVE_TYPES.capture
                     })
                 }

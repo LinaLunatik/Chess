@@ -31,7 +31,8 @@ export const knightSteps = (state, row, col) => {
                 moves.push({ 
                     row: targetRow, 
                     col: targetCol, 
-                    type: MOVE_TYPES.step })
+                    type: MOVE_TYPES.step 
+                })
             }
             
             //если клетка занята фигурой чужого цвета, съесть
@@ -39,7 +40,8 @@ export const knightSteps = (state, row, col) => {
                 moves.push({ 
                     row: targetRow, 
                     col: targetCol, 
-                    type: MOVE_TYPES.capture })
+                    type: MOVE_TYPES.capture 
+                })
             }
         }
     })
