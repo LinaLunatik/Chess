@@ -1,5 +1,6 @@
 import { MOVE_TYPES } from "../const.js"
 import { isOnChessBoard } from "../game/isOnChessBoard.js"
+import { getCell } from "../game/state.js"
 
 export const getPawnSteps = ({ isBlack }) => {
 
@@ -25,13 +26,16 @@ export const getPawnSteps = ({ isBlack }) => {
                 if (isOnChessBoard(targetRow, targetCol)) {
 
                     const middleRow = row + step
-                    const middleCell = state.board[middleRow][col]
-                    const targetCell = state.board[targetRow][targetCol]
+                    const middleCell = getCell({row: middleRow, col})
+                    const targetCell = getCell({row: targetRow, col: targetCol})
+
+                    const {figure: middleFigure} = middleCell
+                    const {figure: targetFigure} = targetCell
 
                     //если клетка пуста, можно идти
                     if (
-                        targetCell.figure === null &&
-                        middleCell.figure === null
+                        targetFigure === null &&
+                        middleFigure === null
                     ) {
                         moves.push({
                             row: targetRow,
@@ -47,9 +51,11 @@ export const getPawnSteps = ({ isBlack }) => {
             const targetCol = col + colDir;
 
             if (isOnChessBoard(targetRow, targetCol)) {
-                const targetCell = state.board[targetRow][targetCol]
+                const targetCell = getCell({row: targetRow, col: targetCol})
+                const { figure: targetFigure } = targetCell
+
                 //если клетка пуста, можно идти
-                if (targetCell.figure === null) {
+                if (targetFigure === null) {
                     moves.push({
                         row: targetRow,
                         col: targetCol,
@@ -63,12 +69,13 @@ export const getPawnSteps = ({ isBlack }) => {
             const targetCol = col + colDir;
 
             if (isOnChessBoard(targetRow, targetCol)) {
-                const targetCell = state.board[targetRow][targetCol]
+                const targetCell = getCell({row: targetRow, col: targetCol})
+                const {figure: targetFigure, isBlack: targetIsBlack} = targetCell
                 
                 //если клетка занята фигурой другого цвета
                 if (
-                    targetCell.figure !== null &&
-                    targetCell.isBlack !== isBlack
+                    targetFigure !== null &&
+                    targetIsBlack !== isBlack
                 ) {
                     moves.push({
                         row: targetRow,
