@@ -1,4 +1,4 @@
-import { MOVE_TYPES } from "../const.js"
+import { CHESS_BOARD_SIZE, MOVE_TYPES } from "../const.js"
 import { isOnChessBoard } from "../game/isOnChessBoard.js"
 
 export const rookSteps = (state, row, col) => {
@@ -16,7 +16,7 @@ export const rookSteps = (state, row, col) => {
     if (!currentCell.figure) return []
 
     directions.forEach(([rowDir, colDir]) => {
-        for (let i = 1; i < 8; i++) {
+        for (let i = 1; i < CHESS_BOARD_SIZE; i++) {
             const targetRow = row + rowDir * i;
             const targetCol = col + colDir * i;
 
