@@ -19,6 +19,16 @@ export const moveFigure = (row, col) => {
     const currentCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
 
+    //если клетка назначения занята чужой фигурой
+    if (currentCell.figure !== null) {
+        if (currentCell.isBlack) {
+            currentState.capturedBlackFigures.push(currentCell.figure)
+        }
+        else {
+            currentState.capturedWhiteFigures.push(currentCell.figure)
+        }
+    }
+
     currentCell.figure = fromCell.figure
     currentCell.isBlack = fromCell.isBlack
 
@@ -31,7 +41,7 @@ export const moveFigure = (row, col) => {
         selectedCell: null,
         possibleSteps: []
     }
-    
+
     setState(newState)
     createChessBoard()
 }
