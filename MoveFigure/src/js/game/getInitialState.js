@@ -68,7 +68,11 @@ export const getInitialState = () => {
         // {row, col} | null,
         selectedCell: null,
         // [{row, col, type: 'step' | 'capture'}]
-        possibleSteps: []
+        possibleSteps: [],
+        // съеденные белые фигуры / строки
+        capturedWhiteFigures: [],
+        // съеденные черные фигуры / строки
+        capturedBlackFigures: []
     }
 
     return initialState
