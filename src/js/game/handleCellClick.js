@@ -7,10 +7,22 @@ import { moveFigure } from '../game/moveFigure.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
+    const {row, col} = cell
     
+    if (
+        currentState.selectedCell &&
+        currentState.possibleSteps.some(step => 
+            step.row === row && 
+            step.col === col
+        )
+    )
+    {   
+        moveFigure(row, col)
+        return
+    }
+
     //получаем фигуру из состояния
     const figure = cell.figure 
-    const {row, col} = cell
 
     if (figure) {
         const isSameFigure = 
