@@ -4,6 +4,7 @@ import { buildChessBoardHTML } from './buildChessBoardHTML.js'
 import { displayChessBoard } from './displayChessBoard.js'
 import { attachEventListeners } from './attachEventListeners.js'
 import { moveFigure } from '../game/moveFigure.js'
+import { createChessBoard } from './createChessBoard.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
@@ -38,10 +39,7 @@ export const handleCellClick = (cell) => {
             }
 
             setState(newState)
-
-            const html = buildChessBoardHTML(newState)
-            displayChessBoard(html)
-            attachEventListeners()
+            createChessBoard()
         } 
         
         //если клик по новой фигуре - выбор новой фигуры
@@ -60,10 +58,7 @@ export const handleCellClick = (cell) => {
                 }
               
                 setState(newState)
-
-                const html = buildChessBoardHTML(newState)
-                displayChessBoard(html)
-                attachEventListeners()
+                createChessBoard()
             }
         }
     }
