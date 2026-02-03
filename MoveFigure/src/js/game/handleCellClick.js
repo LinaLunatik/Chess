@@ -1,8 +1,5 @@
 import { possibleStepsMap } from '../const.js'
 import { getState, setState } from './state.js'
-import { buildChessBoardHTML } from './buildChessBoardHTML.js'
-import { displayChessBoard } from './displayChessBoard.js'
-import { attachEventListeners } from './attachEventListeners.js'
 import { moveFigure } from '../game/moveFigure.js'
 import { createChessBoard } from './createChessBoard.js'
 

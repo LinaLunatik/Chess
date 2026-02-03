@@ -1,7 +1,4 @@
 import { getState, setState } from "./state.js"
-import { buildChessBoardHTML } from './buildChessBoardHTML.js'
-import { displayChessBoard } from "./displayChessBoard.js"
-import { attachEventListeners } from "./attachEventListeners.js"
 import { createChessBoard } from "./createChessBoard.js"
 
 export const moveFigure = (row, col) => {
