@@ -49,5 +49,13 @@ img {
 }
 
 .possibleStep {
-    background: #d8e0ba !important;
+    background: #c7e850 !important;
+}
+
+.active {
+    background: #FFE4B5;
+    font-weight: bold;
+    font-size: 30px;
+    border: 1px solid black;
+    text-align: center;
 }
