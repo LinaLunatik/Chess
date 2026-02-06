@@ -50,7 +50,8 @@ export const STYLES = {
     table: 'table',
     players: 'players',
     playerWhite: 'playerWhite',
-    playerBlack: 'playerBlack'
+    playerBlack: 'playerBlack',
+    active: 'active'
 }
 
 export const possibleStepsMap = {

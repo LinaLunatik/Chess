@@ -5,11 +5,11 @@ export const buildPlayersInfoHTML = (state) => {
 
     const whiteClass = classNames(
         STYLES.playerWhite,
-        {'active': state.isCurrentPlayerWhite}
+        {[STYLES.active]: state.isCurrentPlayerWhite}
     )
     const blackClass = classNames(
         STYLES.playerBlack,
-        {'active': !state.isCurrentPlayerWhite}
+        {[STYLES.active]: !state.isCurrentPlayerWhite}
     )
 
     return `
