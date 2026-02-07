@@ -4,16 +4,16 @@ import { clearCell } from "./clearCell.js"
 
 export const moveFigure = (targetCell) => {
     const {row, col} = targetCell
-    const currentState = getState()
+    const state = getState()
 
-    if (!currentState.selectedCell) {
+    if (!state.selectedCell) {
         console.error('Нет выбранной клетки');
         return;
     }
 
-    const { row: fromRow, col: fromCol } = currentState.selectedCell
+    const { row: fromRow, col: fromCol } = state.selectedCell
 
-    const newBoard = currentState.board.map(
+    const newBoard = state.board.map(
         row => row.map(
             cell => ({ ...cell })
         ))
@@ -22,9 +22,9 @@ export const moveFigure = (targetCell) => {
     const fromCell = newBoard[fromRow][fromCol]
 
     const newCapturedFigures = {
-        ...currentState.capturedFigures,
-        black: [...currentState.capturedFigures.black],
-        white: [...currentState.capturedFigures.white]
+        ...state.capturedFigures,
+        black: [...state.capturedFigures.black],
+        white: [...state.capturedFigures.white]
     }
 
     //если клетка назначения занята чужой фигурой
@@ -40,7 +40,7 @@ export const moveFigure = (targetCell) => {
     clearCell(fromCell)
 
     const newState = {
-        ...currentState,
+        ...state,
         board: newBoard,
         selectedCell: null,
         possibleSteps: [],
