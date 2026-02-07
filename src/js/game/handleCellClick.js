@@ -16,7 +16,7 @@ export const handleCellClick = (cell) => {
         )
     )
     {   
-        moveFigure(row, col)
+        moveFigure(cell)
         return
     }
 
