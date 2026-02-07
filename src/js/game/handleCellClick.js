@@ -2,23 +2,18 @@ import { possibleStepsMap } from '../const.js'
 import { getState, setState } from './state.js'
 import { moveFigure } from '../game/moveFigure.js'
 import { createChessBoard } from './createChessBoard.js'
+import { isMoveValid } from './isMoveValid.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
     const {row, col} = cell
     
     //если фигура уже выбрана и клик по одной из клеток возможного хода
-    if (
-        currentState.selectedCell &&
-        currentState.possibleSteps.some(step => 
-            step.row === row && 
-            step.col === col
-        )
-    )
-    {   
-        moveFigure(cell)
-        return
-    }
+    if (isMoveValid(currentState, cell))
+        {   
+            moveFigure(cell)
+            return
+        }
 
     //получаем фигуру из состояния
     const figure = cell.figure 
