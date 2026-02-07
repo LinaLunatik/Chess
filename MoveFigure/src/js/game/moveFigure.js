@@ -17,7 +17,7 @@ export const moveFigure = (targetCell) => {
             cell => ({ ...cell })
         ))
 
-    const currentCell = newBoard[row][col]
+    const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
 
     const newCapturedFigures = {
@@ -27,17 +27,14 @@ export const moveFigure = (targetCell) => {
     }
 
     //если клетка назначения занята чужой фигурой
-    if (currentCell.figure !== null) {
-        if (currentCell.isBlack) {
-            newCapturedFigures.black.push(currentCell.figure)
-        }
-        else {
-            newCapturedFigures.white.push(currentCell.figure)
-        }
+    if (targetCell.figure !== null) {
+        newCapturedFigures[
+            targetCell.isBlack ? 'black' : 'white'
+        ].push(targetCell.figure)
     }
 
-    currentCell.figure = fromCell.figure
-    currentCell.isBlack = fromCell.isBlack
+    targetCell.figure = fromCell.figure
+    targetCell.isBlack = fromCell.isBlack
 
     fromCell.figure = null
     fromCell.isBlack = null
