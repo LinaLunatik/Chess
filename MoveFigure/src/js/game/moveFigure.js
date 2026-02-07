@@ -1,7 +1,8 @@
 import { getState, setState } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 
-export const moveFigure = (row, col) => {
+export const moveFigure = (targetCell) => {
+    const {row, col} = targetCell
     const currentState = getState()
 
     if (!currentState.selectedCell) {
@@ -19,13 +20,19 @@ export const moveFigure = (row, col) => {
     const currentCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
 
+    const newCapturedFigures = {
+        ...currentState.capturedFigures,
+        black: [...currentState.capturedFigures.black],
+        white: [...currentState.capturedFigures.white]
+    }
+
     //если клетка назначения занята чужой фигурой
     if (currentCell.figure !== null) {
         if (currentCell.isBlack) {
-            currentState.capturedBlackFigures.push(currentCell.figure)
+            newCapturedFigures.black.push(currentCell.figure)
         }
         else {
-            currentState.capturedWhiteFigures.push(currentCell.figure)
+            newCapturedFigures.white.push(currentCell.figure)
         }
     }
 
@@ -39,7 +46,8 @@ export const moveFigure = (row, col) => {
         ...currentState,
         board: newBoard,
         selectedCell: null,
-        possibleSteps: []
+        possibleSteps: [],
+        capturedFigures: newCapturedFigures
     }
 
     setState(newState)
