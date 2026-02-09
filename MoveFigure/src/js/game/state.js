@@ -13,3 +13,51 @@ export const setCell = (cell, fromCell) => {
         isBlack: fromCell.isBlack
     }
 }
+
+export const setBoard = (newBoard)  => {
+    const state = getState()
+    setState({
+        ...state,
+        board: newBoard
+    })
+}
+
+export const clearSelectedCell = () => {
+    const state = getState()
+    setState({
+        ...state,
+        selectedCell: null
+    })
+}
+
+export const setSelectedCell = (cell) => {
+    const state = getState()
+    setState({
+        ...state,
+        selectedCell: cell
+    })
+}
+
+export const clearPossibleSteps = () => {
+    const state = getState()
+    setState({
+        ...state,
+        possibleSteps: []
+    })
+}
+
+export const setPossibleSteps = (steps) => {
+    const state = getState()
+    setState({
+        ...state,
+        possibleSteps: steps
+    })
+}
+
+export const setCapturedFigures = (newCapturedFigures) => {
+    const state = getState()
+    setState({
+        ...state,
+        capturedFigures: newCapturedFigures
+    })
+}

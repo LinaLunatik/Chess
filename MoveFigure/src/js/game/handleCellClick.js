@@ -1,5 +1,10 @@
 import { possibleStepsMap } from '../const.js'
-import { getState, setState } from './state.js'
+import { 
+    clearPossibleSteps, 
+    clearSelectedCell, 
+    getState, 
+    setPossibleSteps, 
+    setSelectedCell } from './state.js'
 import { moveFigure } from '../game/moveFigure.js'
 import { createChessBoard } from './createChessBoard.js'
 import { isMoveValid } from './isMoveValid.js'
@@ -25,13 +30,9 @@ export const handleCellClick = (cell) => {
 
         //если клик по той же фигуре, то сброс
         if (isSameFigure) { 
-            const newState = {
-                ...currentState,
-                selectedCell: null,
-                possibleSteps: []
-            }
+            clearSelectedCell()
+            clearPossibleSteps()
 
-            setState(newState)
             createChessBoard()
         } 
         
@@ -44,13 +45,9 @@ export const handleCellClick = (cell) => {
                 //вызываем функцию расчета хода
                 const steps = getSteps(currentState, row, col) 
 
-                const newState = {
-                    ...currentState,
-                    selectedCell: {row, col},
-                    possibleSteps: steps
-                }
-              
-                setState(newState)
+                setSelectedCell({row, col})
+                setPossibleSteps(steps)
+
                 createChessBoard()
             }
         }

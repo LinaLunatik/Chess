@@ -1,4 +1,10 @@
-import { getState, setCell, setState } from "./state.js"
+import { 
+    clearPossibleSteps, 
+    clearSelectedCell, 
+    getState, 
+    setBoard, 
+    setCapturedFigures, 
+    setCell } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 
@@ -38,14 +44,10 @@ export const moveFigure = (cell) => {
 
     clearCell(fromCell)
 
-    const newState = {
-        ...state,
-        board: newBoard,
-        selectedCell: null,
-        possibleSteps: [],
-        capturedFigures: newCapturedFigures
-    }
+    setBoard(newBoard)
+    clearSelectedCell()
+    clearPossibleSteps()
+    setCapturedFigures(newCapturedFigures)
 
-    setState(newState)
     createChessBoard()
 }
