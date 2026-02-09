@@ -47,7 +47,11 @@ export const FIGURE_IMAGE_PATH = {
 export const STYLES = {
     possibleStep: 'possibleStep',
     selectedItem: 'selectedItem',
-    table: 'table'
+    table: 'table',
+    players: 'players',
+    playerWhite: 'playerWhite',
+    playerBlack: 'playerBlack',
+    active: 'active'
 }
 
 export const possibleStepsMap = {
