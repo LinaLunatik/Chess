@@ -1,9 +1,9 @@
-import { getState, setState } from "./state.js"
+import { getState, setCell, setState } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 
-export const moveFigure = (targetCell) => {
-    const {row, col} = targetCell
+export const moveFigure = (cell) => {
+    const {row, col} = cell
     const state = getState()
 
     if (!state.selectedCell) {
@@ -34,8 +34,7 @@ export const moveFigure = (targetCell) => {
         ].push(targetCell.figure)
     }
 
-    targetCell.figure = fromCell.figure
-    targetCell.isBlack = fromCell.isBlack
+    newBoard[row][col] = setCell(targetCell, fromCell)
 
     clearCell(fromCell)
 
