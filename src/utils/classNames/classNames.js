@@ -1,20 +1,20 @@
 export const classNames = (...params) => {
-    
+
     let result = params.reduce((acc, param) => {
-        if (param !== null) {
-            
+        // сортируем только truthy значения
+        if (param) {
             // если param - примитив
-            if (
+            if
+            (
                 typeof param !== 'object' &&
-                typeof param !== 'function') {
-                // сортируем только truthy значения 
-                    if (param) {
-                    acc.push(param)
-                }
-            } 
-            
+                typeof param !== 'function'
+            ) {
+                acc.push(param) 
+            }
+
             // если param - объект
-            else if (
+            else if 
+            (
                 typeof param === 'object'
             ) {
                 for (let key of Object.keys(param)) {
