@@ -51,7 +51,8 @@ export const STYLES = {
     players: 'players',
     playerWhite: 'playerWhite',
     playerBlack: 'playerBlack',
-    active: 'active'
+    active: 'active',
+    moveHistory: 'moveHistory'
 }
 
 export const possibleStepsMap = {
@@ -66,7 +67,8 @@ export const possibleStepsMap = {
 
 export const MOVE_TYPES = {
     step: 'step',
-    capture: 'capture'
+    capture: 'capture',
+    move: 'move',
 }
 
 export const ID_IN_HTML = {
