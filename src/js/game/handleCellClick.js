@@ -1,16 +1,27 @@
 import { possibleStepsMap } from '../const.js'
-import { getState, setState } from './state.js'
-import { buildChessBoardHTML } from './buildChessBoardHTML.js'
-import { displayChessBoard } from './displayChessBoard.js'
-import { attachEventListeners } from './attachEventListeners.js'
+import { 
+    clearPossibleSteps, 
+    clearSelectedCell, 
+    getState, 
+    setPossibleSteps, 
+    setSelectedCell } from './state.js'
 import { moveFigure } from '../game/moveFigure.js'
+import { createChessBoard } from './createChessBoard.js'
+import { isMoveValid } from './isMoveValid.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
+    const {row, col} = cell
     
+    //если фигура уже выбрана и клик по одной из клеток возможного хода
+    if (isMoveValid(currentState, cell))
+        {   
+            moveFigure(cell)
+            return
+        }
+
     //получаем фигуру из состояния
     const figure = cell.figure 
-    const {row, col} = cell
 
     if (figure) {
         const isSameFigure = 
@@ -19,17 +30,10 @@ export const handleCellClick = (cell) => {
 
         //если клик по той же фигуре, то сброс
         if (isSameFigure) { 
-            const newState = {
-                ...currentState,
-                selectedCell: null,
-                possibleSteps: []
-            }
+            clearSelectedCell()
+            clearPossibleSteps()
 
-            setState(newState)
-
-            const html = buildChessBoardHTML(newState)
-            displayChessBoard(html)
-            attachEventListeners()
+            createChessBoard()
         } 
         
         //если клик по новой фигуре - выбор новой фигуры
@@ -41,17 +45,10 @@ export const handleCellClick = (cell) => {
                 //вызываем функцию расчета хода
                 const steps = getSteps(currentState, row, col) 
 
-                const newState = {
-                    ...currentState,
-                    selectedCell: {row, col},
-                    possibleSteps: steps
-                }
-              
-                setState(newState)
+                setSelectedCell({row, col})
+                setPossibleSteps(steps)
 
-                const html = buildChessBoardHTML(newState)
-                displayChessBoard(html)
-                attachEventListeners()
+                createChessBoard()
             }
         }
     }
