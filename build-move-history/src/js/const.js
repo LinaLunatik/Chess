@@ -51,7 +51,8 @@ export const STYLES = {
     players: 'players',
     playerWhite: 'playerWhite',
     playerBlack: 'playerBlack',
-    active: 'active'
+    active: 'active',
+    moveHistory: 'moveHistory'
 }
 
 export const possibleStepsMap = {
