@@ -1,0 +1,30 @@
+export const classNames = (...params) => {
+
+    let result = params.reduce((acc, param) => {
+        // сортируем только truthy значения
+        if (param) {
+            // если param - примитив
+            if
+            (
+                typeof param !== 'object' &&
+                typeof param !== 'function'
+            ) {
+                acc.push(param) 
+            }
+
+            // если param - объект
+            else if 
+            (
+                typeof param === 'object'
+            ) {
+                for (let key of Object.keys(param)) {
+                    //сортируем только truthy ключи объекта
+                    if (param[key]) {
+                        acc.push(key)
+                    }
+                }
+            }
+        } return acc
+    }, [])
+    return result.join(' ')
+}
