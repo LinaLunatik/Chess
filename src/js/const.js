@@ -74,3 +74,11 @@ export const MOVE_TYPES = {
 export const ID_IN_HTML = {
     root: 'root'
 }
+
+export const SYMBOLS = {
+        move: ' ',
+        capture: 'x',
+        castling: '0-0',
+        check: '+',
+        checkmate: '#'
+}

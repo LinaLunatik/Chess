@@ -11,12 +11,6 @@ export const buildMoveHistory = (state) => {
     
         // хочу фигуры отображать картинками
         // targetCell надо изменить с индексов на координаты шахматные
-        // 'move' = ' '
-        // 'capture' = x
-        // 'castling' = 0-0
-        // 'check' = +
-        // 'checkmate' = #
-
 
 
     return  `
