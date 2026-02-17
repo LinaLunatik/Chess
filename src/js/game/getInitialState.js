@@ -75,9 +75,10 @@ export const getInitialState = () => {
             black: []
         },
         // [{
-        // figure: figure,
-        // targetCell: {row, col},
-        // type: 'move' | 'capture' | 'castling' | 'check' | 'checkmate'
+            // figure: figure,
+            // color: 'black' | 'white'
+            // targetCell: {row, col},
+            // type: 'move' | 'capture' | 'castling' | 'check' | 'checkmate'
         // }]
         moveHistory: []
     }

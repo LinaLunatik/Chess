@@ -5,7 +5,6 @@ import {
     moveToCell, 
     setBoard, 
     setCapturedFigures, 
-    moveToCell, 
     setMoveHistory} from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
@@ -54,6 +53,7 @@ export const moveFigure = (cell) => {
     
     newMoveHistory.push({
         figure: fromCell.figure,
+        color: fromCell.isBlack ? 'black' : 'white',
         targetCell: {row, col},
         type: moveType
     })
