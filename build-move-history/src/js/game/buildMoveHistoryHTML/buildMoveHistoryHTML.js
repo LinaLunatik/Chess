@@ -1,5 +1,5 @@
-import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS } from "../const.js"
-import { toChessCoords } from "./toChessCoords.js"
+import { toChessCoords } from "../toChessCoords.js"
+import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS } from "../../const.js"
 
 export const buildMoveHistoryHTML = (state) => {
     const moves = state.moveHistory
