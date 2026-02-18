@@ -7,6 +7,8 @@ import {
     setCell } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
+import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
+import { isItCheck } from "./isItCheck.js"
 
 export const moveFigure = (cell) => {
     const {row, col} = cell
@@ -48,6 +50,9 @@ export const moveFigure = (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
+    isItCheck(state)
+    //здесь будет подключаться подсветка короля под шахом
+    toggleCurrentPlayer()
 
     createChessBoard()
 }

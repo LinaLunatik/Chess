@@ -13,7 +13,7 @@ export const handleCellClick = (cell) => {
     const currentState = getState()
     const {row, col} = cell
     
-    //если фигура уже выбрана и клик по одной из клеток возможного хода
+    //если фигура уже выбрана и клик по одной из клеток возможного хода, перемещаем
     if (isMoveValid(currentState, cell))
         {   
             moveFigure(cell)
