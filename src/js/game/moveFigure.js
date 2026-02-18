@@ -2,11 +2,13 @@ import {
     clearPossibleSteps, 
     clearSelectedCell, 
     getState, 
+    moveToCell, 
     setBoard, 
     setCapturedFigures, 
-    setCell } from "./state.js"
+    setMoveHistory} from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
+import { MOVE_TYPES } from "../const.js"
 
 export const moveFigure = (cell) => {
     const {row, col} = cell
@@ -32,15 +34,29 @@ export const moveFigure = (cell) => {
         black: [...state.capturedFigures.black],
         white: [...state.capturedFigures.white]
     }
+    const newMoveHistory = [
+        ...state.moveHistory
+    ]
+    
+    let moveType = MOVE_TYPES.move
 
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
         newCapturedFigures[
             targetCell.isBlack ? 'black' : 'white'
         ].push(targetCell.figure)
+
+        moveType = MOVE_TYPES.capture
     }
 
-    newBoard[row][col] = setCell(targetCell, fromCell)
+    newBoard[row][col] = moveToCell(targetCell, fromCell)
+    
+    newMoveHistory.push({
+        figure: fromCell.figure,
+        color: fromCell.isBlack ? 'black' : 'white',
+        targetCell: {row, col},
+        type: moveType
+    })
 
     clearCell(fromCell)
 
@@ -48,6 +64,7 @@ export const moveFigure = (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
+    setMoveHistory(newMoveHistory)
 
     createChessBoard()
 }

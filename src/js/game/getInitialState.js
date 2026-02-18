@@ -73,7 +73,14 @@ export const getInitialState = () => {
         capturedFigures: {
             white: [],
             black: []
-        }
+        },
+        // [{
+            // figure: figure,
+            // color: 'black' | 'white'
+            // targetCell: {row, col},
+            // type: 'move' | 'capture' | 'castling' | 'check' | 'checkmate'
+        // }]
+        moveHistory: []
     }
 
     return initialState

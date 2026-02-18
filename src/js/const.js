@@ -51,7 +51,10 @@ export const STYLES = {
     players: 'players',
     playerWhite: 'playerWhite',
     playerBlack: 'playerBlack',
-    active: 'active'
+    active: 'active',
+    moveHistory: 'moveHistory',
+    figuresInHistory: 'figuresInHistory',
+    moveList: 'moveList'
 }
 
 export const possibleStepsMap = {
@@ -66,9 +69,21 @@ export const possibleStepsMap = {
 
 export const MOVE_TYPES = {
     step: 'step',
-    capture: 'capture'
+    capture: 'capture',
+    move: 'move',
+    castling: 'castling',
+    check: 'check',
+    checkmate: 'checkmate'
 }
 
 export const ID_IN_HTML = {
     root: 'root'
+}
+
+export const SYMBOLS = {
+        move: ' ',
+        capture: 'x',
+        castling: '0-0',
+        check: '+',
+        checkmate: '#'
 }
