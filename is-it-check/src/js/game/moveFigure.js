@@ -1,17 +1,19 @@
-import { 
-    clearPossibleSteps, 
-    clearSelectedCell, 
-    getState, 
-    setBoard, 
-    setCapturedFigures, 
-    setCell } from "./state.js"
+import {
+    clearPossibleSteps,
+    clearSelectedCell,
+    getState,
+    setBoard,
+    setCapturedFigures,
+    setCell
+} from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
 import { isItCheck } from "./isItCheck.js"
+import { COLORS } from "../const.js"
 
 export const moveFigure = (cell) => {
-    const {row, col} = cell
+    const { row, col } = cell
     const state = getState()
 
     if (!state.selectedCell) {
@@ -28,6 +30,7 @@ export const moveFigure = (cell) => {
 
     const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
+    const opponentColor = fromCell.isBlack ? COLORS.WHITE : COLORS.BLACK
 
     const newCapturedFigures = {
         ...state.capturedFigures,
@@ -38,7 +41,7 @@ export const moveFigure = (cell) => {
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
         newCapturedFigures[
-            targetCell.isBlack ? 'black' : 'white'
+            targetCell.isBlack ? COLORS.BLACK : COLORS.WHITE
         ].push(targetCell.figure)
     }
 
@@ -50,8 +53,12 @@ export const moveFigure = (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
-    isItCheck(state)
-    //здесь будет подключаться подсветка короля под шахом
+    if (isItCheck(state, opponentColor)) {
+        //здесь будет подключаться подсветка короля под шахом
+        alert('ШАХ')
+    }
+
+    //здесь будет проверка на мат
     toggleCurrentPlayer()
 
     createChessBoard()
