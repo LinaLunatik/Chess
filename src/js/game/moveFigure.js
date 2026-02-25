@@ -10,7 +10,7 @@ import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
 import { isItCheck } from "./isItCheck.js"
-import { COLORS } from "../const.js"
+import { OPPOSITE_COLORS } from "../const.js"
 
 export const moveFigure = (cell) => {
     const { row, col } = cell
@@ -30,7 +30,7 @@ export const moveFigure = (cell) => {
 
     const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
-    const opponentColor = fromCell.isBlack ? COLORS.WHITE : COLORS.BLACK
+    const opponentColor = OPPOSITE_COLORS[fromCell.color] 
 
     const newCapturedFigures = {
         ...state.capturedFigures,
@@ -40,9 +40,7 @@ export const moveFigure = (cell) => {
 
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
-        newCapturedFigures[
-            targetCell.isBlack ? COLORS.BLACK : COLORS.WHITE
-        ].push(targetCell.figure)
+        newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
 
     newBoard[row][col] = setCell(targetCell, fromCell)

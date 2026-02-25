@@ -1,10 +1,9 @@
 import { classNames } from "../../utils/classNames/classNames.js"
-import { COLORS, FIGURE_IMAGE_PATH, STYLES } from "../const.js"
+import { FIGURE_IMAGE_PATH, STYLES } from "../const.js"
 
 export const renderCell = (cell, { isSelected, isPossibleStep }) => {
 
-    const color = cell.isBlack === null ? null : (
-        cell.isBlack ? COLORS.BLACK : COLORS.WHITE)
+    const color = cell.color === null ? null : cell.color
     let imgTag = ''
 
     if (cell.figure && color) {

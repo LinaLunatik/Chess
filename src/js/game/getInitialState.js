@@ -1,4 +1,4 @@
-import { CHESS_BOARD_SIZE, FIGURES } from "../const.js"
+import { CHESS_BOARD_SIZE, COLORS, FIGURES } from "../const.js"
 
 export const getInitialState = () => {
 
@@ -6,7 +6,7 @@ export const getInitialState = () => {
         row: undefined,
         col: undefined,
         figure: null,
-        isBlack: null,
+        color: null,
         // TODO добавить подсветку selected | possibleStep | possibleCapture | null
         highlight: null
     })
@@ -22,27 +22,27 @@ export const getInitialState = () => {
         FIGURES.rook
     ]
 
-    const createCell = ({ figure, isBlack }) => (
+    const createCell = ({ figure, color }) => (
         { ...createEmptyCell(), 
             figure, 
-            isBlack 
+            color 
         })
 
     const firstBlackLine = orderFirstLine.map((figureType) => (
-        createCell({ figure: figureType, isBlack: true })))
+        createCell({ figure: figureType, color: COLORS.BLACK })))
 
     const secondBlackLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
-        createCell({ figure: FIGURES.blackPawn, isBlack: true })))
+        createCell({ figure: FIGURES.blackPawn, color: COLORS.BLACK })))
 
     const createEmptyRow = () => 
         Array.from({ length: CHESS_BOARD_SIZE }, () => (
         createEmptyCell()))
 
     const firstWhiteLine = orderFirstLine.map((figureType) => (
-        createCell({ figure: figureType, isBlack: false })))
+        createCell({ figure: figureType, color: COLORS.WHITE })))
 
     const secondWhiteLine = Array.from({ length: CHESS_BOARD_SIZE }, () => (
-        createCell({ figure: FIGURES.whitePawn, isBlack: false })))
+        createCell({ figure: FIGURES.whitePawn, color: COLORS.WHITE })))
 
     const initialBoardStructure = [
         firstBlackLine,
