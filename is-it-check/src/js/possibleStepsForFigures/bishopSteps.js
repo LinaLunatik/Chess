@@ -10,7 +10,7 @@ export const bishopSteps = (state, row, col) => {
         [1, 1]
     ]
     let moves = []
-    const {figure, isBlack: currentIsBlack} = getCell({row, col})
+    const {figure, color: currentColor} = getCell({row, col})
 
     if (!figure) return []
 
@@ -21,7 +21,7 @@ export const bishopSteps = (state, row, col) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCell = getCell({row: targetRow, col: targetCol})
-                const {figure: targetFigure, isBlack: targetIsBlack} = targetCell
+                const {figure: targetFigure, color: targetColor} = targetCell
                 
                 //если клетка пуста, можно идти
                 if (targetFigure === null) { 
@@ -32,7 +32,7 @@ export const bishopSteps = (state, row, col) => {
                     })
                 }
                 //если клетка занята фигурой своего цвета, стоп
-                else if (targetIsBlack === currentIsBlack) {
+                else if (targetColor === currentColor) {
                     break 
                 }
                 //если клетка занята фигурой чужого цвета, съесть, потом стоп

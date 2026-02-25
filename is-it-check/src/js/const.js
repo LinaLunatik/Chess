@@ -68,8 +68,8 @@ export const possibleStepsMap = {
     [FIGURES.bishop]: bishopSteps,
     [FIGURES.king]: kingSteps,
     [FIGURES.queen]: queenSteps,
-    [FIGURES.blackPawn]: getPawnSteps({ isBlack: true }),
-    [FIGURES.whitePawn]: getPawnSteps({ isBlack: false })
+    [FIGURES.blackPawn]: getPawnSteps({ color: COLORS.BLACK }),
+    [FIGURES.whitePawn]: getPawnSteps({ color: COLORS.WHITE })
 }
 
 export const MOVE_TYPES = {
