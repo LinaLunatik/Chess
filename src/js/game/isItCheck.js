@@ -1,23 +1,16 @@
 import { findKingCell } from "./findKingCell.js"
 import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
-import { possibleStepsMap } from "../const.js"
+import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
+import { COLORS } from "../const.js"
 
-export const isItCheck = (state) => {
+export const isItCheck = (state, colorOfKing) => {
 
-    const kingCell = findKingCell(state, !isCurrentPlayerWhite)
+    const kingCell = findKingCell(state, colorOfKing)
+    if (!kingCell) return false
 
-    const allCurrentFigures = findAllFiguresByColor(state, state.isCurrentPlayerWhite)
-    const allSteps = []
-
-    for (let figure of allCurrentFigures) {
-        const { figure: figureType, row, col } = figure
-        const getSteps = possibleStepsMap[figureType]
-
-        if (getSteps) {
-            const steps = getSteps(state, row, col)
-            allSteps.push(...steps)
-        }
-    }
+    const opponentColor = colorOfKing === COLORS.BLACK ? COLORS.WHITE : COLORS.BLACK
+    const allOpponentFigures = findAllFiguresByColor(state, opponentColor)
+    const allSteps = findAllPossibleSteps(state, allOpponentFigures)
 
     const isKingInDanger = allSteps.some(step =>
         step.row === kingCell.row &&
