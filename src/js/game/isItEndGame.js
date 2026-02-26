@@ -4,15 +4,22 @@ import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
 import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
 import { findKingCell } from "./findKingCell.js"
 import { getAttackLine } from "./getAttackLine.js"
-import { getValidStepsKing } from "./getValidStepsKing.js"
+import { getValidSteps } from "./getValidSteps.js"
 import { isItCheck } from "./isItCheck.js"
 
 export const isItEndGame = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
     const kingCell = findKingCell(state, colorOfKing)
+    if (!kingCell) {
+        return {
+            isItCheckmate: false,
+            isItStalemate: false,
+            isCheck: false
+        }
+    }
     const geometricKingSteps = kingSteps(state, kingCell.row, kingCell.col)
-    const kingTargetSteps = getValidStepsKing(state, geometricKingSteps, kingCell)
-    
+    const kingTargetSteps = getValidSteps(state, geometricKingSteps, kingCell)
+
     // Случай 2. Можно ли короля закрыть?
     //ищем фигуры соперника
     const allOpponentFigures = findAllFiguresByColor(state, OPPOSITE_COLORS[colorOfKing])
@@ -48,7 +55,7 @@ export const isItEndGame = (state, colorOfKing) => {
         getAttackLine(attacker.row, attacker.col, kingCell.row, kingCell.col))
 
     const allAttackCells = attackLines.flat()
-    
+
     //можно ли короля закрыть ?
     const canBeBlocked =
         isSingleAttacker &&
@@ -71,7 +78,7 @@ export const isItEndGame = (state, colorOfKing) => {
                 step.col === cell.col
             )
         )
-    
+
     // ИТОГО
     const kingInCheck = isItCheck(state, colorOfKing)
 
