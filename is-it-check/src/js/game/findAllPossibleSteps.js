@@ -1,5 +1,5 @@
-import { FIGURES, possibleStepsMap } from "../const.js"
-import { getValidStepsKing } from "./getValidStepsKing.js"
+import { possibleStepsMap } from "../const.js"
+import { getValidSteps } from "./getValidSteps.js"
 
 export const findAllPossibleSteps = (state, figures) => {
 
@@ -7,25 +7,14 @@ export const findAllPossibleSteps = (state, figures) => {
 
     for (let figure of figures) {
         const { figure: figureType, row, col } = figure
-        //проверка шагов короля на шах
-        if (figureType === FIGURES.king) {
+        const figureCell = {row, col}
 
-            const getKingSteps = possibleStepsMap[FIGURES.king]
-            const stepsKing = getKingSteps(state, row, col)
-            const kingCell = {row, col}
+        const getSteps = possibleStepsMap[figureType]
 
-            const validStepsKing = getValidStepsKing(state, stepsKing, kingCell)
-
-            allSteps.push(...validStepsKing)
-
-        } else {
-            //остальные фигуры      
-            const getSteps = possibleStepsMap[figureType]
-
-            if (getSteps) {
-                const steps = getSteps(state, row, col)
-                allSteps.push(...steps)
-            }
+        if (getSteps) {
+            const geometricSteps = getSteps(state, row, col)
+            const validSteps = getValidSteps(state, geometricSteps, figureCell)
+            allSteps.push(...validSteps)
         }
     }
     return allSteps
