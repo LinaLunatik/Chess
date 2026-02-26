@@ -9,8 +9,8 @@ import {
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
-import { isItCheck } from "./isItCheck.js"
 import { OPPOSITE_COLORS } from "../const.js"
+import { isItEndGame } from "./isItEndGame.js"
 
 export const moveFigure = (cell) => {
     const { row, col } = cell
@@ -30,7 +30,7 @@ export const moveFigure = (cell) => {
 
     const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
-    const opponentColor = OPPOSITE_COLORS[fromCell.color] 
+    const opponentColor = OPPOSITE_COLORS[fromCell.color]
 
     const newCapturedFigures = {
         ...state.capturedFigures,
@@ -51,13 +51,21 @@ export const moveFigure = (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
-    if (isItCheck(state, opponentColor)) {
-        //здесь будет подключаться подсветка короля под шахом
-        alert('ШАХ')
+
+    const newState = getState()
+    const resultGame = isItEndGame(newState, opponentColor)
+
+    if (resultGame.isItStalemate) {
+        alert('ПАТ')
+    } else if (resultGame.isItCheckmate) {
+        alert('МАТ')
+    } else {
+        // игра продолжается
+        if (resultGame.isCheck) {
+            //здесь будет подключаться подсветка короля под шахом
+            console.log('ШАХ')
+        }
+        toggleCurrentPlayer()
+        createChessBoard()
     }
-
-    //здесь будет проверка на мат
-    toggleCurrentPlayer()
-
-    createChessBoard()
 }
