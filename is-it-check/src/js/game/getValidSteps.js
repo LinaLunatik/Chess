@@ -2,11 +2,13 @@ import { setCell } from "./state.js"
 import { clearCell } from "./clearCell.js"
 import { isItCheck } from "./isItCheck.js"
 
-export const getValidStepsKing = (state, stepsKing, kingCell) => {
+export const getValidSteps = (state, figureSteps, figureCell) => {
     
-    let validStepsKing = []
+    let validSteps = []
+    const figureColor = state.board[figureCell.row][figureCell.col].color
+    if (!figureColor) return []
 
-    for (let step of stepsKing) {
+    for (let step of figureSteps) {
         //на копии доски для каждого шага проверяем , 
         //окажется ли король под шахом
         const newBoard = state.board.map(
@@ -14,21 +16,21 @@ export const getValidStepsKing = (state, stepsKing, kingCell) => {
                 cell => ({ ...cell })
             )
         )
-        const fromCell = newBoard[kingCell.row][kingCell.col]
+        //переставляем фигуру на копии доски для симуляции хода
+        const fromCell = newBoard[figureCell.row][figureCell.col]
         const targetCell = newBoard[step.row][step.col]
-
-        if (!fromCell.figure) continue 
-        const colorOfKing = fromCell.color
-
+    
         newBoard[step.row][step.col] = setCell(targetCell, fromCell)
         clearCell(fromCell)
+        
         const newState = {
             ...state,
             board: newBoard
         }
-        if (!isItCheck(newState, colorOfKing)) {
-            validStepsKing.push(step)
+        //в новом состоянии проверяем короля на шах
+        if (!isItCheck(newState, figureColor)) {
+            validSteps.push(step)
         }
     }
-    return validStepsKing
+    return validSteps
 }
