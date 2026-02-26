@@ -10,7 +10,7 @@ export const setCell = (cell, fromCell) => {
     return {
         ...cell,
         figure: fromCell.figure,
-        isBlack: fromCell.isBlack
+        color: fromCell.color
     }
 }
 

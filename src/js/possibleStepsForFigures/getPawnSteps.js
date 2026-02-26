@@ -1,8 +1,8 @@
-import { MOVE_TYPES } from "../const.js"
+import { COLORS, MOVE_TYPES } from "../const.js"
 import { isOnChessBoard } from "../game/isOnChessBoard.js"
 import { getCell } from "../game/state.js"
 
-export const getPawnSteps = ({ isBlack }) => {
+export const getPawnSteps = ({ color }) => {
 
     const pawnSteps = (state, row, col) => {
 
@@ -13,8 +13,8 @@ export const getPawnSteps = ({ isBlack }) => {
 
         let moves = []
         // Определяем направление движения и начальную строку на основе цвета
-        const step = isBlack ? 1 : -1
-        const startRow = isBlack ? 1 : 6
+        const step = color === COLORS.BLACK ? 1 : -1
+        const startRow = color === COLORS.BLACK ? 1 : 6
 
         // Проверяем, находится ли пешка на начальной позиции для двойного хода
         if (row === startRow) {
@@ -70,12 +70,12 @@ export const getPawnSteps = ({ isBlack }) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCell = getCell({row: targetRow, col: targetCol})
-                const {figure: targetFigure, isBlack: targetIsBlack} = targetCell
+                const {figure: targetFigure, color: targetColor} = targetCell
                 
                 //если клетка занята фигурой другого цвета
                 if (
                     targetFigure !== null &&
-                    targetIsBlack !== isBlack
+                    targetColor !== color
                 ) {
                     moves.push({
                         row: targetRow,

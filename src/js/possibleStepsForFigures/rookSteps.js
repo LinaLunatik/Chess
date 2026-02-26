@@ -11,7 +11,7 @@ export const rookSteps = (state, row, col) => {
     ]
 
     let moves = []
-    const { figure, isBlack: currentIsBlack } = getCell({row, col})
+    const { figure, color: currentColor } = getCell({row, col})
 
     if (!figure) return []
 
@@ -22,7 +22,7 @@ export const rookSteps = (state, row, col) => {
 
             if (isOnChessBoard(targetRow, targetCol)) {
                 const targetCell = getCell({row: targetRow, col: targetCol})
-                const {figure: targetFigure, isBlack: targetIsBlack} = targetCell
+                const {figure: targetFigure, color: targetColor} = targetCell
                 
                 //если клетка пуста, можно идти
                 if (targetFigure === null) {
@@ -34,7 +34,7 @@ export const rookSteps = (state, row, col) => {
                 }
                 
                 //если клетка занята фигурой своего цвета, стоп
-                else if (targetIsBlack === currentIsBlack) {
+                else if (targetColor === currentColor) {
                     break
                 }
                 

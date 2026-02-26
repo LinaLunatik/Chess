@@ -1,15 +1,19 @@
-import { 
-    clearPossibleSteps, 
-    clearSelectedCell, 
-    getState, 
-    setBoard, 
-    setCapturedFigures, 
-    setCell } from "./state.js"
+import {
+    clearPossibleSteps,
+    clearSelectedCell,
+    getState,
+    setBoard,
+    setCapturedFigures,
+    setCell
+} from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
+import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
+import { OPPOSITE_COLORS } from "../const.js"
+import { isItEndGame } from "./isItEndGame.js"
 
 export const moveFigure = (cell) => {
-    const {row, col} = cell
+    const { row, col } = cell
     const state = getState()
 
     if (!state.selectedCell) {
@@ -26,6 +30,7 @@ export const moveFigure = (cell) => {
 
     const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
+    const opponentColor = OPPOSITE_COLORS[fromCell.color]
 
     const newCapturedFigures = {
         ...state.capturedFigures,
@@ -35,9 +40,7 @@ export const moveFigure = (cell) => {
 
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
-        newCapturedFigures[
-            targetCell.isBlack ? 'black' : 'white'
-        ].push(targetCell.figure)
+        newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
 
     newBoard[row][col] = setCell(targetCell, fromCell)
@@ -49,5 +52,20 @@ export const moveFigure = (cell) => {
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
 
-    createChessBoard()
+    const newState = getState()
+    const resultGame = isItEndGame(newState, opponentColor)
+
+    if (resultGame.isItStalemate) {
+        alert('ПАТ')
+    } else if (resultGame.isItCheckmate) {
+        alert('МАТ')
+    } else {
+        // игра продолжается
+        if (resultGame.isCheck) {
+            //здесь будет подключаться подсветка короля под шахом
+            console.log('ШАХ')
+        }
+        toggleCurrentPlayer()
+        createChessBoard()
+    }
 }
