@@ -11,8 +11,10 @@ import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
 import { OPPOSITE_COLORS } from "../const.js"
 import { isItEndGame } from "./isItEndGame.js"
+import { pawnPromotion } from "./pawnPromotion.js"
+import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
 
-export const moveFigure = (cell) => {
+export const moveFigure = async (cell) => {
     const { row, col } = cell
     const state = getState()
 
@@ -47,7 +49,12 @@ export const moveFigure = (cell) => {
 
     clearCell(fromCell)
 
+    if (isItLastRowForPawn(newBoard[row][col].figure, row)) {
+        await pawnPromotion(newBoard, targetCell)
+    }
+
     setBoard(newBoard)
+
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
