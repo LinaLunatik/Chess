@@ -81,18 +81,20 @@ export const isItEndGame = (state, colorOfKing) => {
 
     // ИТОГО
     const kingInCheck = isItCheck(state, colorOfKing)
-
+    
+    // Пат - если королю нет шаха, некуда идти и любой фигуре тоже некуда идти
     const isItStalemate =
         kingTargetSteps.length < 1 &&
-        !canBeBlocked &&
-        !attackerCanBeCaptured &&
+        allCurrentSteps.length < 1 &&
         !kingInCheck
-
+    
+    // Мат - король под шахом и некуда отойти, 
+    // атака не может быть блокирована и атакующий не может быть съеден
     const isItCheckmate =
+        kingInCheck &&
         kingTargetSteps.length < 1 &&
         !canBeBlocked &&
-        !attackerCanBeCaptured &&
-        kingInCheck
+        !attackerCanBeCaptured
 
     return {
         isItCheckmate,
