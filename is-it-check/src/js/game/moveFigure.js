@@ -62,7 +62,6 @@ export const moveFigure = (cell) => {
     } else {
         // игра продолжается
         if (resultGame.isCheck) {
-            //здесь будет подключаться подсветка короля под шахом
             console.log('ШАХ')
         }
         toggleCurrentPlayer()
