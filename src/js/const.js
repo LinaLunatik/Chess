@@ -59,7 +59,9 @@ export const STYLES = {
     players: 'players',
     playerWhite: 'playerWhite',
     playerBlack: 'playerBlack',
-    active: 'active'
+    active: 'active',
+    modalPromotion: 'modalPromotion',
+    modalButton: 'modalButton'
 }
 
 export const possibleStepsMap = {
