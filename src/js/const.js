@@ -6,6 +6,14 @@ import { queenSteps } from './possibleStepsForFigures/queenSteps.js'
 import { getPawnSteps } from './possibleStepsForFigures/getPawnSteps.js'
 
 export const CHESS_BOARD_SIZE = 8
+export const COLORS = {
+    BLACK: 'black',
+    WHITE: 'white'
+}
+export const OPPOSITE_COLORS = {
+    [COLORS.BLACK] : COLORS.WHITE,
+    [COLORS.WHITE] : COLORS.BLACK
+}
 export const FIGURES = {
     rook: 'rook',
     bishop: 'bishop',
@@ -51,7 +59,9 @@ export const STYLES = {
     players: 'players',
     playerWhite: 'playerWhite',
     playerBlack: 'playerBlack',
-    active: 'active'
+    active: 'active',
+    modalPromotion: 'modalPromotion',
+    modalButton: 'modalButton'
 }
 
 export const possibleStepsMap = {
@@ -60,8 +70,8 @@ export const possibleStepsMap = {
     [FIGURES.bishop]: bishopSteps,
     [FIGURES.king]: kingSteps,
     [FIGURES.queen]: queenSteps,
-    [FIGURES.blackPawn]: getPawnSteps({ isBlack: true }),
-    [FIGURES.whitePawn]: getPawnSteps({ isBlack: false })
+    [FIGURES.blackPawn]: getPawnSteps({ color: COLORS.BLACK }),
+    [FIGURES.whitePawn]: getPawnSteps({ color: COLORS.WHITE })
 }
 
 export const MOVE_TYPES = {
