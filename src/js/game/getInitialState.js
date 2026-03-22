@@ -73,6 +73,11 @@ export const getInitialState = () => {
         capturedFigures: {
             white: [],
             black: []
+        },
+        //право на рокировку
+        castlingRights: {
+            white: {kingSide: true, queenSide: true},
+            black: {kingSide: true, queenSide: true}
         }
     }
 

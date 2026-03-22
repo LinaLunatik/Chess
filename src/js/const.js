@@ -81,3 +81,8 @@ export const MOVE_TYPES = {
 export const ID_IN_HTML = {
     root: 'root'
 }
+
+export const ROOK_SIDE = {
+    kingSide: 'kingSide',
+    queenSide: 'queenSide'
+}
