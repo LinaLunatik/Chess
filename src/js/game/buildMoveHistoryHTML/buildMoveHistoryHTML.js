@@ -1,5 +1,5 @@
-import { toChessCoords } from "../toChessCoords.js"
 import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS } from "../../const.js"
+import { convertToChessCoords } from "../convertToChessCoords.js"
 
 export const buildMoveHistoryHTML = (state) => {
     const moves = state.moveHistory
@@ -20,7 +20,7 @@ export const buildMoveHistoryHTML = (state) => {
             }
         }
 
-        const chessCoords = toChessCoords(move.targetCell.row, move.targetCell.col)
+        const chessCoords = convertToChessCoords(move.targetCell.row, move.targetCell.col)
         const typeSymbol = SYMBOLS[move.type]
 
         moveItems.push(`${imgTag}${typeSymbol}${chessCoords}`) 
