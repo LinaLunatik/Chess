@@ -4,10 +4,10 @@ import { convertToChessCoords } from "../convertToChessCoords.js"
 export const buildMoveHistoryHTML = (state) => {
     const moves = state.moveHistory
     
-    const moveItems = []
+    const movedItems = []
 
     for (let move of moves) {
-        let imgTag = ''
+        let imgTag = null
 
         if (move.figure && move.color) {
             const src = FIGURE_IMAGE_PATH[move.figure][move.color];
@@ -23,14 +23,14 @@ export const buildMoveHistoryHTML = (state) => {
         const chessCoords = convertToChessCoords(move.targetCell.row, move.targetCell.col)
         const typeSymbol = SYMBOLS[move.type]
 
-        moveItems.push(`${imgTag}${typeSymbol}${chessCoords}`) 
+        movedItems.push(`${imgTag || ''}${typeSymbol}${chessCoords}`) 
     }
 
     return `
                 <div class="${STYLES.moveHistory}">
                     <h3>История ходов</h3>
                     <div class="${STYLES.moveList}">
-                        ${moveItems.join(' | ')}
+                        ${movedItems.join(' | ')}
                     </div>
                 </div>
             `
