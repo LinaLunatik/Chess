@@ -9,7 +9,7 @@ import {
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
-import { OPPOSITE_COLORS } from "../const.js"
+import { MOVE_TYPES, OPPOSITE_COLORS } from "../const.js"
 import { isItEndGame } from "./isItEndGame.js"
 
 export const moveFigure = (cell) => {
@@ -42,8 +42,22 @@ export const moveFigure = (cell) => {
     if (targetCell.figure !== null) {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
+    // если рокировка
+    const moveDetails = state.possibleSteps.find( step => 
+        step.row === row && step.col === col
+    )
+    if (
+        moveDetails &&
+        moveDetails.type === MOVE_TYPES.castling
+    ) {
+        setCell(moveDetails.rookTo, moveDetails.rookFrom)
+        const rookSide = moveDetails.rookSide
+        state.castlingRights[fromCell.color][rookSide] = false
+    }
 
     newBoard[row][col] = setCell(targetCell, fromCell)
+
+
 
     clearCell(fromCell)
 
