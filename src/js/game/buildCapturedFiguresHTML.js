@@ -1,23 +1,23 @@
 import { FIGURE_IMAGE_PATH, STYLES } from "../const.js"
 
-export const buildCapturedFiguresHTML = (state) => {
-    const whiteCapFig = state.capturedFigures.white
-    const blackCapFig = state.capturedFigures.black
-
-    const renderCapturedGroup = (capturedFigures, color) => {
-        return capturedFigures.map(fig => {
+const renderCapturedGroup = (capturedFigures, color) =>
+    capturedFigures
+        .filter(fig => FIGURE_IMAGE_PATH[fig]?.[color])
+        .map(fig => {
             const src = FIGURE_IMAGE_PATH[fig]?.[color]
-            if (src) {
-                return `<img 
+            return `<img 
                         src="${src}" 
                         alt="${fig}" 
                         class="${STYLES.capturedFigures}"
                     >`
-            } else {
-                return ''
-            }
-        }).join(' ')
-    }
+        })
+        .join(' ')
+
+export const buildCapturedFiguresHTML = (state) => {
+    const {
+        white: whiteCapFig,
+        black: blackCapFig
+    } = state.capturedFigures
 
     const whiteImages = renderCapturedGroup(whiteCapFig, 'white')
     const blackImages = renderCapturedGroup(blackCapFig, 'black')
