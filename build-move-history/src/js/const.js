@@ -87,3 +87,5 @@ export const SYMBOLS = {
         check: '+',
         checkmate: '#'
 }
+
+export const ASCII_CODE_A = 97
