@@ -82,3 +82,10 @@ export const MOVE_TYPES = {
 export const ID_IN_HTML = {
     root: 'root'
 }
+
+export const GAME_STATUS = {
+    checkmate: 'checkmate',
+    stalemate: 'stalemate',
+    check: 'check',
+    continue: 'continue' 
+}
