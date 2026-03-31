@@ -13,6 +13,7 @@ import { getOppositeColor } from "../../utils/getOppositeColor.js"
 import { isItEndGame } from "./isItEndGame.js"
 import { promotePawn } from "./promotePawn.js"
 import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
+import { GAME_STATUS } from "../const.js"
 
 export const moveFigure = async (cell) => {
     const { row, col } = cell
@@ -62,17 +63,27 @@ export const moveFigure = async (cell) => {
     const newState = getState()
     const resultGame = isItEndGame(newState, opponentColor)
 
-    if (resultGame.isItStalemate) {
-        alert('ПАТ')
-    } else if (resultGame.isItCheckmate) {
-        alert('МАТ')
-    } else {
-        // игра продолжается
-        if (resultGame.isCheck) {
-            //здесь будет подключаться подсветка короля под шахом
+    const gameStatus = resultGame.isItCheckmate ? GAME_STATUS.checkmate
+                        : resultGame.isItStalemate ? GAME_STATUS.stalemate
+                        : resultGame.isCheck ? GAME_STATUS.check
+                        : GAME_STATUS.continue
+
+    switch (gameStatus) {
+        case GAME_STATUS.checkmate:
+            alert('МАТ')
+            break;
+        case GAME_STATUS.stalemate:
+            alert('ПАТ')
+            break;
+        case GAME_STATUS.check:
             console.log('ШАХ')
-        }
-        toggleCurrentPlayer()
-        createChessBoard()
+            break;
+        case GAME_STATUS.continue:
+            toggleCurrentPlayer()
+            createChessBoard()
+            break;
+        default:
+            console.error('Неизвестный статус игры', gameStatus)
+            break
     }
 }
