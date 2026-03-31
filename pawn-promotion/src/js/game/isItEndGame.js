@@ -1,4 +1,4 @@
-import { FIGURES, OPPOSITE_COLORS } from "../const.js"
+import { FIGURES } from "../const.js"
 import { kingSteps } from "../possibleStepsForFigures/kingSteps.js"
 import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
 import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
@@ -6,6 +6,7 @@ import { findKingCell } from "./findKingCell.js"
 import { getAttackLine } from "./getAttackLine.js"
 import { getValidSteps } from "./getValidSteps.js"
 import { isItCheck } from "./isItCheck.js"
+import { getOppositeColor } from "../../utils/getOppositeColor.js"
 
 export const isItEndGame = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
@@ -22,7 +23,7 @@ export const isItEndGame = (state, colorOfKing) => {
 
     // Случай 2. Можно ли короля закрыть?
     //ищем фигуры соперника
-    const allOpponentFigures = findAllFiguresByColor(state, OPPOSITE_COLORS[colorOfKing])
+    const allOpponentFigures = findAllFiguresByColor(state, getOppositeColor(colorOfKing))
     const allOpponentSteps = findAllPossibleSteps(state, allOpponentFigures)
     // ищем все фигуры, совпадающие цветом с королем
     const allCurrentFigures = findAllFiguresByColor(state, colorOfKing)
