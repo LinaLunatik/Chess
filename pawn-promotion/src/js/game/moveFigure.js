@@ -11,7 +11,7 @@ import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
 import { OPPOSITE_COLORS } from "../const.js"
 import { isItEndGame } from "./isItEndGame.js"
-import { pawnPromotion } from "./pawnPromotion.js"
+import { promotePawn } from "./promotePawn.js"
 import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
 
 export const moveFigure = async (cell) => {
@@ -50,7 +50,7 @@ export const moveFigure = async (cell) => {
     clearCell(fromCell)
 
     if (isItLastRowForPawn(newBoard[row][col].figure, row)) {
-        await pawnPromotion(newBoard, targetCell)
+        await promotePawn(newBoard, targetCell)
     }
 
     setBoard(newBoard)
