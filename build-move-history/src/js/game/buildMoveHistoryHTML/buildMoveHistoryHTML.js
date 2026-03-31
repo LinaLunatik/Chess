@@ -6,22 +6,22 @@ export const buildMoveHistoryHTML = (state) => {
     
     const movedItems = []
 
-    for (let move of moves) {
+    for (let { figure, color, targetCell, type } of moves) {
         let imgTag = null
 
-        if (move.figure && move.color) {
-            const src = FIGURE_IMAGE_PATH[move.figure][move.color];
+        if (figure && color) {
+            const src = FIGURE_IMAGE_PATH[figure][color];
             if (src) {
                 imgTag = `<img 
                         src="${src}" 
-                        alt="${move.figure}" 
+                        alt="${figure}" 
                         class="${STYLES.figuresInHistory}"
                     >`;
             }
         }
 
-        const chessCoords = convertToChessCoords(move.targetCell.row, move.targetCell.col)
-        const typeSymbol = SYMBOLS[move.type]
+        const chessCoords = convertToChessCoords(targetCell.row, targetCell.col)
+        const typeSymbol = SYMBOLS[type]
 
         movedItems.push(`${imgTag || ''}${typeSymbol}${chessCoords}`) 
     }
