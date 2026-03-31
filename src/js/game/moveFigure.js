@@ -9,7 +9,7 @@ import {
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
-import { OPPOSITE_COLORS } from "../const.js"
+import { getOppositeColor } from "../../utils/getOppositeColor.js"
 import { isItEndGame } from "./isItEndGame.js"
 import { promotePawn } from "./promotePawn.js"
 import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
@@ -32,7 +32,7 @@ export const moveFigure = async (cell) => {
 
     const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
-    const opponentColor = OPPOSITE_COLORS[fromCell.color]
+    const opponentColor = getOppositeColor(fromCell.color)
 
     const newCapturedFigures = {
         ...state.capturedFigures,
