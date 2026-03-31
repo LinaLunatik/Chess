@@ -1,6 +1,6 @@
 import { askPawnPromotion } from "./askPawnPromotion.js"
 
-export const pawnPromotion = async (newBoard, targetCell) => {
+export const promotePawn = async (newBoard, targetCell) => {
 
     const color = newBoard[targetCell.row][targetCell.col].color
     const newFigure = await askPawnPromotion(color)
