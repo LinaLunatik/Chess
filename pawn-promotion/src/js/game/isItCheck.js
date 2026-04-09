@@ -1,11 +1,11 @@
-import { findKingCell } from "./findKingCell.js"
 import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
 import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
-import { COLORS } from "../const.js"
+import { COLORS, FIGURES } from "../const.js"
+import { findFigureCell } from "./findFigureCell.js"
 
 export const isItCheck = (state, colorOfKing) => {
 
-    const kingCell = findKingCell(state, colorOfKing)
+    const kingCell = findFigureCell(state, FIGURES.king, colorOfKing)
     if (!kingCell) return false
 
     const opponentColor = colorOfKing === COLORS.BLACK ? COLORS.WHITE : COLORS.BLACK
