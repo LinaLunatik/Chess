@@ -2,15 +2,15 @@ import { FIGURES } from "../const.js"
 import { kingSteps } from "../possibleStepsForFigures/kingSteps.js"
 import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
 import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
-import { findKingCell } from "./findKingCell.js"
 import { getAttackLine } from "./getAttackLine.js"
 import { getValidSteps } from "./getValidSteps.js"
 import { isItCheck } from "./isItCheck.js"
 import { getOppositeColor } from "../../utils/getOppositeColor.js"
+import { findFigureCell } from "./findFigureCell.js"
 
 export const isItEndGame = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
-    const kingCell = findKingCell(state, colorOfKing)
+    const kingCell = findFigureCell(state, FIGURES.king, colorOfKing)
     if (!kingCell) {
         return {
             isItCheckmate: false,
