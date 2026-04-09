@@ -7,6 +7,7 @@ import { getValidSteps } from "./getValidSteps.js"
 import { isItCheck } from "./isItCheck.js"
 import { getOppositeColor } from "../../utils/getOppositeColor.js"
 import { findFigureCell } from "./findFigureCell.js"
+import { isSameCell } from "./isSameCell.js"
 
 export const isItEndGame = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
@@ -30,12 +31,8 @@ export const isItEndGame = (state, colorOfKing) => {
     const allCurrentSteps = findAllPossibleSteps(state, allCurrentFigures)
 
     const attackingFiguresCells = allOpponentSteps
-        .filter(step =>
-            step.row === kingCell.row &&
-            step.col === kingCell.col)
-        .map(cell => (
-            { row: cell.row, col: cell.col }
-        ))
+        .filter(step => isSameCell(step, kingCell))
+        .map(({ row, col }) => ({ row, col }))
     // ищем атакующие фигуры
     const attackingFigures = attackingFiguresCells.map(cell => {
         const boardCell = state.board[cell.row][cell.col]
@@ -61,11 +58,10 @@ export const isItEndGame = (state, colorOfKing) => {
     const canBeBlocked =
         isSingleAttacker &&
         !hasKnightAttackers &&
-        attackLines.every(line => line.length > 0) &&
+        attackLines.every(line => line.length) &&
         allCurrentSteps.some(step =>
             allAttackCells.some(cell =>
-                step.row === cell.row &&
-                step.col === cell.col
+                isSameCell(step, cell)
             )
         )
 
@@ -75,8 +71,7 @@ export const isItEndGame = (state, colorOfKing) => {
         isSingleAttacker &&
         allCurrentSteps.some(step =>
             attackingFiguresCells.some(cell =>
-                step.row === cell.row &&
-                step.col === cell.col
+                isSameCell(step, cell)
             )
         )
 
