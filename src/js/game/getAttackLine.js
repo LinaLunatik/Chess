@@ -30,8 +30,8 @@ export const getAttackLine = (attackerRow, attackerCol, kingRow, kingCol) => {
 
     // является ли атака линейной? 
     const isLinearAttack = (deltaRow, deltaCol) => {
-        const isHorizontal  = deltaRow === 0
-        const isVertical    = deltaCol === 0
+        const isHorizontal  = !deltaRow
+        const isVertical    = !deltaCol
         const isDiagonal    = Math.abs(deltaRow) === Math.abs(deltaCol)
         
         return isHorizontal || isVertical || isDiagonal
