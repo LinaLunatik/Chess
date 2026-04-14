@@ -9,14 +9,14 @@ export const getValidSteps = (state, figureSteps, figureCell) => {
     if (!figureColor) return []
 
     for (let step of figureSteps) {
-        //на копии доски для каждого шага проверяем , 
-        //окажется ли король под шахом
+        // на копии доски для каждого шага проверяем , 
+        // окажется ли король под шахом
         const newBoard = state.board.map(
             row => row.map(
                 cell => ({ ...cell })
             )
         )
-        //переставляем фигуру на копии доски для симуляции хода
+        // переставляем фигуру на копии доски для симуляции хода
         const fromCell = newBoard[figureCell.row][figureCell.col]
         const targetCell = newBoard[step.row][step.col]
     
@@ -27,7 +27,7 @@ export const getValidSteps = (state, figureSteps, figureCell) => {
             ...state,
             board: newBoard
         }
-        //в новом состоянии проверяем короля на шах
+        // в новом состоянии проверяем короля на шах
         if (!isItCheck(newState, figureColor)) {
             validSteps.push(step)
         }
