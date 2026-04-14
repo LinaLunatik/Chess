@@ -1,4 +1,14 @@
-import { FIGURES } from "../const.js"
+/**
+ * Определяет текущий статус игры для указанного цвета короля.
+ * 
+ * Параметры:
+ * state - Текущее состояние игры
+ * colorOfKing - Цвет короля для проверки
+ * Результат:
+ * Один из GAME_STATUS: 'checkmate', 'stalemate', 'check', 'continue'
+ * Ошибка - если король не найден на доске
+ */
+import { FIGURES, GAME_STATUS } from "../const.js"
 import { kingSteps } from "../possibleStepsForFigures/kingSteps.js"
 import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
 import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
@@ -9,21 +19,17 @@ import { getOppositeColor } from "../../utils/getOppositeColor.js"
 import { findFigureCell } from "./findFigureCell.js"
 import { isSameCell } from "./isSameCell.js"
 
-export const isItEndGame = (state, colorOfKing) => {
+export const getGameStatus = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
     const kingCell = findFigureCell(state, FIGURES.king, colorOfKing)
     if (!kingCell) {
-        return {
-            isItCheckmate: false,
-            isItStalemate: false,
-            isCheck: false
-        }
+        throw new Error(`Король не найден, цвет ${colorOfKing}`)
     }
     const geometricKingSteps = kingSteps(state, kingCell.row, kingCell.col)
     const kingTargetSteps = getValidSteps(state, geometricKingSteps, kingCell)
 
     // Случай 2. Можно ли короля закрыть?
-    //ищем фигуры соперника
+    // ищем фигуры соперника
     const allOpponentFigures = findAllFiguresByColor(state, getOppositeColor(colorOfKing))
     const allOpponentSteps = findAllPossibleSteps(state, allOpponentFigures)
     // ищем все фигуры, совпадающие цветом с королем
@@ -54,7 +60,7 @@ export const isItEndGame = (state, colorOfKing) => {
 
     const allAttackCells = attackLines.flat()
 
-    //можно ли короля закрыть ?
+    // можно ли короля закрыть ?
     const canBeBlocked =
         isSingleAttacker &&
         !hasKnightAttackers &&
@@ -77,22 +83,19 @@ export const isItEndGame = (state, colorOfKing) => {
 
     // ИТОГО
     const kingInCheck = isItCheck(state, colorOfKing)
+    const noEscapeMoves = kingTargetSteps.length < 1
+    const kingHasNoEscapes = 
+                noEscapeMoves && 
+                !canBeBlocked && 
+                !attackerCanBeCaptured
 
-    const isItStalemate =
-        kingTargetSteps.length < 1 &&
-        !canBeBlocked &&
-        !attackerCanBeCaptured &&
-        !kingInCheck
-
-    const isItCheckmate =
-        kingTargetSteps.length < 1 &&
-        !canBeBlocked &&
-        !attackerCanBeCaptured &&
-        kingInCheck
-
-    return {
-        isItCheckmate,
-        isItStalemate,
-        isCheck: kingInCheck
+    if (kingHasNoEscapes) {
+        return kingInCheck ? 
+            GAME_STATUS.checkmate : 
+            GAME_STATUS.stalemate
     }
+    if (kingInCheck) {
+        return GAME_STATUS.check
+    }
+    return GAME_STATUS.continue
 }
