@@ -74,12 +74,8 @@ export const getInitialState = () => {
             white: [],
             black: []
         },
-        // [{
-            // figure: figure,
-            // color: 'black' | 'white'
-            // targetCell: {row, col},
-            // type: 'move' | 'capture' | 'castling' | 'check' | 'checkmate'
-        // }]
+        // История ходов - для отображения в интерфейсе.
+        // Формат - [{figure, color, targetCell, type}]
         moveHistory: []
     }
 
