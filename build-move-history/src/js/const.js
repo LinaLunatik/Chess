@@ -88,4 +88,4 @@ export const SYMBOLS = {
         checkmate: '#'
 }
 
-export const ASCII_CODE_A = 97
+export const ASCII_CODE_A = 'a'.charCodeAt(0)
