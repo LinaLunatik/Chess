@@ -14,7 +14,7 @@ import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
 import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
 import { getAttackLine } from "./getAttackLine.js"
 import { getValidSteps } from "./getValidSteps.js"
-import { isItCheck } from "./isItCheck.js"
+import { isInCheck } from "./isInCheck.js"
 import { getOppositeColor } from "../../utils/getOppositeColor.js"
 import { findFigureCell } from "./findFigureCell.js"
 import { isSameCell } from "./isSameCell.js"
@@ -82,7 +82,7 @@ export const getGameStatus = (state, colorOfKing) => {
         )
 
     // ИТОГО
-    const kingInCheck = isItCheck(state, colorOfKing)
+    const kingInCheck = isInCheck(state, colorOfKing)
     const noEscapeMoves = kingTargetSteps.length < 1
     const kingHasNoEscapes = 
                 noEscapeMoves && 

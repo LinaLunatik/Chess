@@ -4,7 +4,7 @@ import { COLORS, FIGURES } from "../const.js"
 import { findFigureCell } from "./findFigureCell.js"
 import { isSameCell } from "./isSameCell.js"
 
-export const isItCheck = (state, colorOfKing) => {
+export const isInCheck = (state, colorOfKing) => {
 
     const kingCell = findFigureCell(state, FIGURES.king, colorOfKing)
     if (!kingCell) return false

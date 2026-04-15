@@ -1,6 +1,6 @@
 import { setCell } from "./state.js"
 import { clearCell } from "./clearCell.js"
-import { isItCheck } from "./isItCheck.js"
+import { isInCheck } from "./isInCheck.js"
 
 export const getValidSteps = (state, figureSteps, figureCell) => {
     
@@ -28,7 +28,7 @@ export const getValidSteps = (state, figureSteps, figureCell) => {
             board: newBoard
         }
         // в новом состоянии проверяем короля на шах
-        if (!isItCheck(newState, figureColor)) {
+        if (!isInCheck(newState, figureColor)) {
             validSteps.push(step)
         }
     }
