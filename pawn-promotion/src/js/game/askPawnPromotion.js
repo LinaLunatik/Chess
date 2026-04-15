@@ -1,4 +1,4 @@
-import { FIGURE_IMAGE_PATH, FIGURES, STYLES } from "../const.js"
+import { FIGURE_IMAGE_PATH, FIGURES, PROMOTION_DATA_ATTR, STYLES } from "../const.js"
 
 export const askPawnPromotion = (color) => {
     
@@ -27,7 +27,7 @@ export const askPawnPromotion = (color) => {
         document.body.appendChild(modal)
 
         modal.addEventListener('click', (event) => {
-            const clickedOption = event.target.closest('[data-value]')
+            const clickedOption = event.target.closest(`[${PROMOTION_DATA_ATTR}]`)
             if (!clickedOption) return
             
             const chosenFigure = clickedOption.dataset.value

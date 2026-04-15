@@ -89,3 +89,5 @@ export const GAME_STATUS = {
     check: 'check',
     continue: 'continue' 
 }
+
+export const PROMOTION_DATA_ATTR = 'data-value'
