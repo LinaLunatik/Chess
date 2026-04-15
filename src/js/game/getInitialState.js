@@ -73,7 +73,10 @@ export const getInitialState = () => {
         capturedFigures: {
             white: [],
             black: []
-        }
+        },
+        // История ходов - для отображения в интерфейсе.
+        // Формат - [{figure, color, targetCell, type}]
+        moveHistory: []
     }
 
     return initialState
