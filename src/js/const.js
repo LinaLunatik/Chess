@@ -54,7 +54,9 @@ export const STYLES = {
     active: 'active',
     moveHistory: 'moveHistory',
     figuresInHistory: 'figuresInHistory',
-    moveList: 'moveList'
+    moveList: 'moveList',
+    moveItem: 'moveItem',
+    capturedFigures: 'capturedFigures'
 }
 
 export const possibleStepsMap = {

@@ -23,7 +23,7 @@ export const buildCapturedFiguresHTML = (state) => {
     const blackImages = renderCapturedGroup(blackCapFig, 'black')
 
     return `
-                <div class=${STYLES.capturedFigures}>
+                <div class="${STYLES.capturedFigures}">
                     <div>Белые ${whiteImages}</div>
                     <div>Черные ${blackImages}</div>
                 </div>

@@ -23,7 +23,11 @@ export const buildMoveHistoryHTML = (state) => {
         const chessCoords = convertToChessCoords(targetCell.row, targetCell.col)
         const typeSymbol = SYMBOLS[type]
 
-        movedItems.push(`${imgTag || ''}${typeSymbol}${chessCoords}`) 
+        movedItems.push(`
+            <span class="${STYLES.moveItem}">
+                ${imgTag || ''}${typeSymbol}${chessCoords}
+            </span>
+        `) 
     }
 
     return `
