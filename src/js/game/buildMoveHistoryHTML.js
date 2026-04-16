@@ -1,5 +1,5 @@
-import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS } from "../../const.js"
-import { convertToChessCoords } from "../convertToChessCoords.js"
+import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS } from "../const.js"
+import { convertToChessCoords } from "./convertToChessCoords.js"
 
 export const buildMoveHistoryHTML = (state) => {
     const moves = state.moveHistory
