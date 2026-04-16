@@ -8,7 +8,6 @@ const renderCapturedGroup = (capturedFigures, color) =>
             return `<img 
                         src="${src}" 
                         alt="${fig}" 
-                        class="${STYLES.capturedFigures}"
                     >`
         })
         .join(' ')
@@ -23,6 +22,7 @@ export const buildCapturedFiguresHTML = (state) => {
     const blackImages = renderCapturedGroup(blackCapFig, 'black')
 
     return `
+                <h3>Съеденные фигуры</h3>
                 <div class="${STYLES.capturedFigures}">
                     <div>Белые ${whiteImages}</div>
                     <div>Черные ${blackImages}</div>
