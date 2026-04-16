@@ -61,3 +61,11 @@ export const setCapturedFigures = (newCapturedFigures) => {
         capturedFigures: newCapturedFigures
     })
 }
+
+export const setCastlingRights = (newCastlingRights) => {
+    const state = getState()
+    setState({
+        ...state,
+        castlingRights: newCastlingRights
+    })
+}
