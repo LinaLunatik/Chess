@@ -4,13 +4,15 @@ import {
     getState,
     setBoard,
     setCapturedFigures,
+    setCastlingRights,
     setCell
 } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
-import { MOVE_TYPES, OPPOSITE_COLORS } from "../const.js"
+import { FIGURES, MOVE_TYPES, OPPOSITE_COLORS, ROOK_SIDE } from "../const.js"
 import { isItEndGame } from "./isItEndGame.js"
+import { getRookSide } from "./getRookSide.js"
 
 export const moveFigure = (cell) => {
     const { row, col } = cell
@@ -42,22 +44,47 @@ export const moveFigure = (cell) => {
     if (targetCell.figure !== null) {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
+
     // если рокировка
-    const moveDetails = state.possibleSteps.find( step => 
+    const moveDetails = state.possibleSteps.find(step =>
         step.row === row && step.col === col
     )
-    if (
-        moveDetails &&
-        moveDetails.type === MOVE_TYPES.castling
-    ) {
-        setCell(moveDetails.rookTo, moveDetails.rookFrom)
-        const rookSide = moveDetails.rookSide
-        state.castlingRights[fromCell.color][rookSide] = false
+    const newCastlingRights = {
+        white: { ...state.castlingRights.white },
+        black: { ...state.castlingRights.black }
+
+    }
+    if (moveDetails?.type === MOVE_TYPES.castling) {
+        const rookFromCell = newBoard[moveDetails.rookFrom.row][moveDetails.rookFrom.col]
+        const rookToCell = newBoard[moveDetails.rookTo.row][moveDetails.rookTo.col]
+
+        const newRookCell = setCell(rookToCell, rookFromCell)
+        newBoard[moveDetails.rookTo.row][moveDetails.rookTo.col] = newRookCell
+        clearCell(rookFromCell)
+
+        newCastlingRights[fromCell.color][moveDetails.rookSide] = false
+    }
+
+    // Если король или ладья сделали ход, право на рокировку отключается
+    if (fromCell.figure === FIGURES.king) {
+        newCastlingRights[fromCell.color][ROOK_SIDE.kingSide] = false
+        newCastlingRights[fromCell.color][ROOK_SIDE.queenSide] = false
+    }
+    if (fromCell.figure === FIGURES.rook) {
+        const rookSide = getRookSide(fromCell.col)
+        if (rookSide) {
+            newCastlingRights[fromCell.color][rookSide] = false
+        }
+    }
+    // Если съедена ладья, право на рокировку отключается
+    if (targetCell.figure === FIGURES.rook) {
+        const rookSide = getRookSide(targetCell.col)
+        if (rookSide) {
+            newCastlingRights[targetCell.color][rookSide] = false
+        }
     }
 
     newBoard[row][col] = setCell(targetCell, fromCell)
-
-
 
     clearCell(fromCell)
 
@@ -65,6 +92,7 @@ export const moveFigure = (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
+    setCastlingRights(newCastlingRights)
 
     const newState = getState()
     const resultGame = isItEndGame(newState, opponentColor)
