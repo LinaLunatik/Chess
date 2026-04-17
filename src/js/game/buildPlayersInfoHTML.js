@@ -1,20 +1,12 @@
-import { classNames } from "../../utils/classNames/classNames.js"
 import { STYLES } from "../const.js"
 
 export const buildPlayersInfoHTML = (state) => {
-
-    const whiteClass = classNames(
-        STYLES.playerWhite,
-        {[STYLES.active]: state.isCurrentPlayerWhite}
-    )
-    const blackClass = classNames(
-        STYLES.playerBlack,
-        {[STYLES.active]: !state.isCurrentPlayerWhite}
-    )
+    const isWhiteTurn = state.isCurrentPlayerWhite
+    const turnText = isWhiteTurn ? 'Ход белых' : 'Ход черных'
+    const activeClass = isWhiteTurn ? STYLES.turnWhite : STYLES.turnBlack
 
     return `
-        <div class="${STYLES.players}">
-            <div class="${whiteClass}">Белые</div>
-            <div class="${blackClass}">Черные</div>
+        <div class="${STYLES.players} ${activeClass}">
+            ${turnText}
         </div>`
 }
