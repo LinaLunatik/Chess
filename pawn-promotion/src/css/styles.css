@@ -70,3 +70,7 @@ img {
     border: 1px solid #998259;
     border-radius: 15px;
 }
+
+.promotionOption {
+    cursor: pointer;
+}
