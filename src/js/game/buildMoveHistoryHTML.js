@@ -34,7 +34,7 @@ export const buildMoveHistoryHTML = (state) => {
                 <div class="${STYLES.moveHistory}">
                     <h3>История ходов</h3>
                     <div class="${STYLES.moveList}">
-                        ${movedItems.join(' | ')}
+                        ${movedItems.join('')}
                     </div>
                 </div>
             `
