@@ -8,12 +8,13 @@ import {
 import { moveFigure } from '../game/moveFigure.js'
 import { createChessBoard } from './createChessBoard.js'
 import { isMoveValid } from './isMoveValid.js'
+import { isSameCell } from './isSameCell.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
     const {row, col} = cell
     
-    //если фигура уже выбрана и клик по одной из клеток возможного хода
+    //если фигура уже выбрана и клик по одной из клеток возможного хода, перемещаем
     if (isMoveValid(currentState, cell))
         {   
             moveFigure(cell)
@@ -24,12 +25,8 @@ export const handleCellClick = (cell) => {
     const figure = cell.figure 
 
     if (figure) {
-        const isSameFigure = 
-            currentState.selectedCell?.row === row &&
-            currentState.selectedCell?.col === col;
-
         //если клик по той же фигуре, то сброс
-        if (isSameFigure) { 
+        if (isSameCell(currentState.selectedCell, cell)) { 
             clearSelectedCell()
             clearPossibleSteps()
 
