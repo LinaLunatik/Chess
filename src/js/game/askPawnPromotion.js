@@ -1,4 +1,10 @@
-import { FIGURE_IMAGE_PATH, FIGURES, PROMOTION_DATA_ATTR, STYLES } from "../const.js"
+import { 
+    FIGURE_IMAGE_PATH, 
+    FIGURES, 
+    FIGURES_RU_NAMES, 
+    PROMOTION_DATA_ATTR, 
+    STYLES 
+} from "../const.js"
 
 export const askPawnPromotion = (color) => {
     
@@ -7,10 +13,10 @@ export const askPawnPromotion = (color) => {
         modal.classList.add(STYLES.modalPromotion)
 
         const options = [
-            { value: FIGURES.queen, content: 'Ферзь' },
-            { value: FIGURES.bishop, content: 'Слон' },
-            { value: FIGURES.knight, content: 'Конь' },
-            { value: FIGURES.rook, content: 'Ладья' }
+            { value: FIGURES.queen, content: FIGURES_RU_NAMES.queen },
+            { value: FIGURES.bishop, content: FIGURES_RU_NAMES.bishop },
+            { value: FIGURES.knight, content: FIGURES_RU_NAMES.knight },
+            { value: FIGURES.rook, content: FIGURES_RU_NAMES.rook }
         ]
         options.forEach(opt => {
             const option = document.createElement('div')

@@ -23,6 +23,15 @@ export const FIGURES = {
     blackPawn: 'blackPawn',
     whitePawn: 'whitePawn',
 }
+export const FIGURES_RU_NAMES = {
+    rook: 'Ладья',
+    bishop: 'Слон',
+    knight: 'Конь',
+    king: 'Король',
+    queen: 'Ферзь',
+    blackPawn: 'Черная пешка',
+    whitePawn: 'Белая пешка'
+}
 export const FIGURE_IMAGE_PATH = {
     rook: {
         black: 'src/assets/figures/black/rook.svg', 
