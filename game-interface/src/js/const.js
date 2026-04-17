@@ -17,7 +17,7 @@ export const FIGURES = {
 }
 export const FIGURE_IMAGE_PATH = {
     rook: {
-        black: 'src/assets/figures/black/rook.svg', 
+        black: 'src/assets/figures/black/rook.svg',
         white: 'src/assets/figures/white/rook.svg'
     },
     knight: {
@@ -48,16 +48,16 @@ export const STYLES = {
     possibleStep: 'possibleStep',
     selectedItem: 'selectedItem',
     table: 'table',
-    players: 'players',
-    playerWhite: 'playerWhite',
-    playerBlack: 'playerBlack',
     active: 'active',
     moveHistory: 'moveHistory',
     figuresInHistory: 'figuresInHistory',
     moveList: 'moveList',
     moveItem: 'moveItem',
     capturedContainer: 'capturedContainer',
-    capturedSection: 'capturedSection'
+    capturedSection: 'capturedSection',
+    players: 'players',
+    turnWhite: 'turnWhite',
+    turnBlack: 'turnBlack'
 }
 
 export const possibleStepsMap = {
@@ -84,11 +84,11 @@ export const ID_IN_HTML = {
 }
 
 export const SYMBOLS = {
-        move: ' ',
-        capture: 'x',
-        castling: '0-0',
-        check: '+',
-        checkmate: '#'
+    move: ' ',
+    capture: 'x',
+    castling: '0-0',
+    check: '+',
+    checkmate: '#'
 }
 
 export const ASCII_CODE_A = 'a'.charCodeAt(0)
