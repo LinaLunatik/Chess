@@ -2,7 +2,6 @@ import {
     FIGURE_IMAGE_PATH, 
     FIGURES, 
     FIGURES_RU_NAMES, 
-    PROMOTION_DATA_ATTR, 
     STYLES 
 } from "../const.js"
 
@@ -20,7 +19,8 @@ export const askPawnPromotion = (color) => {
         ]
         options.forEach(opt => {
             const option = document.createElement('div')
-            option.dataset.value = opt.value
+            option.id = opt.value
+            option.classList.add(STYLES.promotionOption)
 
             const img = document.createElement('img')
             img.src = FIGURE_IMAGE_PATH[opt.value][color]
@@ -33,10 +33,10 @@ export const askPawnPromotion = (color) => {
         document.body.appendChild(modal)
 
         modal.addEventListener('click', (event) => {
-            const clickedOption = event.target.closest(`[${PROMOTION_DATA_ATTR}]`)
-            if (!clickedOption) return
+            const clickedOption = event.target.closest(`.${STYLES.promotionOption}`)
+            if (!clickedOption || !clickedOption.id) return
             
-            const chosenFigure = clickedOption.dataset.value
+            const chosenFigure = clickedOption.id
             resolve(chosenFigure)
             modal.remove()
         })

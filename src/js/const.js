@@ -70,7 +70,8 @@ export const STYLES = {
     playerBlack: 'playerBlack',
     active: 'active',
     modalPromotion: 'modalPromotion',
-    modalButton: 'modalButton'
+    modalButton: 'modalButton',
+    promotionOption: 'promotionOption'
 }
 
 export const possibleStepsMap = {
@@ -98,5 +99,3 @@ export const GAME_STATUS = {
     check: 'check',
     continue: 'continue' 
 }
-
-export const PROMOTION_DATA_ATTR = 'data-value'

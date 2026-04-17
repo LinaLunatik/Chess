@@ -8,6 +8,7 @@
  * false, если хотя бы одна из координат отличается
  */
 export const isSameCell = (cell1, cell2) => {
+    if (!cell1 || !cell2) return false
     return  cell1.row === cell2.row &&
             cell1.col === cell2.col
 }
