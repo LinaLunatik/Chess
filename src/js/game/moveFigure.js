@@ -40,13 +40,25 @@ export const moveFigure = async (cell) => {
         black: [...state.capturedFigures.black],
         white: [...state.capturedFigures.white]
     }
+    const newMoveHistory = [
+        ...state.moveHistory
+    ]
+    
+    let moveType = MOVE_TYPES.move
 
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
 
-    newBoard[row][col] = setCell(targetCell, fromCell)
+    newBoard[row][col] = moveToCell(targetCell, fromCell)
+    
+    newMoveHistory.push({
+        figure: fromCell.figure,
+        color: fromCell.isBlack ? 'black' : 'white',
+        targetCell: {row, col},
+        type: moveType
+    })
 
     clearCell(fromCell)
 
@@ -59,6 +71,7 @@ export const moveFigure = async (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
+    setMoveHistory(newMoveHistory)
 
     const newState = getState()
     const gameStatus = getGameStatus(newState, opponentColor)

@@ -86,7 +86,11 @@ export const possibleStepsMap = {
 
 export const MOVE_TYPES = {
     step: 'step',
-    capture: 'capture'
+    capture: 'capture',
+    move: 'move',
+    castling: 'castling',
+    check: 'check',
+    checkmate: 'checkmate'
 }
 
 export const ID_IN_HTML = {
