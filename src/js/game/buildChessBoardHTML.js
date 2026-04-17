@@ -1,5 +1,6 @@
 import { renderCell } from "./renderCell.js"
 import { STYLES } from "../const.js"
+import { isSameCell } from "./isSameCell.js";
 
 export const buildChessBoardHTML = (state) => {
 
@@ -10,10 +11,8 @@ export const buildChessBoardHTML = (state) => {
 
     const trElements= board.map(row => {
         const tdElements = row.map(cell => {
-            const isSelected = 
-                state.selectedCell?.row === cell.row &&
-                state.selectedCell?.col === cell.col;
-            const isPossibleStep = targetCells.has(`${cell.row},${cell.col}`);
+            const isSelected = isSameCell(state.selectedCell, cell)
+            const isPossibleStep = targetCells.has(`${cell.row},${cell.col}`)
 
             return renderCell(cell, { isSelected, isPossibleStep })
         });
