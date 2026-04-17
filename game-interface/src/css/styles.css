@@ -37,19 +37,34 @@
     justify-content: center;
 }
 
+.moveHistory {
+    background: #fed9b4;
+    border-radius: 8px;
+    border: 1px solid #d4a373;
+    padding: 12px;
+    box-sizing: border-box;
+    height: 390px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.moveHistory h3 {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    color: #5a3e2b; 
+    font-weight: bold;
+}
+
 .moveList {
+    flex: 1; 
     display: flex;
     flex-wrap: wrap;
     gap: 8px 12px;
-    word-break: break-word;
     align-content: flex-start;
-    background: #fed9b4;
-    height: 275px;
-    overflow-y: auto;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #d4a373;
-    box-sizing: border-box;
+    overflow-y: auto;    
+    padding-right: 6px;  
 }
 
 .moveItem {
@@ -60,26 +75,41 @@
     flex-shrink: 0;
 }
 
-.capturedFigures {
+.capturedContainer {
     background: #fed9b4;
-    padding: 12px;
     border-radius: 8px;
     border: 1px solid #d4a373;
+    padding: 12px;
     box-sizing: border-box;
+    height: 170px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    height: 150px;
-    overflow-y: auto;
 }
 
-.capturedFigures img {
-    width: 28px;  
+.capturedContainer h3 {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    color: #5a3e2b;
+}
+.capturedSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-content: flex-start;
+    min-height: 64px;
+    max-height: 64px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.capturedSection img {
+    width: 28px;
     height: 28px;
     object-fit: contain;
-    display: inline-block;
-    margin: 2px 4px 2px 0;
-    vertical-align: middle;
+    display: block;
+    flex-shrink: 0; 
 }
 
 .table {

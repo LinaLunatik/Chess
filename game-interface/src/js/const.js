@@ -56,7 +56,8 @@ export const STYLES = {
     figuresInHistory: 'figuresInHistory',
     moveList: 'moveList',
     moveItem: 'moveItem',
-    capturedFigures: 'capturedFigures'
+    capturedContainer: 'capturedContainer',
+    capturedSection: 'capturedSection'
 }
 
 export const possibleStepsMap = {
