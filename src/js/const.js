@@ -23,6 +23,15 @@ export const FIGURES = {
     blackPawn: 'blackPawn',
     whitePawn: 'whitePawn',
 }
+export const FIGURES_RU_NAMES = {
+    rook: 'Ладья',
+    bishop: 'Слон',
+    knight: 'Конь',
+    king: 'Король',
+    queen: 'Ферзь',
+    blackPawn: 'Черная пешка',
+    whitePawn: 'Белая пешка'
+}
 export const FIGURE_IMAGE_PATH = {
     rook: {
         black: 'src/assets/figures/black/rook.svg', 
@@ -60,7 +69,10 @@ export const STYLES = {
     players: 'players',
     playerWhite: 'playerWhite',
     playerBlack: 'playerBlack',
-    active: 'active'
+    active: 'active',
+    modalPromotion: 'modalPromotion',
+    modalButton: 'modalButton',
+    promotionOption: 'promotionOption'
 }
 
 export const possibleStepsMap = {
@@ -75,9 +87,20 @@ export const possibleStepsMap = {
 
 export const MOVE_TYPES = {
     step: 'step',
-    capture: 'capture'
+    capture: 'capture',
+    move: 'move',
+    castling: 'castling',
+    check: 'check',
+    checkmate: 'checkmate'
 }
 
 export const ID_IN_HTML = {
     root: 'root'
+}
+
+export const GAME_STATUS = {
+    checkmate: 'checkmate',
+    stalemate: 'stalemate',
+    check: 'check',
+    continue: 'continue' 
 }

@@ -6,7 +6,7 @@ export const getState = () => state
 export const setState = (newState) => { state = newState } 
 
 export const getCell = ({row, col}) => state.board[row][col]
-export const setCell = (cell, fromCell) => {
+export const moveToCell = (cell, fromCell) => {
     return {
         ...cell,
         figure: fromCell.figure,
@@ -59,5 +59,13 @@ export const setCapturedFigures = (newCapturedFigures) => {
     setState({
         ...state,
         capturedFigures: newCapturedFigures
+    })
+}
+
+export const setMoveHistory = (newMoveHistory) => {
+    const state = getState()
+    setState({
+        ...state,
+        moveHistory: newMoveHistory
     })
 }
