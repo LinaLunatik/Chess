@@ -1,13 +1,13 @@
+import { visitEachCell } from "../../utils/visitEachCell.js"
+
 export const findAllFiguresByColor = (state, color) => {
 
     const result = []
-    for (let row = 0; row < state.board.length; row++) {
-        for (let col = 0; col < state.board[row].length; col++) {
-            const cell = state.board[row][col]
-            if (cell.color === color) {
-                result.push({figure: cell.figure, row, col})
-            }
+
+    visitEachCell(state, (cell, row, col) => {
+        if (cell.color === color) {
+            result.push({ figure: cell.figure, row, col })
         }
-    }
+    })
     return result
 }

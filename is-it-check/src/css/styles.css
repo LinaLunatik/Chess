@@ -39,6 +39,7 @@ svg {
     width: 60px;
     height: 60px;
 }
+
 img {
     width: 60px;
     height: 60px;
@@ -62,4 +63,18 @@ img {
     font-size: 30px;
     border: 1px solid black;
     text-align: center;
+}
+
+.modalPromotion {
+    background: #FFE4B5
+}
+
+.modalButton {
+    background: #f6d49a;
+    border: 1px solid #998259;
+    border-radius: 15px;
+}
+
+.promotionOption {
+    cursor: pointer;
 }

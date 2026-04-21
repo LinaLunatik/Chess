@@ -9,10 +9,13 @@ import {
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
 import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
-import { OPPOSITE_COLORS } from "../const.js"
-import { isItEndGame } from "./isItEndGame.js"
+import { getOppositeColor } from "../../utils/getOppositeColor.js"
+import { promotePawn } from "./promotePawn.js"
+import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
+import { GAME_STATUS } from "../const.js"
+import { getGameStatus } from "./getGameStatus.js"
 
-export const moveFigure = (cell) => {
+export const moveFigure = async (cell) => {
     const { row, col } = cell
     const state = getState()
 
@@ -30,41 +33,65 @@ export const moveFigure = (cell) => {
 
     const targetCell = newBoard[row][col]
     const fromCell = newBoard[fromRow][fromCol]
-    const opponentColor = OPPOSITE_COLORS[fromCell.color]
+    const opponentColor = getOppositeColor(fromCell.color)
 
     const newCapturedFigures = {
         ...state.capturedFigures,
         black: [...state.capturedFigures.black],
         white: [...state.capturedFigures.white]
     }
+    const newMoveHistory = [
+        ...state.moveHistory
+    ]
+    
+    let moveType = MOVE_TYPES.move
 
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
 
-    newBoard[row][col] = setCell(targetCell, fromCell)
+    newBoard[row][col] = moveToCell(targetCell, fromCell)
+    
+    newMoveHistory.push({
+        figure: fromCell.figure,
+        color: fromCell.isBlack ? 'black' : 'white',
+        targetCell: {row, col},
+        type: moveType
+    })
 
     clearCell(fromCell)
 
+    if (isItLastRowForPawn(newBoard[row][col].figure, row)) {
+        await promotePawn(newBoard, targetCell)
+    }
+
     setBoard(newBoard)
+
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
+    setMoveHistory(newMoveHistory)
 
     const newState = getState()
-    const resultGame = isItEndGame(newState, opponentColor)
+    const gameStatus = getGameStatus(newState, opponentColor)
 
-    if (resultGame.isItStalemate) {
-        alert('ПАТ')
-    } else if (resultGame.isItCheckmate) {
-        alert('МАТ')
-    } else {
-        // игра продолжается
-        if (resultGame.isCheck) {
+    switch (gameStatus) {
+        case GAME_STATUS.checkmate:
+            alert('МАТ')
+            break;
+        case GAME_STATUS.stalemate:
+            alert('ПАТ')
+            break;
+        case GAME_STATUS.check:
             console.log('ШАХ')
-        }
-        toggleCurrentPlayer()
-        createChessBoard()
+            break;
+        case GAME_STATUS.continue:
+            toggleCurrentPlayer()
+            createChessBoard()
+            break;
+        default:
+            console.error('Неизвестный статус игры', gameStatus)
+            break
     }
 }
