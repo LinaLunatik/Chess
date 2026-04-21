@@ -1,4 +1,4 @@
-import { CHESS_BOARD_SIZE, COLORS, FIGURES } from "../const.js"
+import { CHESS_BOARD_SIZE, COLORS, DEFAULT_CASTLING_RIGHTS, FIGURES } from "../const.js"
 
 export const getInitialState = () => {
 
@@ -76,8 +76,8 @@ export const getInitialState = () => {
         },
         //право на рокировку
         castlingRights: {
-            white: {kingSide: true, queenSide: true},
-            black: {kingSide: true, queenSide: true}
+            white: {...DEFAULT_CASTLING_RIGHTS},
+            black: {...DEFAULT_CASTLING_RIGHTS}
         }
     }
 
