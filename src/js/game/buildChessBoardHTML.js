@@ -17,13 +17,12 @@ export const buildChessBoardHTML = (state) => {
 
             return renderCell(cell, { isSelected, isPossibleStep })
         });
-        return `<tr>
+        return `<tr class="${STYLES.chessRow}">
                     ${tdElements.join('')}
                 </tr>`;
     })
 
-    return `<table 
-                class="${STYLES.table}">
-                    ${trElements.join('')}
+    return `<table class="${STYLES.chessBoard}">
+                ${trElements.join('')}
             </table>`
 }
