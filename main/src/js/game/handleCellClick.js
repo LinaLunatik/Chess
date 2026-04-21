@@ -1,4 +1,4 @@
-import { possibleStepsMap } from '../const.js'
+import { COLORS, possibleStepsMap } from '../const.js'
 import { 
     clearPossibleSteps, 
     clearSelectedCell, 
@@ -12,6 +12,7 @@ import { isSameCell } from './isSameCell.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
+    const currentColor = currentState.isCurrentPlayerWhite ? COLORS.WHITE : COLORS.BLACK
     const {row, col} = cell
     
     //если фигура уже выбрана и клик по одной из клеток возможного хода, перемещаем
@@ -23,6 +24,7 @@ export const handleCellClick = (cell) => {
 
     //получаем фигуру из состояния
     const figure = cell.figure 
+    if (cell.color !== currentColor) return
 
     if (figure) {
         //если клик по той же фигуре, то сброс
