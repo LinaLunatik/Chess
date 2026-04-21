@@ -52,7 +52,6 @@ export const moveFigure = (cell) => {
     const newCastlingRights = {
         white: { ...state.castlingRights.white },
         black: { ...state.castlingRights.black }
-
     }
     if (moveDetails?.type === MOVE_TYPES.castling) {
         const rookFromCell = newBoard[moveDetails.rookFrom.row][moveDetails.rookFrom.col]
