@@ -53,6 +53,10 @@ img {
     background: #c7e850 !important;
 }
 
+.check {
+    background: #f77542 !important;
+}
+
 .active {
     background: #FFE4B5;
     font-weight: bold;

@@ -1,7 +1,7 @@
 import { classNames } from "../../utils/classNames/classNames.js"
 import { FIGURE_IMAGE_PATH, STYLES } from "../const.js"
 
-export const renderCell = (cell, { isSelected, isPossibleStep }) => {
+export const renderCell = (cell, { isSelected, isPossibleStep, isCheck }) => {
 
     const color = cell.color === null ? null : cell.color
     let imgTag = ''
@@ -20,7 +20,8 @@ export const renderCell = (cell, { isSelected, isPossibleStep }) => {
     const cellClass = classNames (
        'cell',
        {[STYLES.selectedItem]: isSelected},
-       {[STYLES.possibleStep]: isPossibleStep} 
+       {[STYLES.possibleStep]: isPossibleStep},
+       {[STYLES.check]: isCheck} 
     )
 
     return `<td 

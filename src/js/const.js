@@ -64,6 +64,7 @@ export const FIGURE_IMAGE_PATH = {
 export const STYLES = {
     possibleStep: 'possibleStep',
     selectedItem: 'selectedItem',
+    check: 'check',
     table: 'table',
     players: 'players',
     playerWhite: 'playerWhite',
