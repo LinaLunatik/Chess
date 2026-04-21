@@ -12,15 +12,15 @@ export const renderCell = (cell, { isSelected, isPossibleStep }) => {
             imgTag = `<img 
                         src="${src}" 
                         alt="${cell.figure}" 
-                        class="${cell.figure}"
+                        class="${STYLES.chessFigure}"
                     >`;
         }
     }
 
     const cellClass = classNames (
-       'cell',
-       {[STYLES.selectedItem]: isSelected},
-       {[STYLES.possibleStep]: isPossibleStep} 
+       STYLES.chessCell,
+       {[STYLES.chessCellSelected]: isSelected},
+       {[STYLES.chessCellPossible]: isPossibleStep} 
     )
 
     return `<td 
