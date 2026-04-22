@@ -1,4 +1,4 @@
-import { CHESS_BOARD_SIZE, COLORS, FIGURES } from "../const.js"
+import { CHESS_BOARD_SIZE, COLORS, DEFAULT_CASTLING_RIGHTS, FIGURES } from "../const.js"
 
 export const getInitialState = () => {
 
@@ -74,10 +74,14 @@ export const getInitialState = () => {
             white: [],
             black: []
         },
+        //право на рокировку
+        castlingRights: {
+            white: {...DEFAULT_CASTLING_RIGHTS},
+            black: {...DEFAULT_CASTLING_RIGHTS}
+        },
         // История ходов - для отображения в интерфейсе.
         // Формат - [{figure, color, targetCell, type}]
         moveHistory: []
     }
-
     return initialState
 }

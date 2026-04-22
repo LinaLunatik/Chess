@@ -122,6 +122,15 @@ export const ID_IN_HTML = {
     root: 'root'
 }
 
+export const ROOK_SIDE = {
+    kingSide: 'kingSide',
+    queenSide: 'queenSide'
+}
+
+export const DEFAULT_CASTLING_RIGHTS = {
+    [ROOK_SIDE.kingSide]: true,
+    [ROOK_SIDE.queenSide]: true
+}
 export const SYMBOLS = {
     move: ' ',
     capture: 'x',
