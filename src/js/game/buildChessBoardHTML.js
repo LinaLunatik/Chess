@@ -1,8 +1,7 @@
 import { renderCell } from "./renderCell.js"
 import { COLORS, STYLES } from "../const.js"
 import { findKingCell } from "./findKingCell.js";
-import { isItCheck } from "./isItCheck.js";
-import { STYLES } from "../const.js"
+import { isInCheck } from "./isInCheck.js";
 import { isSameCell } from "./isSameCell.js";
 
 export const buildChessBoardHTML = (state) => {
@@ -15,7 +14,7 @@ export const buildChessBoardHTML = (state) => {
     const currentPlayerColor = state.isCurrentPlayerWhite ? COLORS.WHITE : COLORS.BLACK
     const kingCell = findKingCell(state, currentPlayerColor)
     const isKingInCheck = kingCell && 
-        isItCheck(state, currentPlayerColor)
+        isInCheck(state, currentPlayerColor)
 
     const trElements= board.map(row => {
         const tdElements = row.map(cell => {
