@@ -45,19 +45,23 @@ export const FIGURE_IMAGE_PATH = {
 }
 
 export const STYLES = {
-    possibleStep: 'possibleStep',
-    selectedItem: 'selectedItem',
-    table: 'table',
-    active: 'active',
     moveHistory: 'moveHistory',
-    figuresInHistory: 'figuresInHistory',
     moveList: 'moveList',
     moveItem: 'moveItem',
     capturedContainer: 'capturedContainer',
     capturedSection: 'capturedSection',
     players: 'players',
     turnWhite: 'turnWhite',
-    turnBlack: 'turnBlack'
+    turnBlack: 'turnBlack',
+    chessBoard: 'chess-board',
+    chessRow: 'chess-row',
+    chessCell: 'chess-cell',
+    chessCellDark: 'chess-cell--dark',
+    chessCellSelected: 'chess-cell--selected',
+    chessCellPossible: 'chess-cell--possible',
+    chessCellCheck: 'chess-cell--check',
+    chessFigure: 'chess-figure',
+    panelTitle: 'panel-title',
 }
 
 export const possibleStepsMap = {
