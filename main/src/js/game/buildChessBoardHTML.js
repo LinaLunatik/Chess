@@ -24,13 +24,12 @@ export const buildChessBoardHTML = (state) => {
 
             return renderCell(cell, { isSelected, isPossibleStep, isCheck })
         });
-        return `<tr>
+        return `<tr class="${STYLES.chessBoard.row}">
                     ${tdElements.join('')}
                 </tr>`;
     })
 
-    return `<table 
-                class="${STYLES.table}">
-                    ${trElements.join('')}
+    return `<table class="${STYLES.chessBoard.container}">
+                ${trElements.join('')}
             </table>`
 }

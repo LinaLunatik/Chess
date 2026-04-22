@@ -4,14 +4,14 @@ const renderCapturedGroup = (capturedFigures, color) =>
     capturedFigures
         .filter(fig => FIGURE_IMAGE_PATH[fig]?.[color])
         .map(fig => {
-            const src = FIGURE_IMAGE_PATH[fig]?.[color]
+            const src = FIGURE_IMAGE_PATH[fig][color]
             return `<img 
                         src="${src}" 
                         alt="${fig}" 
-                        class="${STYLES.capturedFigures}"
+                        class="${STYLES.chessFigure}"
                     >`
         })
-        .join(' ')
+        .join('')
 
 export const buildCapturedFiguresHTML = (state) => {
     const {
@@ -23,9 +23,10 @@ export const buildCapturedFiguresHTML = (state) => {
     const blackImages = renderCapturedGroup(blackCapFig, 'black')
 
     return `
-                <div class=${STYLES.capturedFigures}>
-                    <div>Белые ${whiteImages}</div>
-                    <div>Черные ${blackImages}</div>
+                <div class="${STYLES.captured.container}">
+                    <h3 class="${STYLES.panelTitle}">Съеденные фигуры</h3>
+                    <div class="${STYLES.captured.section}">${whiteImages}</div>
+                    <div class="${STYLES.captured.section}">${blackImages}</div>
                 </div>
             `
 }
