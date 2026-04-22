@@ -1,3 +1,4 @@
+import { STYLES } from "../const.js"
 import { buildCapturedFiguresHTML } from "./buildCapturedFiguresHTML.js"
 import { buildChessBoardHTML } from "./buildChessBoardHTML.js"
 import { buildMoveHistoryHTML } from "./buildMoveHistoryHTML.js"
@@ -10,13 +11,13 @@ export const renderGameLayout = (state) => {
     const captured = buildCapturedFiguresHTML(state)
 
     return `
-            <div class="gameLayout">
-                <div class="infoArea">
+            <div class="${STYLES.layout.container}">
+                <div class="${STYLES.layout.sidebar}">
                     ${players}
                     ${captured}
                     ${history}
                 </div>
-                <div class="gameArea">
+                <div class="${STYLES.chessBoard.container}">
                     ${chessBoard}
                 </div>
             </div>

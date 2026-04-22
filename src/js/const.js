@@ -45,23 +45,41 @@ export const FIGURE_IMAGE_PATH = {
 }
 
 export const STYLES = {
-    moveHistory: 'moveHistory',
-    moveList: 'moveList',
-    moveItem: 'moveItem',
-    capturedContainer: 'capturedContainer',
-    capturedSection: 'capturedSection',
-    players: 'players',
-    turnWhite: 'turnWhite',
-    turnBlack: 'turnBlack',
-    chessBoard: 'chess-board',
-    chessRow: 'chess-row',
-    chessCell: 'chess-cell',
-    chessCellDark: 'chess-cell--dark',
-    chessCellSelected: 'chess-cell--selected',
-    chessCellPossible: 'chess-cell--possible',
-    chessCellCheck: 'chess-cell--check',
+    // === Глобальные ===
     chessFigure: 'chess-figure',
     panelTitle: 'panel-title',
+    // === Сетка ===
+    layout: {
+        container: 'gameLayout',
+        sidebar: 'infoArea'
+    },
+    // === Блок: Съеденные фигуры ===
+    captured: {
+        container: 'captured-container',
+        section: 'captured-section'
+    },
+    // === Блок: История ходов ===
+    moveHistory: {
+        container: 'move-history',
+        list: 'move-list',
+        item: 'move-item'
+    },
+    // === Блок: Индикатор хода ===
+    turnIndicator: {
+        container: 'players',
+        whiteTurn: 'turnWhite',
+        blackTurn: 'turnBlack'
+    },
+    // === Блок: Шахматная доска ===
+    chessBoard: {
+        container: 'chess-board',
+        row: 'chess-row',
+        cell: 'chess-cell',
+        cellDark: 'chess-cell--dark',
+        cellSelected: 'chess-cell--selected',
+        cellPossible: 'chess-cell--possible',
+        cellCheck: 'chess-cell--check'
+    }
 }
 
 export const possibleStepsMap = {
