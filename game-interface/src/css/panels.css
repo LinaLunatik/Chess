@@ -31,19 +31,19 @@
 }
 
 /* ===== ПАНЕЛЬ: ИСТОРИЯ ХОДОВ ===== */
-.moveHistory {
+.move-history {
     background: var(--bg-panel);
     border-radius: 8px;
     border: 1px solid var(--border-panel);
     padding: 12px;
     box-sizing: border-box;
-    height: 390px;
+    height: 380px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.moveHistory .panel-title {
+.move-history .panel-title {
     margin: 0;
     font-size: 16px;
     text-align: center;
@@ -51,7 +51,7 @@
     font-weight: bold;
 }
 
-.moveList {
+.move-list {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -61,7 +61,7 @@
     padding-right: 6px;
 }
 
-.moveItem {
+.move-item {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
@@ -69,7 +69,7 @@
     flex-shrink: 0;
 }
 
-.moveList .chess-figure {
+.move-list .chess-figure {
     width: 1.4em;
     height: 1.4em;
     object-fit: contain;
@@ -78,7 +78,7 @@
 }
 
 /* ===== ПАНЕЛЬ: СЪЕДЕННЫЕ ФИГУРЫ ===== */
-.capturedContainer {
+.captured-container {
     background: var(--bg-panel);
     border-radius: 8px;
     border: 1px solid var(--border-panel);
@@ -90,14 +90,14 @@
     gap: 8px;
 }
 
-.capturedContainer .panel-title {
+.captured-container .panel-title {
     margin: 0;
     font-size: 16px;
     text-align: center;
     color: var(--text-panel);
 }
 
-.capturedSection {
+.captured-section {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
@@ -108,7 +108,7 @@
     flex: 1;
 }
 
-.capturedSection .chess-figure {
+.captured-section .chess-figure {
     width: 28px;
     height: 28px;
     object-fit: contain;

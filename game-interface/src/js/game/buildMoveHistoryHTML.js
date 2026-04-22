@@ -24,16 +24,16 @@ export const buildMoveHistoryHTML = (state) => {
         const typeSymbol = SYMBOLS[type] || ''
 
         movedItems.push(`
-            <span class="${STYLES.moveItem}">
+            <span class="${STYLES.moveHistory.item}">
                 ${imgTag}${typeSymbol}${chessCoords}
             </span>
         `) 
     }
 
     return `
-                <div class="${STYLES.moveHistory}">
+                <div class="${STYLES.moveHistory.container}">
                     <h3 class="${STYLES.panelTitle}">История ходов</h3>
-                    <div class="${STYLES.moveList}">
+                    <div class="${STYLES.moveHistory.list}">
                         ${movedItems.join('')}
                     </div>
                 </div>

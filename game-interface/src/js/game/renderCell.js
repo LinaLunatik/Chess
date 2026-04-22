@@ -17,10 +17,10 @@ export const renderCell = (cell, { isSelected, isPossibleStep }) => {
         }
     }
 
-    const cellClass = classNames (
-       STYLES.chessCell,
-       {[STYLES.chessCellSelected]: isSelected},
-       {[STYLES.chessCellPossible]: isPossibleStep} 
+    const cellClass = classNames(
+       STYLES.chessBoard.cell,
+       {[STYLES.chessBoard.cellSelected]: isSelected},
+       {[STYLES.chessBoard.cellPossible]: isPossibleStep} 
     )
 
     return `<td 
