@@ -2,7 +2,7 @@ import { CHESS_BOARD_SIZE, OPPOSITE_COLORS, ROOK_SIDE } from "../const.js";
 import { findKingCell } from "./findKingCell.js";
 import { getCellsBetween } from "./getCellsBetween.js";
 import { isCellAttacked } from "./isCellAttacked.js";
-import { isItCheck } from "./isItCheck.js";
+import { isInCheck } from "./isInCheck.js";
 
 export const isCastlingValid = (state, color, rookSide) => {
     
@@ -31,7 +31,7 @@ export const isCastlingValid = (state, color, rookSide) => {
     }
 
     // Король не должен быть под шахом до рокировки
-    const isItCheckBeforeCastling = isItCheck(state, color)
+    const isItCheckBeforeCastling = isInCheck(state, color)
     if (isItCheckBeforeCastling) {
         return false
     }

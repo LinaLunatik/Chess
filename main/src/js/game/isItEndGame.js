@@ -5,7 +5,7 @@ import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
 import { findKingCell } from "./findKingCell.js"
 import { getAttackLine } from "./getAttackLine.js"
 import { getValidSteps } from "./getValidSteps.js"
-import { isItCheck } from "./isItCheck.js"
+import { isInCheck } from "./isInCheck.js"
 
 export const isItEndGame = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
@@ -80,7 +80,7 @@ export const isItEndGame = (state, colorOfKing) => {
         )
 
     // ИТОГО
-    const kingInCheck = isItCheck(state, colorOfKing)
+    const kingInCheck = isInCheck(state, colorOfKing)
     
     // Пат - если королю нет шаха, некуда идти и любой фигуре тоже некуда идти
     const isItStalemate =
