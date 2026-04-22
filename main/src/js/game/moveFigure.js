@@ -4,6 +4,7 @@ import {
     getState,
     setBoard,
     setCapturedFigures,
+    setCastlingRights,
     setCell
 } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
@@ -51,6 +52,44 @@ export const moveFigure = async (cell) => {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
 
+    // если рокировка
+    const moveDetails = state.possibleSteps.find(step =>
+        step.row === row && step.col === col
+    )
+    const newCastlingRights = {
+        white: { ...state.castlingRights.white },
+        black: { ...state.castlingRights.black }
+    }
+    if (moveDetails?.type === MOVE_TYPES.castling) {
+        const rookFromCell = newBoard[moveDetails.rookFrom.row][moveDetails.rookFrom.col]
+        const rookToCell = newBoard[moveDetails.rookTo.row][moveDetails.rookTo.col]
+
+        const newRookCell = setCell(rookToCell, rookFromCell)
+        newBoard[moveDetails.rookTo.row][moveDetails.rookTo.col] = newRookCell
+        clearCell(rookFromCell)
+
+        newCastlingRights[fromCell.color][moveDetails.rookSide] = false
+    }
+
+    // Если король или ладья сделали ход, право на рокировку отключается
+    if (fromCell.figure === FIGURES.king) {
+        newCastlingRights[fromCell.color][ROOK_SIDE.kingSide] = false
+        newCastlingRights[fromCell.color][ROOK_SIDE.queenSide] = false
+    }
+    if (fromCell.figure === FIGURES.rook) {
+        const rookSide = getRookSide(fromCell.col)
+        if (rookSide) {
+            newCastlingRights[fromCell.color][rookSide] = false
+        }
+    }
+    // Если съедена ладья, право на рокировку отключается
+    if (targetCell.figure === FIGURES.rook) {
+        const rookSide = getRookSide(targetCell.col)
+        if (rookSide) {
+            newCastlingRights[targetCell.color][rookSide] = false
+        }
+    }
+
     newBoard[row][col] = moveToCell(targetCell, fromCell)
     
     newMoveHistory.push({
@@ -71,6 +110,7 @@ export const moveFigure = async (cell) => {
     clearSelectedCell()
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
+    setCastlingRights(newCastlingRights)
     setMoveHistory(newMoveHistory)
 
     const newState = getState()
