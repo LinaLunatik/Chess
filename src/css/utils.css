@@ -1,0 +1,13 @@
+/* ===== УТИЛИТЫ ===== */
+.panel-title {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    color: var(--text-panel);
+    font-weight: bold;
+}
+
+.chess-figure {
+    display: inline-block;
+    vertical-align: middle;
+}

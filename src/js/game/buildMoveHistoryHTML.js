@@ -7,7 +7,7 @@ export const buildMoveHistoryHTML = (state) => {
     const movedItems = []
 
     for (let { figure, color, targetCell, type } of moves) {
-        let imgTag = null
+        let imgTag = ''
 
         if (figure && color) {
             const src = FIGURE_IMAGE_PATH[figure][color];
@@ -15,22 +15,26 @@ export const buildMoveHistoryHTML = (state) => {
                 imgTag = `<img 
                         src="${src}" 
                         alt="${figure}" 
-                        class="${STYLES.figuresInHistory}"
+                        class="${STYLES.chessFigure}"
                     >`;
             }
         }
 
         const chessCoords = convertToChessCoords(targetCell.row, targetCell.col)
-        const typeSymbol = SYMBOLS[type]
+        const typeSymbol = SYMBOLS[type] || ''
 
-        movedItems.push(`${imgTag || ''}${typeSymbol}${chessCoords}`) 
+        movedItems.push(`
+            <span class="${STYLES.moveHistory.item}">
+                ${imgTag}${typeSymbol}${chessCoords}
+            </span>
+        `) 
     }
 
     return `
-                <div class="${STYLES.moveHistory}">
-                    <h3>История ходов</h3>
-                    <div class="${STYLES.moveList}">
-                        ${movedItems.join(' | ')}
+                <div class="${STYLES.moveHistory.container}">
+                    <h3 class="${STYLES.panelTitle}">История ходов</h3>
+                    <div class="${STYLES.moveHistory.list}">
+                        ${movedItems.join('')}
                     </div>
                 </div>
             `
