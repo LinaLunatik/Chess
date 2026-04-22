@@ -2,6 +2,8 @@ import { renderCell } from "./renderCell.js"
 import { COLORS, STYLES } from "../const.js"
 import { findKingCell } from "./findKingCell.js";
 import { isItCheck } from "./isItCheck.js";
+import { STYLES } from "../const.js"
+import { isSameCell } from "./isSameCell.js";
 
 export const buildChessBoardHTML = (state) => {
 
@@ -17,24 +19,17 @@ export const buildChessBoardHTML = (state) => {
 
     const trElements= board.map(row => {
         const tdElements = row.map(cell => {
-            const isSelected = 
-                state.selectedCell?.row === cell.row &&
-                state.selectedCell?.col === cell.col;
+            const isSelected = isSameCell(state.selectedCell, cell)
             const isPossibleStep = targetCells.has(`${cell.row},${cell.col}`)
-            const isCheck = 
-                isKingInCheck &&
-                cell.row === kingCell.row  &&
-                cell.col === kingCell.col 
 
             return renderCell(cell, { isSelected, isPossibleStep, isCheck })
         });
-        return `<tr>
+        return `<tr class="${STYLES.chessBoard.row}">
                     ${tdElements.join('')}
                 </tr>`;
     })
 
-    return `<table 
-                class="${STYLES.table}">
-                    ${trElements.join('')}
+    return `<table class="${STYLES.chessBoard.container}">
+                ${trElements.join('')}
             </table>`
 }

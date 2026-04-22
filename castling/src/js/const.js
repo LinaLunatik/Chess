@@ -23,9 +23,18 @@ export const FIGURES = {
     blackPawn: 'blackPawn',
     whitePawn: 'whitePawn',
 }
+export const FIGURES_RU_NAMES = {
+    rook: 'Ладья',
+    bishop: 'Слон',
+    knight: 'Конь',
+    king: 'Король',
+    queen: 'Ферзь',
+    blackPawn: 'Черная пешка',
+    whitePawn: 'Белая пешка'
+}
 export const FIGURE_IMAGE_PATH = {
     rook: {
-        black: 'src/assets/figures/black/rook.svg', 
+        black: 'src/assets/figures/black/rook.svg',
         white: 'src/assets/figures/white/rook.svg'
     },
     knight: {
@@ -53,14 +62,41 @@ export const FIGURE_IMAGE_PATH = {
 }
 
 export const STYLES = {
-    possibleStep: 'possibleStep',
-    selectedItem: 'selectedItem',
-    check: 'check',
-    table: 'table',
-    players: 'players',
-    playerWhite: 'playerWhite',
-    playerBlack: 'playerBlack',
-    active: 'active'
+    // === Глобальные ===
+    chessFigure: 'chess-figure',
+    panelTitle: 'panel-title',
+    // === Сетка ===
+    layout: {
+        container: 'gameLayout',
+        sidebar: 'infoArea'
+    },
+    // === Блок: Съеденные фигуры ===
+    captured: {
+        container: 'captured-container',
+        section: 'captured-section'
+    },
+    // === Блок: История ходов ===
+    moveHistory: {
+        container: 'move-history',
+        list: 'move-list',
+        item: 'move-item'
+    },
+    // === Блок: Индикатор хода ===
+    turnIndicator: {
+        container: 'players',
+        whiteTurn: 'turnWhite',
+        blackTurn: 'turnBlack'
+    },
+    // === Блок: Шахматная доска ===
+    chessBoard: {
+        container: 'chess-board',
+        row: 'chess-row',
+        cell: 'chess-cell',
+        cellDark: 'chess-cell--dark',
+        cellSelected: 'chess-cell--selected',
+        cellPossible: 'chess-cell--possible',
+        cellCheck: 'chess-cell--check'
+    }
 }
 
 export const possibleStepsMap = {
@@ -76,7 +112,10 @@ export const possibleStepsMap = {
 export const MOVE_TYPES = {
     step: 'step',
     capture: 'capture',
-    castling: 'castling'
+    move: 'move',
+    castling: 'castling',
+    check: 'check',
+    checkmate: 'checkmate'
 }
 
 export const ID_IN_HTML = {
@@ -91,4 +130,18 @@ export const ROOK_SIDE = {
 export const DEFAULT_CASTLING_RIGHTS = {
     [ROOK_SIDE.kingSide]: true,
     [ROOK_SIDE.queenSide]: true
+}
+export const SYMBOLS = {
+    move: ' ',
+    capture: 'x',
+    castling: '0-0',
+    check: '+',
+    checkmate: '#'
+}
+
+export const GAME_STATUS = {
+    checkmate: 'checkmate',
+    stalemate: 'stalemate',
+    check: 'check',
+    continue: 'continue' 
 }

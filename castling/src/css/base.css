@@ -1,0 +1,32 @@
+/* ===== ГЛОБАЛЬНЫЕ КОНСТАНТЫ (ЦВЕТОВАЯ ПАЛИТРА) ===== */
+:root {
+    /* Фоны */
+    --bg-page: #fff6ed;
+    --bg-panel: #fed9b4;
+    --bg-board: #993300;
+    --bg-dark-cell: #663300;
+    --bg-light-cell: #ffcc99;
+    
+    /* Границы */
+    --border-panel: #d4a373;
+    --border-cell: #5a2e00;
+    --border-turn-white: #ffffff;
+    --border-turn-black: #333333;
+    
+    /* Текст */
+    --text-panel: #5a3e2b;
+    --text-turn-white: #2c1e16;
+    --text-turn-black: #1a1a1a;
+    --text-board: #ffcc99;
+    
+    /* Состояния и акценты */
+    --bg-selected: #b5daa4;
+    --bg-possible-step: #c7e850;
+    --shadow-check: #ff4444;
+    --shadow-white: #ffffff66;
+    --shadow-black: #00000026;
+}
+
+/* ===== ГЛОБАЛЬНЫЕ СТИЛИ ===== */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: sans-serif; }

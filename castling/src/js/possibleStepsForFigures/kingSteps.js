@@ -36,7 +36,7 @@ export const kingSteps = (state, row, col) => {
     ]
 
     let moves = []
-    const { figure, color: currentColor } = getCell({ row, col })
+    const { figure, color: currentColor } = getCell({row, col})
 
     if (!figure) return []
 
@@ -45,9 +45,9 @@ export const kingSteps = (state, row, col) => {
         const targetCol = col + colDir;
 
         if (isOnChessBoard(targetRow, targetCol)) {
-            const targetCell = getCell({ row: targetRow, col: targetCol })
-            const { figure: targetFigure, color: targetColor } = targetCell
-
+            const targetCell = getCell({row: targetRow, col: targetCol})
+            const {figure: targetFigure, color: targetColor} = targetCell
+            
             //если клетка пуста, можно идти
             if (targetFigure === null) {
                 moves.push({
