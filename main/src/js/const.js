@@ -131,6 +131,7 @@ export const DEFAULT_CASTLING_RIGHTS = {
     [ROOK_SIDE.kingSide]: true,
     [ROOK_SIDE.queenSide]: true
 }
+
 export const SYMBOLS = {
     move: ' ',
     capture: 'x',
@@ -145,3 +146,5 @@ export const GAME_STATUS = {
     check: 'check',
     continue: 'continue' 
 }
+
+export const ASCII_CODE_A = 'a'.charCodeAt(0)

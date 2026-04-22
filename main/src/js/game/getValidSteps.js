@@ -1,4 +1,4 @@
-import { setCell } from "./state.js"
+import { moveToCell } from "./state.js"
 import { clearCell } from "./clearCell.js"
 import { isInCheck } from "./isInCheck.js"
 
@@ -20,7 +20,7 @@ export const getValidSteps = (state, figureSteps, figureCell) => {
         const fromCell = newBoard[figureCell.row][figureCell.col]
         const targetCell = newBoard[step.row][step.col]
     
-        newBoard[step.row][step.col] = setCell(targetCell, fromCell)
+        newBoard[step.row][step.col] = moveToCell(targetCell, fromCell)
         clearCell(fromCell)
         
         const newState = {

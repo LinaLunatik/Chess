@@ -2,10 +2,10 @@ import {
     clearPossibleSteps,
     clearSelectedCell,
     getState,
+    moveToCell,
     setBoard,
     setCapturedFigures,
-    setCastlingRights,
-    setCell
+    setCastlingRights
 } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
@@ -64,7 +64,7 @@ export const moveFigure = async (cell) => {
         const rookFromCell = newBoard[moveDetails.rookFrom.row][moveDetails.rookFrom.col]
         const rookToCell = newBoard[moveDetails.rookTo.row][moveDetails.rookTo.col]
 
-        const newRookCell = setCell(rookToCell, rookFromCell)
+        const newRookCell = moveToCell(rookToCell, rookFromCell)
         newBoard[moveDetails.rookTo.row][moveDetails.rookTo.col] = newRookCell
         clearCell(rookFromCell)
 
