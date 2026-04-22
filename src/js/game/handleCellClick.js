@@ -1,4 +1,4 @@
-import { possibleStepsMap } from '../const.js'
+import { COLORS, possibleStepsMap } from '../const.js'
 import { 
     clearPossibleSteps, 
     clearSelectedCell, 
@@ -8,12 +8,14 @@ import {
 import { moveFigure } from '../game/moveFigure.js'
 import { createChessBoard } from './createChessBoard.js'
 import { isMoveValid } from './isMoveValid.js'
+import { isSameCell } from './isSameCell.js'
 
 export const handleCellClick = (cell) => {
     const currentState = getState()
+    const currentColor = currentState.isCurrentPlayerWhite ? COLORS.WHITE : COLORS.BLACK
     const {row, col} = cell
     
-    //если фигура уже выбрана и клик по одной из клеток возможного хода
+    //если фигура уже выбрана и клик по одной из клеток возможного хода, перемещаем
     if (isMoveValid(currentState, cell))
         {   
             moveFigure(cell)
@@ -22,14 +24,11 @@ export const handleCellClick = (cell) => {
 
     //получаем фигуру из состояния
     const figure = cell.figure 
+    if (cell.color !== currentColor) return
 
     if (figure) {
-        const isSameFigure = 
-            currentState.selectedCell?.row === row &&
-            currentState.selectedCell?.col === col;
-
         //если клик по той же фигуре, то сброс
-        if (isSameFigure) { 
+        if (isSameCell(currentState.selectedCell, cell)) { 
             clearSelectedCell()
             clearPossibleSteps()
 
