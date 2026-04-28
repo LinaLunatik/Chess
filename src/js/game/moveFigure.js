@@ -5,7 +5,8 @@ import {
     moveToCell,
     setBoard,
     setCapturedFigures,
-    setCastlingRights
+    setCastlingRights,
+    setMoveHistory
 } from "./state.js"
 import { createChessBoard } from "./createChessBoard.js"
 import { clearCell } from "./clearCell.js"
@@ -13,7 +14,7 @@ import { toggleCurrentPlayer } from "./toggleCurrentPlayer.js"
 import { getOppositeColor } from "../../utils/getOppositeColor.js"
 import { promotePawn } from "./promotePawn.js"
 import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
-import { GAME_STATUS } from "../const.js"
+import { GAME_STATUS, MOVE_TYPES, FIGURES, ROOK_SIDE } from "../const.js"
 import { getGameStatus } from "./getGameStatus.js"
 
 export const moveFigure = async (cell) => {
@@ -26,7 +27,6 @@ export const moveFigure = async (cell) => {
     }
 
     const { row: fromRow, col: fromCol } = state.selectedCell
-
     const newBoard = state.board.map(
         row => row.map(
             cell => ({ ...cell })
@@ -44,14 +44,12 @@ export const moveFigure = async (cell) => {
     const newMoveHistory = [
         ...state.moveHistory
     ]
-    
-    let moveType = MOVE_TYPES.move
 
+    let moveType = MOVE_TYPES.move
     //если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
-
     // если рокировка
     const moveDetails = state.possibleSteps.find(step =>
         step.row === row && step.col === col
@@ -91,11 +89,11 @@ export const moveFigure = async (cell) => {
     }
 
     newBoard[row][col] = moveToCell(targetCell, fromCell)
-    
+
     newMoveHistory.push({
         figure: fromCell.figure,
         color: fromCell.isBlack ? 'black' : 'white',
-        targetCell: {row, col},
+        targetCell: { row, col },
         type: moveType
     })
 
@@ -125,6 +123,8 @@ export const moveFigure = async (cell) => {
             break;
         case GAME_STATUS.check:
             console.log('ШАХ')
+            toggleCurrentPlayer()
+            createChessBoard()
             break;
         case GAME_STATUS.continue:
             toggleCurrentPlayer()

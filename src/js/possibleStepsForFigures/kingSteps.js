@@ -24,6 +24,7 @@ import { getCell } from "../game/state.js"
  */
 
 export const kingSteps = (state, row, col) => {
+
     const directions = [
         [-1, -1],
         [-1, 1],
@@ -36,18 +37,17 @@ export const kingSteps = (state, row, col) => {
     ]
 
     let moves = []
-    const { figure, color: currentColor } = getCell({row, col})
-
+    const { figure, color: currentColor } = getCell({ row, col })
     if (!figure) return []
-
+    // Обычные ходы короля
     directions.forEach(([rowDir, colDir]) => {
         const targetRow = row + rowDir;
         const targetCol = col + colDir;
 
         if (isOnChessBoard(targetRow, targetCol)) {
-            const targetCell = getCell({row: targetRow, col: targetCol})
-            const {figure: targetFigure, color: targetColor} = targetCell
-            
+            const targetCell = getCell({ row: targetRow, col: targetCol })
+            const { figure: targetFigure, color: targetColor } = targetCell
+
             //если клетка пуста, можно идти
             if (targetFigure === null) {
                 moves.push({
@@ -73,7 +73,7 @@ export const kingSteps = (state, row, col) => {
     // Ладья делает 2 шага влево по той же горизонтали.
     // Ладья до рокировки (col + 3), ладья после рокировки (col + 1).
 
-    if (state.castlingRights[currentColor][ROOK_SIDE.kingSide]) {
+    if (state.castlingRights?.[currentColor]?.[ROOK_SIDE.kingSide]) {
         const canCastle = isCastlingValid(state, currentColor, ROOK_SIDE.kingSide)
         if (canCastle) {
             moves.push({
@@ -91,8 +91,7 @@ export const kingSteps = (state, row, col) => {
     // При длинной рокировке король делает 2 шага влево по горизонтали.
     // Ладья делает 3 шага вправо по той же горизонтали.
     // Ладья до рокировки (col - 4), ладья после рокировки (col - 1).
-
-    if (state.castlingRights[currentColor][ROOK_SIDE.queenSide]) {
+    if (state.castlingRights?.[currentColor]?.[ROOK_SIDE.queenSide]) {
         const canCastle = isCastlingValid(state, currentColor, ROOK_SIDE.queenSide)
         if (canCastle) {
             moves.push({
@@ -104,6 +103,6 @@ export const kingSteps = (state, row, col) => {
                 rookTo: { row: row, col: (col - 1) }
             })
         }
-    }
+    } 
     return moves
 }
