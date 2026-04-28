@@ -1,3 +1,5 @@
+import { getOppositeColor } from "../../utils/getOppositeColor.js"
+import { isCellAttacked } from "../../utils/isCellAttacked.js"
 import { FIGURES, OPPOSITE_COLORS } from "../const.js"
 import { kingSteps } from "../possibleStepsForFigures/kingSteps.js"
 import { findAllFiguresByColor } from "./findAllFiguresByColor.js"
@@ -5,7 +7,6 @@ import { findAllPossibleSteps } from "./findAllPossibleSteps.js"
 import { findKingCell } from "./findKingCell.js"
 import { getAttackLine } from "./getAttackLine.js"
 import { getValidSteps } from "./getValidSteps.js"
-import { isInCheck } from "./isInCheck.js"
 
 export const isItEndGame = (state, colorOfKing) => {
     // Случай 1. Может ли король отойти?
@@ -80,7 +81,9 @@ export const isItEndGame = (state, colorOfKing) => {
         )
 
     // ИТОГО
-    const kingInCheck = isInCheck(state, colorOfKing)
+    const kingInCheck = isCellAttacked(
+        state, kingCell.row, kingCell.col, getOppositeColor(colorOfKing)
+    )
     
     // Пат - если королю нет шаха, некуда идти и любой фигуре тоже некуда идти
     const isItStalemate =

@@ -9,8 +9,8 @@
  */
 
 export const getCellsBetween = (kingCell, rookCell) => {
-    const { kingRow, kingCol } = kingCell
-    const { rookRow, rookCol } = rookCell
+    const { row: kingRow, col: kingCol } = kingCell
+    const { row: rookRow, col: rookCol } = rookCell
 
     if (kingRow !== rookRow) {
         return []
