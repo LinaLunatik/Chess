@@ -46,14 +46,32 @@ export const moveFigure = async (cell) => {
     ]
 
     let moveType = MOVE_TYPES.move
-    //если клетка назначения занята чужой фигурой
+
+    // Если клетка назначения занята чужой фигурой
     if (targetCell.figure !== null) {
         newCapturedFigures[targetCell.color].push(targetCell.figure)
     }
-    // если рокировка
+
+    // Ищем ход, на который кликнул пользователь
     const moveDetails = state.possibleSteps.find(step =>
         step.row === row && step.col === col
     )
+    if (moveDetails.type) {
+        moveType = moveDetails.type
+    }
+    
+    // Если взятие на проходе
+    if (moveDetails?.type === MOVE_TYPES.enPassant) {
+        const opponentLastMove = newMoveHistory.at(-1)
+        if (!opponentLastMove) return
+
+        newCapturedFigures[opponentLastMove.color].push(opponentLastMove.figure)
+        const capturedPawnCell = 
+            newBoard[opponentLastMove.targetCell.row][opponentLastMove.targetCell.col]
+        clearCell(capturedPawnCell)
+    }
+
+    // Если рокировка
     const newCastlingRights = {
         white: { ...state.castlingRights.white },
         black: { ...state.castlingRights.black }
@@ -92,7 +110,8 @@ export const moveFigure = async (cell) => {
 
     newMoveHistory.push({
         figure: fromCell.figure,
-        color: fromCell.isBlack ? 'black' : 'white',
+        color: fromCell.color,
+        fromCell: { row: fromCell.row, col: fromCell.col},
         targetCell: { row, col },
         type: moveType
     })

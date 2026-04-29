@@ -1,4 +1,4 @@
-import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS } from "../const.js"
+import { STYLES, FIGURE_IMAGE_PATH, SYMBOLS, MOVE_TYPES } from "../const.js"
 import { convertToChessCoords } from "./convertToChessCoords.js"
 
 export const buildMoveHistoryHTML = (state) => {
@@ -6,7 +6,7 @@ export const buildMoveHistoryHTML = (state) => {
     
     const movedItems = []
 
-    for (let { figure, color, targetCell, type } of moves) {
+    for (let { figure, color, fromCell, targetCell, type } of moves) {
         let imgTag = ''
 
         if (figure && color) {
@@ -21,7 +21,12 @@ export const buildMoveHistoryHTML = (state) => {
         }
 
         const chessCoords = convertToChessCoords(targetCell.row, targetCell.col)
-        const typeSymbol = SYMBOLS[type] || ''
+        let typeSymbol = SYMBOLS[type] || ''
+
+        if (type === MOVE_TYPES.enPassant) {
+            const fromCellCoords = convertToChessCoords(fromCell.row, fromCell.col)
+            typeSymbol = fromCellCoords[0] + SYMBOLS.capture
+        }
 
         movedItems.push(`
             <span class="${STYLES.moveHistory.item}">
