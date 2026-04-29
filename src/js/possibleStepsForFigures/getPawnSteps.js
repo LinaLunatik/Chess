@@ -1,6 +1,13 @@
-import { COLORS, MOVE_TYPES } from "../const.js"
+import { COLORS, FIGURES, MOVE_TYPES } from "../const.js"
 import { isOnChessBoard } from "../game/isOnChessBoard.js"
 import { getCell } from "../game/state.js"
+
+const getStartPawnRow = (color) => {
+    return color === COLORS.BLACK ? 1 : 6
+}
+const getDobleStepPawnRow = (color) => {
+    return color === COLORS.BLACK ? 3 : 4
+}
 
 export const getPawnSteps = ({ color }) => {
 
@@ -14,7 +21,7 @@ export const getPawnSteps = ({ color }) => {
         let moves = []
         // Определяем направление движения и начальную строку на основе цвета
         const step = color === COLORS.BLACK ? 1 : -1
-        const startRow = color === COLORS.BLACK ? 1 : 6
+        const startRow = getStartPawnRow(color)
 
         // Проверяем, находится ли пешка на начальной позиции для двойного хода
         if (row === startRow) {
@@ -85,6 +92,36 @@ export const getPawnSteps = ({ color }) => {
                 }
             }
         })
+        // Взятие на проходе (от французского en passant) — особое правило в шахматах, 
+        // которое позволяет одной пешке взять другую, если та совершила двойной ход 
+        // вперёд, минуя поле, где могла бы быть захвачена.
+        const opponentLastMove = state.moveHistory.at(-1)
+        if (!opponentLastMove) return moves
+        
+        const opponentPawnStartRow = getStartPawnRow(opponentLastMove.color)
+        const opponentDoubleStepRow = getDobleStepPawnRow(opponentLastMove.color)
+        if (
+            (opponentLastMove.figure === FIGURES.blackPawn || 
+                opponentLastMove.figure === FIGURES.whitePawn) &&
+            opponentLastMove.fromCell.row === opponentPawnStartRow &&
+            opponentLastMove.targetCell.row === opponentDoubleStepRow &&
+            opponentLastMove.targetCell.row === row &&
+            (opponentLastMove.targetCell.col === (col - 1) ||
+                opponentLastMove.targetCell.col === (col + 1))
+        ) {
+            const targetRow = row + step
+            const targetCol = opponentLastMove.fromCell.col
+
+            if (isOnChessBoard(targetRow, targetCol)) {
+
+                moves.push({
+                    row: targetRow,
+                    col: targetCol,
+                    type: MOVE_TYPES.enPassant
+                })
+            }
+        }
+
         return moves
     }
     return pawnSteps

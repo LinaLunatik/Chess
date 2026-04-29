@@ -80,7 +80,7 @@ export const getInitialState = () => {
             black: {...DEFAULT_CASTLING_RIGHTS}
         },
         // История ходов - для отображения в интерфейсе.
-        // Формат - [{figure, color, targetCell, type}]
+        // Формат - [{figure, color, fromCell, targetCell, type}]
         moveHistory: []
     }
     return initialState

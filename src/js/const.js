@@ -116,7 +116,8 @@ export const MOVE_TYPES = {
     move: 'move',
     castling: 'castling',
     check: 'check',
-    checkmate: 'checkmate'
+    checkmate: 'checkmate',
+    enPassant: 'enPassant'
 }
 
 export const ID_IN_HTML = {
