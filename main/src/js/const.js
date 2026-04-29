@@ -85,7 +85,8 @@ export const STYLES = {
     turnIndicator: {
         container: 'players',
         whiteTurn: 'turnWhite',
-        blackTurn: 'turnBlack'
+        blackTurn: 'turnBlack',
+        hintBlink: 'hintBlink'
     },
     // === Блок: Шахматная доска ===
     chessBoard: {

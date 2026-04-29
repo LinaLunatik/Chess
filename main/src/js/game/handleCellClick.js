@@ -1,4 +1,4 @@
-import { COLORS, possibleStepsMap } from '../const.js'
+import { COLORS, possibleStepsMap, STYLES } from '../const.js'
 import {
     clearPossibleSteps,
     clearSelectedCell,
@@ -17,18 +17,27 @@ export const handleCellClick = (cell) => {
     const currentColor = currentState.isCurrentPlayerWhite ? COLORS.WHITE : COLORS.BLACK
     const { row, col } = cell
 
-    //если фигура уже выбрана и клик по одной из клеток возможного хода, перемещаем
+    // Если фигура уже выбрана и клик по одной из клеток возможного хода, перемещаем
     if (isMoveValid(currentState, cell)) {
         moveFigure(cell)
         return
     }
 
-    //получаем фигуру из состояния
+    // Получаем фигуру из состояния
     const figure = cell.figure
-    if (cell.color !== currentColor) return
+    // Если клик на фигуру чужого цвета
+    if (cell.color !== currentColor) {
+        const playerInfo = document.getElementsByClassName(
+            STYLES.turnIndicator.container)[0]
+        playerInfo.classList.add(STYLES.turnIndicator.hintBlink)
+        setTimeout(() => {
+            playerInfo.classList.remove(STYLES.turnIndicator.hintBlink)
+        }, 1000)
+        return
+    }
 
     if (figure) {
-        //если клик по той же фигуре, то сброс
+        // Если клик по той же фигуре, то сброс
         if (isSameCell(currentState.selectedCell, cell)) {
             clearSelectedCell()
             clearPossibleSteps()
@@ -36,13 +45,13 @@ export const handleCellClick = (cell) => {
             createChessBoard()
         }
 
-        //если клик по новой фигуре - выбор новой фигуры
+        // Если клик по новой фигуре - выбор новой фигуры
         else {
-            //получаем фунцию расчет хода фигуры
+            // Получаем фунцию расчет хода фигуры
             const getSteps = possibleStepsMap[figure]
 
             if (getSteps) {
-                //вызываем функцию расчета хода
+                // Вызываем функцию расчета хода
                 const steps = getSteps(currentState, row, col)
 
                 setSelectedCell({ row, col })
