@@ -31,7 +31,9 @@ export const buildChessBoardHTML = (state) => {
                 </tr>`;
     })
 
-    return `<table class="${STYLES.chessBoard.container}">
+    return `
+            <table class="${STYLES.chessBoard.container}">
                 ${trElements.join('')}
-            </table>`
+            </table>
+            `
 }
