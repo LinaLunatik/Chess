@@ -113,7 +113,8 @@ export const moveFigure = async (cell) => {
         color: fromCell.color,
         fromCell: { row: fromCell.row, col: fromCell.col},
         targetCell: { row, col },
-        type: moveType
+        type: moveType,
+        rookSide: moveDetails?.rookSide
     })
 
     clearCell(fromCell)
@@ -128,10 +129,19 @@ export const moveFigure = async (cell) => {
     clearPossibleSteps()
     setCapturedFigures(newCapturedFigures)
     setCastlingRights(newCastlingRights)
-    setMoveHistory(newMoveHistory)
-
+    
     const newState = getState()
     const gameStatus = getGameStatus(newState, opponentColor)
+
+    const lastMove = newMoveHistory.at(-1)
+    if (lastMove) {
+        if (gameStatus === GAME_STATUS.check) 
+            lastMove.isCheck = true
+        if (gameStatus === GAME_STATUS.checkmate) 
+            lastMove.isCheckmate = true
+    }
+
+    setMoveHistory(newMoveHistory)
 
     switch (gameStatus) {
         case GAME_STATUS.checkmate:

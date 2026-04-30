@@ -136,8 +136,12 @@ export const DEFAULT_CASTLING_RIGHTS = {
 
 export const SYMBOLS = {
     move: ' ',
+    step: '',
     capture: 'x',
-    castling: '0-0',
+    castling: {
+        [ROOK_SIDE.kingSide]: 'O-O',
+        [ROOK_SIDE.queenSide]: 'O-O-O'
+    },
     check: '+',
     checkmate: '#'
 }

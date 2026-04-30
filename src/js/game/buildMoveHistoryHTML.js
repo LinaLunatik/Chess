@@ -6,9 +6,10 @@ export const buildMoveHistoryHTML = (state) => {
     
     const movedItems = []
 
-    for (let { figure, color, fromCell, targetCell, type } of moves) {
+    for (const move of moves) {
+        const { figure, color, fromCell, targetCell, rookSide, type } = move
+        
         let imgTag = ''
-
         if (figure && color) {
             const src = FIGURE_IMAGE_PATH[figure][color];
             if (src) {
@@ -20,17 +21,28 @@ export const buildMoveHistoryHTML = (state) => {
             }
         }
 
-        const chessCoords = convertToChessCoords(targetCell.row, targetCell.col)
-        let typeSymbol = SYMBOLS[type] || ''
-
+        let targetCoords = convertToChessCoords(targetCell.row, targetCell.col)
+        let notation = ''
+        
         if (type === MOVE_TYPES.enPassant) {
             const fromCellCoords = convertToChessCoords(fromCell.row, fromCell.col)
-            typeSymbol = fromCellCoords[0] + SYMBOLS.capture
+            const typeSymbol = fromCellCoords[0] + SYMBOLS.capture
+            notation = imgTag + typeSymbol + targetCoords
+        } else if (type === MOVE_TYPES.castling) {
+            const typeSymbol = SYMBOLS.castling[rookSide]
+            notation = typeSymbol
+        } else {
+            const typeSymbol = SYMBOLS[type]
+            notation = imgTag + typeSymbol + targetCoords
         }
+
+        let suffix = ''
+        if (move.isCheck) suffix = SYMBOLS.check
+        if (move.isCheckmate) suffix = SYMBOLS.checkmate
 
         movedItems.push(`
             <span class="${STYLES.moveHistory.item}">
-                ${imgTag}${typeSymbol}${chessCoords}
+                ${notation}${suffix}
             </span>
         `) 
     }
