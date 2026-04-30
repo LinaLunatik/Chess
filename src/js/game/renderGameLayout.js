@@ -17,7 +17,7 @@ export const renderGameLayout = (state) => {
                     ${captured}
                     ${history}
                 </div>
-                <div class="${STYLES.chessBoard.container}">
+                <div class="${STYLES.chessBoard.wrapper}">
                     ${chessBoard}
                 </div>
             </div>

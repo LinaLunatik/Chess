@@ -91,6 +91,7 @@ export const STYLES = {
     // === Блок: Шахматная доска ===
     chessBoard: {
         container: 'chess-board',
+        wrapper: 'chess-board-wrapper',
         row: 'chess-row',
         cell: 'chess-cell',
         cellDark: 'chess-cell--dark',
