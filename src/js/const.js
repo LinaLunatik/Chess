@@ -97,7 +97,12 @@ export const STYLES = {
         cellDark: 'chess-cell--dark',
         cellSelected: 'chess-cell--selected',
         cellPossible: 'chess-cell--possible',
-        cellCheck: 'chess-cell--check'
+        cellCheck: 'chess-cell--check',
+        coords: 'chess-board-coords',
+        letterTop: 'letter-top',
+        letterBottom: 'letter-bottom',
+        numberLeft: 'number-left',
+        numberRight: 'number-right'
     }
 }
 
