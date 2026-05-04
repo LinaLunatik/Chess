@@ -11,8 +11,8 @@ export const COLORS = {
     WHITE: 'white'
 }
 export const OPPOSITE_COLORS = {
-    [COLORS.BLACK] : COLORS.WHITE,
-    [COLORS.WHITE] : COLORS.BLACK
+    [COLORS.BLACK]: COLORS.WHITE,
+    [COLORS.WHITE]: COLORS.BLACK
 }
 export const FIGURES = {
     rook: 'rook',
@@ -103,6 +103,12 @@ export const STYLES = {
         letterBottom: 'letter-bottom',
         numberLeft: 'number-left',
         numberRight: 'number-right'
+    },
+    // === Блок: Модальное окно превращения пешки ===
+    pawn: {
+        modalPromotion: 'modal-promotion',
+        promotionOption: 'promotion-option',
+        modalButton: 'modal-button',
     }
 }
 
@@ -156,7 +162,7 @@ export const GAME_STATUS = {
     checkmate: 'checkmate',
     stalemate: 'stalemate',
     check: 'check',
-    continue: 'continue' 
+    continue: 'continue'
 }
 
 export const ASCII_CODE_A = 'a'.charCodeAt(0)

@@ -9,7 +9,7 @@ export const askPawnPromotion = (color) => {
     
     return new Promise(resolve => {
         const modal = document.createElement('div')
-        modal.classList.add(STYLES.modalPromotion)
+        modal.classList.add(STYLES.pawn.modalPromotion)
 
         const options = [
             { value: FIGURES.queen, content: FIGURES_RU_NAMES.queen },
@@ -20,12 +20,12 @@ export const askPawnPromotion = (color) => {
         options.forEach(opt => {
             const option = document.createElement('div')
             option.id = opt.value
-            option.classList.add(STYLES.promotionOption)
+            option.classList.add(STYLES.pawn.promotionOption)
 
             const img = document.createElement('img')
             img.src = FIGURE_IMAGE_PATH[opt.value][color]
             img.alt = opt.content
-            img.classList.add(STYLES.modalButton)
+            img.classList.add(STYLES.pawn.modalButton)
 
             option.appendChild(img)
             modal.appendChild(option)
@@ -33,7 +33,7 @@ export const askPawnPromotion = (color) => {
         document.body.appendChild(modal)
 
         modal.addEventListener('click', (event) => {
-            const clickedOption = event.target.closest(`.${STYLES.promotionOption}`)
+            const clickedOption = event.target.closest(`.${STYLES.pawn.promotionOption}`)
             if (!clickedOption || !clickedOption.id) return
             
             const chosenFigure = clickedOption.id
