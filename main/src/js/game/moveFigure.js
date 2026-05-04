@@ -16,6 +16,7 @@ import { promotePawn } from "./promotePawn.js"
 import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
 import { GAME_STATUS, MOVE_TYPES, FIGURES, ROOK_SIDE } from "../const.js"
 import { getGameStatus } from "./getGameStatus.js"
+import { getRookSide } from "./getRookSide.js"
 
 export const moveFigure = async (cell) => {
     const { row, col } = cell
