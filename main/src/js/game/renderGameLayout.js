@@ -16,10 +16,16 @@ export const renderGameLayout = (state) => {
             <div class="${STYLES.layout.container}">
                 <div class="${STYLES.layout.sidebar}">
                     ${players}
-                    <button 
-                        id="${ID_IN_HTML.btnReset}" 
-                        class="${STYLES.layout.button}">Новая игра
-                    </button>
+                    <div class="${STYLES.layout.controls}">
+                        <button 
+                            id="${ID_IN_HTML.btnReset}" 
+                            class="${STYLES.layout.button}">Новая игра
+                        </button>
+                        <button 
+                            id="${ID_IN_HTML.btnUndo}"
+                            class="${STYLES.layout.button}">Отмена хода
+                        </button>
+                    </div>
                     ${captured}
                     ${history}
                 </div>
