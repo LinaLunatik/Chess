@@ -1,4 +1,4 @@
-import { STYLES } from "../const.js"
+import { ID_IN_HTML, STYLES } from "../const.js"
 import { buildCapturedFiguresHTML } from "./buildCapturedFiguresHTML.js"
 import { buildChessBoardHTML } from "./buildChessBoardHTML.js"
 import { buildMoveHistoryHTML } from "./buildMoveHistoryHTML.js"
@@ -16,6 +16,10 @@ export const renderGameLayout = (state) => {
             <div class="${STYLES.layout.container}">
                 <div class="${STYLES.layout.sidebar}">
                     ${players}
+                    <button 
+                        id="${ID_IN_HTML.btnReset}" 
+                        class="${STYLES.layout.button}">Новая игра
+                    </button>
                     ${captured}
                     ${history}
                 </div>

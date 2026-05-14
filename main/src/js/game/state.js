@@ -2,6 +2,10 @@ import { getInitialState } from "./getInitialState.js"
 
 let state = getInitialState()
 
+const undoStack = []
+export const getUndoStack = () => undoStack
+export const setUndoStack = (newUndoStack) => { undoStack = newUndoStack }
+
 export const getState = () => state
 export const setState = (newState) => { state = newState } 
 
