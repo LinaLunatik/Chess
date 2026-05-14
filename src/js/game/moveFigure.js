@@ -2,6 +2,7 @@ import {
     clearPossibleSteps,
     clearSelectedCell,
     getState,
+    getUndoStack,
     moveToCell,
     setBoard,
     setCapturedFigures,
@@ -60,6 +61,11 @@ export const moveFigure = async (cell) => {
     if (moveDetails.type) {
         moveType = moveDetails.type
     }
+
+    // Сохраняем копию стейта
+    const copyState = structuredClone(state)
+    const newUndoStack = getUndoStack()
+    newUndoStack.push(copyState)
     
     // Если взятие на проходе
     if (moveDetails?.type === MOVE_TYPES.enPassant) {
@@ -120,6 +126,7 @@ export const moveFigure = async (cell) => {
 
     clearCell(fromCell)
 
+    // Превращение пешки
     if (isItLastRowForPawn(newBoard[row][col].figure, row)) {
         await promotePawn(newBoard, targetCell)
     }

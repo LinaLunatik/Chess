@@ -68,7 +68,8 @@ export const STYLES = {
     // === Сетка ===
     layout: {
         container: 'gameLayout',
-        sidebar: 'infoArea'
+        sidebar: 'infoArea',
+        button: 'button'
     },
     // === Блок: Съеденные фигуры ===
     captured: {
@@ -133,7 +134,8 @@ export const MOVE_TYPES = {
 }
 
 export const ID_IN_HTML = {
-    root: 'root'
+    root: 'root',
+    btnReset: 'btn-reset'
 }
 
 export const ROOK_SIDE = {

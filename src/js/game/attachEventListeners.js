@@ -1,9 +1,11 @@
+import { ID_IN_HTML } from "../const.js"
 import { handleCellClick } from "./handleCellClick.js"
+import { resetGame } from "./resetGame.js"
 import { getState } from "./state.js"
 
 export const attachEventListeners = () => {
 
-    const root = document.getElementById('root')
+    const root = document.getElementById(ID_IN_HTML.root)
     const table = root.querySelector('table')
 
     if (table) {
@@ -14,7 +16,7 @@ export const attachEventListeners = () => {
             const colString = targetCell.dataset.col
 
             if (
-                rowString === undefined || 
+                rowString === undefined ||
                 colString === undefined
             ) {
                 console.warn(
@@ -30,5 +32,10 @@ export const attachEventListeners = () => {
 
             handleCellClick(cell)
         })
+    }
+
+    const btnReset = document.getElementById(ID_IN_HTML.btnReset)
+    if (btnReset) {
+        btnReset.addEventListener('click', resetGame)
     }
 }
