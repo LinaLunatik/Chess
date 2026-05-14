@@ -56,7 +56,7 @@
     border: 1px solid var(--border-panel);
     padding: 12px;
     box-sizing: border-box;
-    height: 380px;
+    height: 340px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -135,6 +135,28 @@
     flex-shrink: 0;
 }
 
+/* ===== ПАНЕЛЬ: УПРАВЛЕНИЕ ===== */
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.controls .button {
+    flex: 1;                   
+    margin: 0;                 
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.controls .button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+}
 /* ===== КНОПКА "Новая Игра" ===== */
 .infoArea .button {
     width: 100%;

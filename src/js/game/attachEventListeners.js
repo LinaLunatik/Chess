@@ -1,7 +1,8 @@
 import { ID_IN_HTML } from "../const.js"
 import { handleCellClick } from "./handleCellClick.js"
 import { resetGame } from "./resetGame.js"
-import { getState } from "./state.js"
+import { getState, getUndoStack } from "./state.js"
+import { undoLastMove } from "./undoLastMove.js"
 
 export const attachEventListeners = () => {
 
@@ -38,4 +39,9 @@ export const attachEventListeners = () => {
     if (btnReset) {
         btnReset.addEventListener('click', resetGame)
     }
+    const btnUndo = document.getElementById(ID_IN_HTML.btnUndo)
+    if (btnUndo) {
+        btnUndo.addEventListener('click', undoLastMove)
+    }
+    btnUndo.disabled = (getUndoStack().length === 0)
 }
