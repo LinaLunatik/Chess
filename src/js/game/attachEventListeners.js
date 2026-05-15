@@ -37,11 +37,15 @@ export const attachEventListeners = () => {
 
     const btnReset = document.getElementById(ID_IN_HTML.btnReset)
     if (btnReset) {
-        btnReset.addEventListener('click', resetGame)
+        btnReset.addEventListener('click', () => {
+            if (confirm('Вы уверены? Текущая партия будет сброшена')) {
+                resetGame()
+            }
+        })
     }
     const btnUndo = document.getElementById(ID_IN_HTML.btnUndo)
     if (btnUndo) {
         btnUndo.addEventListener('click', undoLastMove)
+        btnUndo.disabled = (getUndoStack().length === 0)
     }
-    btnUndo.disabled = (getUndoStack().length === 0)
 }
