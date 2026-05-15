@@ -168,10 +168,14 @@ export const moveFigure = async (cell) => {
 
     switch (gameStatus) {
         case GAME_STATUS.checkmate:
-            alert('МАТ')
+            toggleCurrentPlayer()
+            createChessBoard()
+            setTimeout(() => alert('МАТ'), 50)
             break;
         case GAME_STATUS.stalemate:
-            alert('ПАТ')
+            toggleCurrentPlayer()
+            createChessBoard()
+            setTimeout(() => alert('ПАТ'), 50)
             break;
         case GAME_STATUS.check:
             console.log('ШАХ')
