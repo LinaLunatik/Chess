@@ -18,6 +18,8 @@ import { isItLastRowForPawn } from "./isItLastRowForPawn.js"
 import { GAME_STATUS, MOVE_TYPES, FIGURES, ROOK_SIDE } from "../const.js"
 import { getGameStatus } from "./getGameStatus.js"
 import { getRookSide } from "./getRookSide.js"
+import { isInCheck } from "./isInCheck.js"
+import { isMoveLegalUnderCheck } from "./isMoveLegalUnderCheck.js"
 
 export const moveFigure = async (cell) => {
     const { row, col } = cell
@@ -62,10 +64,23 @@ export const moveFigure = async (cell) => {
         moveType = moveDetails.type
     }
 
+    // Если король под шахом, его надо спасать
+    const isKingInCheck = isInCheck(state, fromCell.color)
+    if (isKingInCheck) {
+        if (!isMoveLegalUnderCheck(state, fromCell, targetCell, fromCell.color)) {
+            alert('Невозможный ход: король под шахом.')
+            clearSelectedCell()
+            clearPossibleSteps()
+            createChessBoard()
+            return
+        }
+    }
+
     // Сохраняем копию стейта
     const copyState = structuredClone(state)
     const newUndoStack = getUndoStack()
     newUndoStack.push(copyState)
+
     
     // Если взятие на проходе
     if (moveDetails?.type === MOVE_TYPES.enPassant) {
