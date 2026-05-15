@@ -26,7 +26,7 @@ export const getGameStatus = (state, colorOfKing) => {
     }
     // Король под шахом ?
     const kingInCheck = isCellAttacked(
-        state, kingCell.row, kingCell.col, getOppositeColor(colorOfKing)
+        state.board, kingCell.row, kingCell.col, getOppositeColor(colorOfKing)
     )
 
     // Ищем все фигуры, совпадающие цветом с королем

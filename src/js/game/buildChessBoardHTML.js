@@ -15,7 +15,7 @@ export const buildChessBoardHTML = (state) => {
     const currentPlayerColor = state.isCurrentPlayerWhite ? COLORS.WHITE : COLORS.BLACK
     const kingCell = findKingCell(state, currentPlayerColor)
     const isKingInCheck = kingCell && isCellAttacked(
-        state, kingCell.row, kingCell.col, getOppositeColor(currentPlayerColor)
+        state.board, kingCell.row, kingCell.col, getOppositeColor(currentPlayerColor)
     )
 
     const trElements= board.map(row => {

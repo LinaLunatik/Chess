@@ -32,7 +32,7 @@ export const getValidSteps = (state, figureSteps, figureCell) => {
         // в новом состоянии проверяем короля на шах
         const kingCell = findKingCell(newState, figureColor)
         const isKingInCheck = kingCell && isCellAttacked(
-            newState,
+            newState.board,
             kingCell.row,
             kingCell.col,
             getOppositeColor(figureColor))

@@ -82,7 +82,7 @@ export const isItEndGame = (state, colorOfKing) => {
 
     // ИТОГО
     const kingInCheck = isCellAttacked(
-        state, kingCell.row, kingCell.col, getOppositeColor(colorOfKing)
+        state.board, kingCell.row, kingCell.col, getOppositeColor(colorOfKing)
     )
     
     // Пат - если королю нет шаха, некуда идти и любой фигуре тоже некуда идти

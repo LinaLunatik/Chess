@@ -1,8 +1,7 @@
 import { COLORS, FIGURES } from "../js/const.js"
 import { isOnChessBoard } from "../js/game/isOnChessBoard.js"
-import { getCell } from "../js/game/state.js"
 
-export const isCellAttacked = (state, row, col, attackingColor) => {
+export const isCellAttacked = (board, row, col, attackingColor) => {
     // Хелперы использует замыкание
     // 1. Проверяет атаку пешками
     const checkPawnAttacks = (pawnAttacks, expectedPawnFigure) => {
@@ -10,7 +9,7 @@ export const isCellAttacked = (state, row, col, attackingColor) => {
             // Если клетка вне доски, пропускаем
             if (!isOnChessBoard(attackerRow, attackerCol)) continue
 
-            const attackerCell = getCell({ row: attackerRow, col: attackerCol })
+            const attackerCell = board[attackerRow][attackerCol]
 
             if (
                 attackerCell.figure === expectedPawnFigure &&
@@ -27,7 +26,7 @@ export const isCellAttacked = (state, row, col, attackingColor) => {
             // Если клетка вне доски, пропускаем
             if (!isOnChessBoard(attackerRow, attackerCol)) continue
 
-            const attackerCell = getCell({ row: attackerRow, col: attackerCol })
+            const attackerCell = board[attackerRow][attackerCol]
 
             if (
                 attackerCell.figure === figure &&
@@ -43,7 +42,7 @@ export const isCellAttacked = (state, row, col, attackingColor) => {
             let attackerCol = col + colDir
             // Идём «лучом», пока не упремся в край доски или в фигуру
             while (isOnChessBoard(attackerRow, attackerCol)) {
-                const attackerCell = getCell({ row: attackerRow, col: attackerCol })
+                const attackerCell = board[attackerRow][attackerCol]
 
                 if (attackerCell.figure !== null) {
                     // Если встретилась фигура нужного цвета и это ладья/ферзь

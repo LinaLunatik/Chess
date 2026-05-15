@@ -33,7 +33,7 @@ export const isCastlingValid = (state, color, rookSide) => {
     const attackingColor = getOppositeColor(color)
 
     const isItCheckBeforeCastling = isCellAttacked(
-        state, kingCell.row, kingCell.col, attackingColor
+        state.board, kingCell.row, kingCell.col, attackingColor
     )
     if (isItCheckBeforeCastling) return false
 
@@ -45,7 +45,7 @@ export const isCastlingValid = (state, color, rookSide) => {
         : cellsBetween.slice(0, -1)
 
     const isAnyCellAttacked = cellsToCheck.some(cell =>
-        isCellAttacked(state, cell.row, cell.col, attackingColor)
+        isCellAttacked(state.board, cell.row, cell.col, attackingColor)
     )
     if (isAnyCellAttacked) return false
 
