@@ -46,12 +46,27 @@ export const buildMoveHistoryHTML = (state) => {
             </span>
         `) 
     }
+    
+    let moveRows = []
+    for (let i = 0; i < movedItems.length; i+=2) {
+        const moveNum = Math.floor(i / 2) + 1
+        const moveWhite = movedItems[i]
+        const moveBlack = movedItems[i+1] || ''
+
+        moveRows.push(
+            `<div class="move-row">
+                <span class="move-num">${moveNum}.</span>
+                <span class="move-white">${moveWhite}</span>
+                <span class="move-black">${moveBlack}</span>
+            </div>`
+        )
+    }
 
     return `
                 <div class="${STYLES.moveHistory.container}">
                     <h3 class="${STYLES.panelTitle}">История ходов</h3>
                     <div class="${STYLES.moveHistory.list}">
-                        ${movedItems.join('')}
+                        ${moveRows.join('')}
                     </div>
                 </div>
             `
